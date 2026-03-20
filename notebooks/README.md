@@ -1,32 +1,31 @@
 # Notebooks
 
-Jupyter notebooks for analyzing the [EstWarden Baltic Security Dataset](https://github.com/Estwarden/dataset).
+Six research notebooks. Run in order — each builds on the previous.
 
 ## Setup
 
 ```bash
-# Clone the dataset
-git clone https://github.com/Estwarden/dataset.git ../data
-
-# Install dependencies
-pip install jupyter matplotlib pandas
-
-# Run
-jupyter notebook
+git clone https://github.com/Estwarden/dataset.git data
+cd research
+pip install -r requirements.txt
+jupyter notebook notebooks/
 ```
 
-## Notebooks
+## Sequence
 
-| Notebook | What it does |
-|----------|-------------|
-| **[dataset_explorer.ipynb](dataset_explorer.ipynb)** | Load all datasets, explore source distribution, temporal coverage, geographic data |
-| **[cti_backtest.ipynb](cti_backtest.ipynb)** | Visualize 90-day threat history, level distribution, score volatility |
-| **[narrative_analysis.ipynb](narrative_analysis.ipynb)** | Narrative classification breakdown (N1-N5), campaign activity |
-| **[campaign_detection.ipynb](campaign_detection.ipynb)** | Signal volume spikes, z-score anomaly detection, cross-source coordination |
-| **[source_correlation.ipynb](source_correlation.ipynb)** | Score distribution, CTI weight validation |
+| # | Notebook | Question | Key output |
+|---|----------|----------|------------|
+| 01 | [Data Profile](01_data_profile.ipynb) | What shape is the data? | `daily_matrix.parquet` — signals aligned with indicator labels |
+| 02 | [Lead Indicators](02_lead_indicators.ipynb) | Which sources predict YELLOW first? | Lagged correlations, Random Forest importance, data-driven weights |
+| 03 | [Anomaly Thresholds](03_anomaly_thresholds.ipynb) | What z-score = real anomaly? | Per-source ROC curves, Youden's J optimal thresholds, bootstrap stability |
+| 04 | [Narrative Velocity](04_narrative_velocity.ipynb) | How fast do narratives spread? | Velocity formula, amplification ratio, campaign prediction score |
+| 05 | [Source Independence](05_source_independence.ipynb) | Are any sources redundant? | Correlation matrix, mutual information, PCA, independence-adjusted weights |
+| 06 | [CTI Rebuild](06_cti_rebuild.ipynb) | Can we beat hand-tuned weights? | 3 models (hand-tuned / logistic / gradient boosted), time-series CV, deployable formula |
 
-## Data
+## Dependencies
 
-Notebooks expect the dataset at `../data/` (clone [Estwarden/dataset](https://github.com/Estwarden/dataset)).
+```
+numpy, pandas, scikit-learn, matplotlib, seaborn, scipy
+```
 
-Alternative: use the public API at `https://estwarden.eu/api/` for live data.
+See `requirements.txt`.

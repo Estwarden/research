@@ -3,6 +3,10 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 data/*.jsonl
+data/*.jsonl.gz
 data/*.tar.gz
+notebooks/daily_matrix.json
 autoresearch/history.json
 autoresearch/optimization_results.json
+autoresearch/experiments.log
+daily_matrix.json

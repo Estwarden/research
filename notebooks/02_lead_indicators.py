@@ -1,0 +1,123 @@
+# %% [markdown]
+# # 02 — Lead Indicator Discovery
+# **Which signal sources predict YELLOW indicators 1-3 days ahead?**
+#
+# This is the core question for early warning. We compute lagged
+# correlations and train a random forest to find feature importance.
+
+# %%
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+
+df = pd.read_parquet("daily_matrix.parquet")
+sources = [c for c in df.columns if c not in ("n_yellow", "is_elevated", "total")
+           and not c.startswith("cat_")]
+target = df["is_elevated"].values
+N = len(df)
+print(f"{N} days, {len(sources)} sources, {target.sum()} YELLOW+ days")
+
+# %% [markdown]
+# ## Lagged point-biserial correlation
+# For each source, correlate today's signal count with YELLOW status at lag 0, 1, 2, 3.
+
+# %%
+lags = [0, 1, 2, 3]
+results = []
+
+for src in sources:
+    if df[src].sum() == 0: continue
+    for lag in lags:
+        if lag == 0:
+            x = df[src].values
+            y = target
+        else:
+            x = df[src].values[:-lag]
+            y = target[lag:]
+        r, p = stats.pointbiserialr(x, y)
+        results.append({"source": src, "lag": lag, "r": r, "p": p})
+
+res = pd.DataFrame(results)
+pivot = res.pivot(index="source", columns="lag", values="r")
+pivot.columns = [f"lag_{l}" for l in pivot.columns]
+pivot["best_lag"] = res.groupby("source")["r"].idxmax().map(lambda i: results[i]["lag"])
+pivot["best_r"] = res.groupby("source")["r"].max()
+pivot = pivot.sort_values("best_r", ascending=False)
+
+print("Lagged correlations (source → YELLOW):\n")
+print(pivot.round(4).to_string())
+
+# %% [markdown]
+# ## Correlation heatmap
+
+# %%
+fig, ax = plt.subplots(figsize=(8, 10))
+lag_cols = [c for c in pivot.columns if c.startswith("lag_")]
+sns.heatmap(pivot[lag_cols].astype(float), annot=True, fmt=".3f",
+            cmap="RdYlGn_r", center=0, ax=ax)
+ax.set_title("Source → YELLOW Correlation at Different Lags")
+plt.tight_layout()
+plt.savefig("lead_correlations.png", dpi=150)
+plt.show()
+
+# %% [markdown]
+# ## Random Forest feature importance
+# Which sources matter most for predicting next-day YELLOW?
+
+# %%
+# Build lag-1 feature matrix
+X = df[sources].shift(1).fillna(0).values[1:]
+y = target[1:]
+
+rf = RandomForestClassifier(n_estimators=200, max_depth=5, random_state=42,
+                             class_weight="balanced")
+cv_scores = cross_val_score(rf, X, y, cv=5, scoring="f1")
+print(f"Random Forest 5-fold CV F1: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
+
+rf.fit(X, y)
+importance = pd.Series(rf.feature_importances_, index=sources).sort_values(ascending=False)
+
+fig, ax = plt.subplots(figsize=(10, 8))
+importance.head(15).plot.barh(ax=ax)
+ax.set_title("Feature Importance: Predicting Next-Day YELLOW")
+ax.set_xlabel("Importance")
+plt.tight_layout()
+plt.savefig("feature_importance.png", dpi=150)
+plt.show()
+
+print("\nTop features:")
+print(importance.head(15).round(4).to_string())
+
+# %% [markdown]
+# ## Data-driven weights vs current weights
+
+# %%
+CURRENT = {"gpsjam": 20, "adsb": 15, "acled": 15, "firms": 15,
+           "ais": 10, "telegram": 10, "rss": 5, "gdelt": 5, "ioda": 5}
+
+# Normalize importance to sum to 100
+imp_norm = (importance / importance.sum() * 100).round(1)
+
+comparison = pd.DataFrame({
+    "data_weight": imp_norm,
+    "current_weight": pd.Series(CURRENT),
+}).fillna(0)
+comparison["delta"] = comparison["data_weight"] - comparison["current_weight"]
+comparison = comparison.sort_values("data_weight", ascending=False)
+
+print("\n══════════════════════════════════════")
+print("  SOURCE WEIGHT COMPARISON")
+print("══════════════════════════════════════\n")
+print(comparison.round(1).to_string())
+
+fig, ax = plt.subplots(figsize=(10, 6))
+comparison[["data_weight", "current_weight"]].head(10).plot.bar(ax=ax)
+ax.set_title("Data-Driven vs Hand-Tuned Source Weights")
+ax.set_ylabel("Weight (%)")
+plt.tight_layout()
+plt.savefig("weight_comparison.png", dpi=150)
+plt.show()
