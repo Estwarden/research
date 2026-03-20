@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .env
+data/*.jsonl
+data/*.tar.gz
+autoresearch/history.json
+autoresearch/optimization_results.json
