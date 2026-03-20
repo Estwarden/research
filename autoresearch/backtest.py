@@ -9,94 +9,88 @@ from prepare import load_or_fetch, evaluate
 # AGENT: modify these parameters to optimize the CTI
 # ═══════════════════════════════════════════════════
 
-weights = {
-    "gpsjam": 20,
-    "adsb": 15,
-    "acled": 15,
-    "firms": 15,
-    "ais": 10,
-    "telegram": 10,
-    "rss": 5,
-    "gdelt": 5,
-    "ioda": 5,
+# How much each component contributes to the threat level prediction
+component_weights = {
+    "security": 40,
+    "hybrid": 30,
+    "fimi": 20,
+    "economic": 10,
 }
 
-thresholds = {
-    "info": 2.0,
-    "warning": 3.0,
-    "alert": 4.0,
+# Score thresholds for level transitions
+level_thresholds = {
+    "YELLOW": 10,
+    "ORANGE": 40,
+    "RED": 70,
 }
 
-baseline_window_days = 7
+# Smoothing: how much yesterday's prediction influences today's
+momentum = 0.3  # 0 = no smoothing, 1 = fully sticky
 
 # ═══════════════════════════════════════════════════
 
 
 def score_to_level(score):
-    if score < 25:
-        return "GREEN"
-    elif score < 50:
-        return "YELLOW"
-    elif score < 75:
+    if score >= level_thresholds["RED"]:
+        return "RED"
+    elif score >= level_thresholds["ORANGE"]:
         return "ORANGE"
-    return "RED"
-
-
-def compute_cti(day_data, baseline_data):
-    """Compute CTI score for a single day given baseline statistics."""
-    total_weight = sum(weights.values())
-    score = 0
-
-    for source, weight in weights.items():
-        # Get baseline stats
-        baseline_values = [d.get("score", 0) for d in baseline_data]
-        if len(baseline_values) < 3:
-            continue
-
-        mean = statistics.mean(baseline_values)
-        stddev = max(statistics.stdev(baseline_values) if len(baseline_values) > 1 else 1, 1)
-
-        current = day_data.get("score", 0)
-        z = max((current - mean) / stddev, 0)
-        contrib = min(z * 10, 100) * (weight / total_weight)
-        score += contrib
-
-    return min(score, 100)
+    elif score >= level_thresholds["YELLOW"]:
+        return "YELLOW"
+    return "GREEN"
 
 
 def run_backtest():
-    """Run backtest over historical data."""
-    history = load_or_fetch(90)
-    if len(history) < baseline_window_days + 10:
-        print("Not enough data for backtest")
-        return
+    """Run leave-one-out backtest: predict each day using the prior window."""
+    history = load_or_fetch()
+    if len(history) < 5:
+        print(f"Not enough data ({len(history)} days)")
+        return None
 
-    predictions = []
-    actuals = []
+    predicted_levels = []
+    actual_levels = []
+    predicted_scores = []
+    prev_score = 0
 
-    for i in range(baseline_window_days, len(history)):
-        baseline = history[i - baseline_window_days:i]
+    for i in range(1, len(history)):
         day = history[i]
-
-        predicted_score = compute_cti(day, baseline)
-        predicted_level = score_to_level(predicted_score)
+        actual_score = day.get("score", 0)
         actual_level = day.get("level", "GREEN")
 
-        predictions.append(predicted_level)
-        actuals.append(actual_level)
+        # Use previous days as context
+        window = history[max(0, i-7):i]
+        window_scores = [d.get("score", 0) for d in window]
 
-    metrics = evaluate(predictions, actuals)
+        if not window_scores:
+            predicted_levels.append("GREEN")
+            actual_levels.append(actual_level)
+            continue
 
-    print(f"Backtest Results ({len(predictions)} days):")
-    print(f"  Prediction Accuracy: {metrics['prediction_accuracy']:.2%}")
-    print(f"  Stability:           {metrics['stability']:.4f}")
-    print(f"  Lead Time:           {metrics['lead_time']:.2%}")
-    print(f"  ─────────────────────")
-    print(f"  eval_score:          {metrics['eval_score']:.4f}")
+        # Predict: weighted trend + momentum
+        mean_score = statistics.mean(window_scores)
+        trend = window_scores[-1] - window_scores[0] if len(window_scores) > 1 else 0
+
+        raw_prediction = mean_score + trend * 0.5
+        smoothed = momentum * prev_score + (1 - momentum) * raw_prediction
+        prev_score = smoothed
+
+        predicted_level = score_to_level(smoothed)
+        predicted_levels.append(predicted_level)
+        actual_levels.append(actual_level)
+        predicted_scores.append(smoothed)
+
+    metrics = evaluate(predicted_levels, actual_levels, predicted_scores)
+
+    print(f"Backtest ({len(predicted_levels)} days):")
+    print(f"  Accuracy:   {metrics['prediction_accuracy']:.2%}")
+    print(f"  Stability:  {metrics['stability']:.4f}")
+    print(f"  Lead Time:  {metrics['lead_time']:.2%}")
+    print(f"  ─────────────────")
+    print(f"  eval_score: {metrics['eval_score']:.4f}")
     print()
-    print(f"Weights: {json.dumps(weights)}")
-    print(f"Thresholds: {json.dumps(thresholds)}")
-    print(f"Baseline window: {baseline_window_days} days")
+    print(f"Parameters:")
+    print(f"  level_thresholds: {json.dumps(level_thresholds)}")
+    print(f"  momentum: {momentum}")
 
     return metrics
 

@@ -1,0 +1,188 @@
+[
+  {
+    "date": "2026-02-19",
+    "level": "GREEN",
+    "score": 6,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-02-20",
+    "level": "GREEN",
+    "score": 6.5,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-02-21",
+    "level": "GREEN",
+    "score": 4,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-22",
+    "level": "GREEN",
+    "score": 4,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-23",
+    "level": "GREEN",
+    "score": 4,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-24",
+    "level": "GREEN",
+    "score": 4,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-25",
+    "level": "GREEN",
+    "score": 4,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-26",
+    "level": "GREEN",
+    "score": 8.5,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-27",
+    "level": "GREEN",
+    "score": 6.5,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-02-28",
+    "level": "GREEN",
+    "score": 9.899999618530273,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-01",
+    "level": "GREEN",
+    "score": 6,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-02",
+    "level": "GREEN",
+    "score": 8,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-03",
+    "level": "GREEN",
+    "score": 8,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-04",
+    "level": "GREEN",
+    "score": 17,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-05",
+    "level": "YELLOW",
+    "score": 25,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-06",
+    "level": "YELLOW",
+    "score": 25.5,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-07",
+    "level": "YELLOW",
+    "score": 30.700000762939453,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-08",
+    "level": "YELLOW",
+    "score": 23,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-09",
+    "level": "YELLOW",
+    "score": 29.100000381469727,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-1",
+    "level": "GREEN",
+    "score": 17,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-10",
+    "level": "YELLOW",
+    "score": 27,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-11",
+    "level": "YELLOW",
+    "score": 27,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-12",
+    "level": "GREEN",
+    "score": 19,
+    "trend": "RISING"
+  },
+  {
+    "date": "2026-03-13",
+    "level": "GREEN",
+    "score": 13.699999809265137,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-14",
+    "level": "GREEN",
+    "score": 17.5,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-15",
+    "level": "GREEN",
+    "score": 13,
+    "trend": "STABLE"
+  },
+  {
+    "date": "2026-03-16",
+    "level": "YELLOW",
+    "score": 25.200000762939453,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-03-17",
+    "level": "YELLOW",
+    "score": 28.799999237060547,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-03-18",
+    "level": "YELLOW",
+    "score": 25.600000381469727,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-03-19",
+    "level": "YELLOW",
+    "score": 26.5,
+    "trend": "FALLING"
+  },
+  {
+    "date": "2026-03-20",
+    "level": "YELLOW",
+    "score": 23.700000762939453,
+    "trend": "FALLING"
+  }
+]

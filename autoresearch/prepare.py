@@ -7,62 +7,71 @@ import urllib.request
 
 API = "https://estwarden.eu"
 DATA_FILE = "history.json"
+UA = {"User-Agent": "EstWarden-Research/1.0"}
 
 
-def fetch_history(days=90):
-    """Fetch threat history from public API."""
-    url = f"{API}/api/history?days={days}"
-    with urllib.request.urlopen(url, timeout=30) as r:
+def fetch_history():
+    """Fetch threat index history from public API."""
+    url = f"{API}/api/threat-index/history"
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=30) as r:
         data = json.loads(r.read())
     if isinstance(data, dict):
-        data = data.get("history", [])
+        data = data.get("history", data.get("data", []))
     return data
 
 
-def load_or_fetch(days=90):
+def fetch_today():
+    """Fetch current threat index with component breakdown."""
+    url = f"{API}/api/threat-index"
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.loads(r.read())
+
+
+def load_or_fetch():
     """Load cached data or fetch fresh."""
     if os.path.exists(DATA_FILE):
-        with open(DATA_FILE) as f:
-            data = json.load(f)
-        if len(data) >= days * 0.8:  # at least 80% coverage
-            return data
+        age = os.path.getmtime(DATA_FILE)
+        import time
+        if time.time() - age < 3600:  # cache for 1 hour
+            with open(DATA_FILE) as f:
+                return json.load(f)
 
-    data = fetch_history(days)
+    data = fetch_history()
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
     print(f"Fetched {len(data)} days of history")
     return data
 
 
-def evaluate(predictions, actuals):
-    """Evaluate prediction accuracy. Returns dict of metrics."""
-    if not predictions or not actuals or len(predictions) != len(actuals):
+def evaluate(predicted_levels, actual_levels, predicted_scores=None):
+    """Evaluate prediction quality. Returns metrics dict."""
+    n = min(len(predicted_levels), len(actual_levels))
+    if n == 0:
         return {"prediction_accuracy": 0, "stability": 0, "lead_time": 0, "eval_score": 0}
 
-    # Prediction accuracy: how often predicted level matches actual
-    correct = sum(1 for p, a in zip(predictions, actuals) if p == a)
-    accuracy = correct / len(predictions)
+    # Accuracy: predicted level matches actual
+    correct = sum(1 for i in range(n) if predicted_levels[i] == actual_levels[i])
+    accuracy = correct / n
 
-    # Stability: inverse of daily score changes (lower volatility = better)
-    if len(predictions) > 1:
-        changes = [abs(predictions[i] - predictions[i-1])
-                   for i in range(1, len(predictions))
-                   if isinstance(predictions[i], (int, float))]
-        stability = 1.0 / (1.0 + (sum(changes) / max(len(changes), 1)))
+    # Stability: fewer level transitions = more stable
+    if n > 1:
+        transitions = sum(1 for i in range(1, n) if predicted_levels[i] != predicted_levels[i-1])
+        stability = 1.0 / (1.0 + transitions / n)
     else:
         stability = 1.0
 
-    # Lead time: how many transitions were predicted 1 day early
+    # Lead time: did we predict tomorrow's level change today?
     lead_hits = 0
-    transitions = 0
-    for i in range(1, len(actuals)):
-        if actuals[i] != actuals[i-1]:
-            transitions += 1
-            if i > 0 and predictions[i-1] == actuals[i]:
+    actual_transitions = 0
+    for i in range(1, n):
+        if actual_levels[i] != actual_levels[i-1]:
+            actual_transitions += 1
+            if predicted_levels[i-1] == actual_levels[i]:
                 lead_hits += 1
-    lead_time = lead_hits / max(transitions, 1)
+    lead_time = lead_hits / max(actual_transitions, 1)
 
-    # Composite score (weighted)
     eval_score = accuracy * 0.5 + stability * 0.3 + lead_time * 0.2
 
     return {
@@ -74,9 +83,16 @@ def evaluate(predictions, actuals):
 
 
 if __name__ == "__main__":
-    data = load_or_fetch(90)
+    data = load_or_fetch()
     print(f"Data: {len(data)} days")
-    print(f"Date range: {data[0]['date']} → {data[-1]['date']}")
-    scores = [d.get("score", 0) for d in data]
-    print(f"Score range: {min(scores):.1f} — {max(scores):.1f}")
-    print(f"Mean: {sum(scores)/len(scores):.1f}")
+    if data:
+        print(f"Range: {data[0]['date']} → {data[-1]['date']}")
+        scores = [d.get("score", 0) for d in data]
+        levels = [d.get("level", "?") for d in data]
+        print(f"Scores: {min(scores):.1f} — {max(scores):.1f} (mean {sum(scores)/len(scores):.1f})")
+        from collections import Counter
+        print(f"Levels: {dict(Counter(levels))}")
+
+    today = fetch_today()
+    print(f"\nToday: {today.get('level')} ({today.get('score', 0):.1f}/100)")
+    print(f"Components: {json.dumps(today.get('components', {}), indent=2)}")
