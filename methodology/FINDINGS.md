@@ -45,3 +45,39 @@ cd research/autoresearch
 pip install numpy
 python3 optimize.py  # reproduces the 0.8708 result
 ```
+
+## Multi-Region Impact (March 2026)
+
+### Architecture change
+CTI is now computed per-region (baltic, finland, poland) with the same formula
+but filtering signals by geographic region. Each brand (estwarden, latwarden,
+litwarden, finwarden, polwarden, balticwarden) maps to a CTI region.
+
+### Score distributions differ by region
+
+| Region | Avg Score | YELLOW days | Notes |
+|--------|-----------|-------------|-------|
+| Baltic | 12.7 | 16/45 (36%) | Research-optimized (threshold=15.2 is good) |
+| Finland | 16.0 | 20/31 (65%) | Consistently higher — threshold may be too low |
+| Poland | 17.0 | 22/31 (71%) | Almost always YELLOW — threshold definitely too low |
+
+### Problem: uniform thresholds don't work across regions
+
+The 15.2 YELLOW threshold was optimized on Baltic data where scores range 4.5–21.5.
+Finland (8.7–21.6) and Poland (10.4–22.0) have higher baselines, so they're YELLOW
+most of the time. This is a **false positive problem** — the threshold needs
+per-region calibration.
+
+### Action items
+1. **Re-export dataset WITH region column** — current dataset has no region tags
+2. **Run Phase 1 optimizer per-region** — find optimal thresholds for each
+3. **Source weights may differ by region** — Finnish media (RSS) may be more/less
+   predictive than Estonian media for Finnish threat levels
+4. **Add per-region notebooks** — notebook 02 (lead indicators) should run once
+   per region to find region-specific predictors
+5. **Consider region-specific source weights** — GPS jamming near Kaliningrad
+   may be more relevant for Lithuania than Finland
+
+### Interim fix
+Until per-region thresholds are researched, the YELLOW threshold for Finland
+and Poland should be raised to ~18-20 to avoid permanent YELLOW status.
