@@ -1,31 +1,24 @@
 #!/usr/bin/env python3
-"""CTI Backtest — the agent modifies this file to optimize weights and thresholds."""
+"""CTI Backtest — Phase 1 optimized, Phase 2 agent-editable."""
 
 import json
 import statistics
 from prepare import load_or_fetch, evaluate
 
 # ═══════════════════════════════════════════════════
-# AGENT: modify these parameters to optimize the CTI
+# Optimized by Phase 1 (85K parameter search)
+# Phase 2 agent: improve the LOGIC below, not just numbers
 # ═══════════════════════════════════════════════════
 
-# How much each component contributes to the threat level prediction
-component_weights = {
-    "security": 40,
-    "hybrid": 30,
-    "fimi": 20,
-    "economic": 10,
-}
-
-# Score thresholds for level transitions
 level_thresholds = {
-    "YELLOW": 10,
-    "ORANGE": 40,
-    "RED": 70,
+    "YELLOW": 15.2,
+    "ORANGE": 59.7,
+    "RED": 92.8,
 }
 
-# Smoothing: how much yesterday's prediction influences today's
-momentum = 0.3  # 0 = no smoothing, 1 = fully sticky
+momentum = 0.034
+trend_mult = 0.927
+window_days = 7
 
 # ═══════════════════════════════════════════════════
 
@@ -41,24 +34,20 @@ def score_to_level(score):
 
 
 def run_backtest():
-    """Run leave-one-out backtest: predict each day using the prior window."""
     history = load_or_fetch()
-    if len(history) < 5:
+    if len(history) < window_days + 5:
         print(f"Not enough data ({len(history)} days)")
         return None
 
     predicted_levels = []
     actual_levels = []
-    predicted_scores = []
     prev_score = 0
 
-    for i in range(1, len(history)):
+    for i in range(window_days, len(history)):
         day = history[i]
-        actual_score = day.get("score", 0)
         actual_level = day.get("level", "GREEN")
 
-        # Use previous days as context
-        window = history[max(0, i-7):i]
+        window = history[max(0, i - window_days):i]
         window_scores = [d.get("score", 0) for d in window]
 
         if not window_scores:
@@ -66,20 +55,18 @@ def run_backtest():
             actual_levels.append(actual_level)
             continue
 
-        # Predict: weighted trend + momentum
         mean_score = statistics.mean(window_scores)
         trend = window_scores[-1] - window_scores[0] if len(window_scores) > 1 else 0
 
-        raw_prediction = mean_score + trend * 0.5
+        raw_prediction = mean_score + trend * trend_mult
         smoothed = momentum * prev_score + (1 - momentum) * raw_prediction
         prev_score = smoothed
 
         predicted_level = score_to_level(smoothed)
         predicted_levels.append(predicted_level)
         actual_levels.append(actual_level)
-        predicted_scores.append(smoothed)
 
-    metrics = evaluate(predicted_levels, actual_levels, predicted_scores)
+    metrics = evaluate(predicted_levels, actual_levels)
 
     print(f"Backtest ({len(predicted_levels)} days):")
     print(f"  Accuracy:   {metrics['prediction_accuracy']:.2%}")
@@ -87,10 +74,6 @@ def run_backtest():
     print(f"  Lead Time:  {metrics['lead_time']:.2%}")
     print(f"  ─────────────────")
     print(f"  eval_score: {metrics['eval_score']:.4f}")
-    print()
-    print(f"Parameters:")
-    print(f"  level_thresholds: {json.dumps(level_thresholds)}")
-    print(f"  momentum: {momentum}")
 
     return metrics
 

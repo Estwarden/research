@@ -1,57 +1,49 @@
 # EstWarden CTI Autoresearch
 
-You are an automated research agent optimizing the Composite Threat Index (CTI)
-for the EstWarden Baltic Security Monitor.
+Automated optimization of the Composite Threat Index for Baltic security monitoring.
 
-## Goal
+## Two phases
 
-Minimize prediction error of the CTI by optimizing source weights and
-detection thresholds against historical data from the public API.
+### Phase 1: Parameter search (optimize.py)
+Brute-force search over thresholds, momentum, trend multiplier, window size.
+NumPy vectorized, 100K combinations in seconds. No LLM needed.
 
-## Constraints
+Run: `python3 optimize.py`
 
-- Each experiment: fetch data from `https://estwarden.eu/api/`, run backtest, measure score
-- Experiments must complete in under 60 seconds
-- Only modify `weights` and `thresholds` in `backtest.py` — do NOT modify `prepare.py` or `evaluate.py`
-- Weights must sum to 100, each weight between 0 and 40
-- Z-score thresholds must be between 1.5 and 5.0
-- Commit improvements only if `eval_score` improves by ≥ 0.5%
+### Phase 2: Structural improvements (LLM agent)
+The LLM agent reads this file, modifies backtest.py, proposes **new features**:
+- Source-specific thresholds (not global)
+- Time-of-week weighting (weekday vs weekend patterns)
+- Exponential decay for older signals
+- Conditional logic (if GPS jamming HIGH, weight ADS-B more)
+- Cross-source correlation scoring
+
+This is where LLM reasoning helps — hypothesis generation, not number tuning.
+
+Run: `./run.sh` (uses local Ollama or any LLM agent)
+
+## Current best parameters (from Phase 1)
+
+```
+YELLOW threshold: 15.2
+ORANGE threshold: 59.7
+RED threshold:    92.8
+Momentum:         0.034
+Trend multiplier: 0.927
+Window:           7 days
+
+eval_score: 0.8850 (accuracy: 91.7%, stability: 88.9%, lead_time: 80.0%)
+```
 
 ## Metrics
 
-Primary: **prediction_accuracy** — how well the CTI score predicted next-day threat level changes
-Secondary: **stability** — lower daily volatility is better (fewer false transitions)
-Tertiary: **lead_time** — earlier detection of level changes scores higher
+- **prediction_accuracy** (50% weight): did the predicted level match the actual?
+- **stability** (30% weight): fewer false transitions between levels
+- **lead_time** (20% weight): predicted tomorrow's level change today
 
-## Current Baseline
+## Constraints for Phase 2
 
-```
-weights = {
-    "gpsjam": 20, "adsb": 15, "acled": 15, "firms": 15,
-    "ais": 10, "telegram": 10, "rss": 5, "gdelt": 5, "ioda": 5,
-}
-thresholds = {
-    "info": 2.0, "warning": 3.0, "alert": 4.0,
-}
-baseline_window_days = 7
-```
-
-Baseline eval_score: (run prepare.py to compute)
-
-## What to try
-
-- Rebalance weights based on source signal-to-noise ratio
-- Test 14-day vs 7-day baseline windows
-- Adjust z-score thresholds for different source types
-- Add momentum (rate-of-change) as a scoring factor
-- Test exponential weighted moving average instead of simple mean
-- Source-specific thresholds instead of global ones
-
-## Evaluation
-
-After each change:
-1. Run `python3 backtest.py`
-2. Compare `eval_score` to previous best
-3. If improved ≥ 0.5%, commit with message: `autoresearch: <what changed> (score: X.XX → Y.YY)`
-4. If not improved, revert and try something different
-5. Log all experiments to `experiments.log`
+- Only modify `backtest.py` — NOT `prepare.py` or `optimize.py`
+- Each experiment must complete in < 5 seconds
+- Commit only if eval_score improves ≥ 0.5%
+- Log reasoning to experiments.log

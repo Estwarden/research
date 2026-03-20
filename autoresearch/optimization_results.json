@@ -1,0 +1,16 @@
+{
+  "best": {
+    "yellow": 15.2,
+    "orange": 59.7,
+    "red": 92.8,
+    "momentum": 0.034,
+    "trend_mult": 0.927,
+    "window": 7,
+    "accuracy": 0.9167,
+    "stability": 0.8889,
+    "lead_time": 0.8,
+    "eval_score": 0.885
+  },
+  "trials": 85290,
+  "data_days": 31
+}
