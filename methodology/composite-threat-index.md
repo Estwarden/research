@@ -93,3 +93,37 @@ Military base activity level is a weighted average of 6 source types:
 | Milwatch RSS feeds | 5% |
 
 Result: 0.0–1.0 activity level per monitored site, cached and updated every 4 hours.
+
+## Optimization Results (March 2026)
+
+### Phase 1: Parameter search (85,000 trials)
+
+Optimal parameters on 31 days of production data:
+
+```
+YELLOW threshold: 15.2
+ORANGE threshold: 59.7
+RED threshold:    92.8
+Momentum:         0.034 (minimal smoothing)
+Trend multiplier: 0.927 (trust the trend)
+Window:           7 days
+
+eval_score: 0.8708
+  Accuracy:   87.5%
+  Stability:  88.9%
+  Lead time:  83.3%
+```
+
+### Phase 2: Structural improvements (5 iterations, Claude Sonnet)
+
+All structural changes tested and rejected:
+- Exponential moving average → worse (0.7167)
+- Asymmetric momentum → worse (0.7297)
+- Rate-of-change scoring → worse (0.6958)
+- Volatility penalty → worse (0.6958)
+- Regime detection → worse (0.6958)
+
+**Conclusion:** With 31 days of data and 12 level transitions, the simple linear
+model (mean + trend × weight) is near-optimal. Structural improvements require
+6+ months of data with diverse threat scenarios. The parameter-optimized model
+should be re-evaluated quarterly as more data accumulates.
