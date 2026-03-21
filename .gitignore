@@ -10,3 +10,7 @@ autoresearch/history.json
 autoresearch/optimization_results.json
 autoresearch/experiments.log
 daily_matrix.json
+
+# Large data exports (download separately)
+data/signals_14d.csv
+data/*.parquet

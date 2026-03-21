@@ -1,0 +1,181 @@
+cluster_id,signal_count,sources,categories,has_state,has_trusted,first_seen,last_seen,event_summary,centroid_title,centroid_category
+196,12,"{interfax,kommersant,rt_russian,tass_ru,NULL}",{russian_state},t,f,2026-03-20 13:45:38+00,2026-03-20 15:07:22+00,,"👀 НАТО без США — це паперовий тигр, — Дональд Трамп 
+
+За словами американського лідера, інші члени Альянсу не захотіли…",
+153,6,"{err_rus,postimees_rus,rt_russian,tass_ru,tribuna_ee}","{estonian_media,russian_language_ee,russian_state}",t,t,2026-03-20 14:37:41+00,2026-03-20 20:30:05+00,Donald Trump criticized NATO allies for not assisting the US in the Strait of Hormuz.,Трамп: НАТО не хватило мужества помочь США в Ормузском проливе,russian_state
+232,5,"{kommersant,rt_russian,NULL}",{russian_state},t,f,2026-03-20 11:53:35+00,2026-03-20 12:52:24+00,,Лукашенко рассказал о приглашении Трампа встретиться во Флориде,russian_state
+185,4,"{kommersant,rt_russian,tass_ru}",{russian_state},t,f,2026-03-20 14:40:10+00,2026-03-20 15:58:08+00,,Мелания Трамп попросила Лукашенко обсудить с Путиным украинских детей,russian_state
+198,4,"{15min_lt,delfi_lt_rus}",{baltic_media},f,t,2026-03-20 12:50:05+00,2026-03-20 14:53:50+00,,Кащюнас о нежелании Польши создавать совместный полигон: поражение литовской дипломатии,baltic_media
+162,4,"{err_rus,mke_ee,postimees_rus,tribuna_ee}","{estonian_media,russian_language_ee}",f,t,2026-03-20 16:29:00+00,2026-03-20 18:51:35+00,,Цахкна раскритиковал участие бывшей сотрудницы МИД РФ в миссии ОБСЕ на выборах в Венгрии,estonian_media
+115,3,{tass_ru},{russian_state},t,f,2026-03-20 19:23:08+00,2026-03-21 12:26:17+00,,В Липецкой области объявили угрозу атаки БПЛА,russian_state
+169,3,"{15min_lt,tass_ru}","{baltic_media,russian_state}",t,t,2026-03-20 15:34:57+00,2026-03-20 17:22:33+00,"NATO's mission in Iraq was relocated to Europe, with troops departing Iraq.",Нидерландские военные покинули Ирак после перевода миссии НАТО в Европу,russian_state
+186,3,"{15min_lt,kommersant,tass_ru}","{baltic_media,russian_state}",t,t,2026-03-20 14:51:27+00,2026-03-20 15:54:03+00,,Польша эвакуировала военных из Ирака из-за проблем с безопасностью,russian_state
+113,3,"{interfax,tass_ru}",{russian_state},t,f,2026-03-21 08:04:00+00,2026-03-21 12:40:00+00,,Около 20 БПЛА ликвидировано над Белгородской областью за сутки,russian_state
+212,2,"{interfax,rt_russian}",{russian_state},t,f,2026-03-20 13:56:51+00,2026-03-20 13:57:00+00,,В брянском селе в результате атаки БПЛА ранен мужчина,russian_state
+237,2,{lsm_en},{baltic_media},f,t,2026-03-20 12:38:00+00,2026-03-20 12:38:11+00,,Survey: Valmierians most satisfied with life in their city,baltic_media
+204,2,"{interfax,rt_russian}",{russian_state},t,f,2026-03-20 12:43:00+00,2026-03-20 14:25:10+00,,Лукашенко: Иран не просил у Белоруссии ракеты,russian_state
+133,2,"{interfax,kommersant}",{russian_state},t,f,2026-03-21 07:28:00+00,2026-03-21 08:42:03+00,,Новосибирские власти завершили изъятие скота в крупных хозяйствах,russian_state
+121,2,"{yle_en,yle_fi}",{finnish_media},f,t,2026-03-21 11:40:49+00,2026-03-21 11:40:49+00,,Ulkoministeri Valtonen: Suomi ei ole lähettämässä kalustoa Hormuzinsalmen avaamiseksi,finnish_media
+183,2,"{interfax,kommersant}",{russian_state},t,f,2026-03-20 15:38:00+00,2026-03-20 16:21:18+00,,Путин завершил формирование нового состава Центризбиркома,russian_state
+161,2,"{err_business,err_rus}",{estonian_media},f,t,2026-03-20 16:43:00+00,2026-03-20 18:56:00+00,,Правительство Латвии ищет способы смягчения роста цен на топливо,estonian_media
+108,2,"{interfax,kommersant}",{russian_state},t,f,2026-03-21 13:15:00+00,2026-03-21 13:41:37+00,,Две женщины погибли при ударе по соцобъекту в Белгородской области,russian_state
+247,2,"{delfi_lt_rus,NULL}",{baltic_media},f,t,2026-03-20 12:11:01+00,2026-03-20 12:16:30+00,,Польша отклонила идею общего полигона с Литвой: мы участвовать не будем,baltic_media
+220,2,{15min_lt},{baltic_media},f,t,2026-03-20 13:07:02+00,2026-03-20 13:28:03+00,,NATO atstovai patvirtina koreguojantys Aljanso misiją Irake,baltic_media
+228,2,{tass_ru},{russian_state},t,f,2026-03-20 12:56:05+00,2026-03-20 12:59:54+00,,"Лукашенко согласился с Трампом, что Америку надо спасать",russian_state
+123,2,"{err_en,err_rus}",{estonian_media},f,t,2026-03-20 19:57:00+00,2026-03-21 11:24:00+00,,Minehunter ice damage exposes limits of Estonian Navy fleet,estonian_media
+140,2,{kommersant},{russian_state},t,f,2026-03-21 02:36:56+00,2026-03-21 07:35:38+00,,Губернатор Бусаргин рассказал о последствиях атаки БПЛА в Саратове и Энгельсе,russian_state
+246,2,"{defence_blog,pravda_en}","{defense_osint,ukraine_media}",f,f,2026-03-20 11:52:00+00,2026-03-20 12:17:32+00,,Ukraine downs Russian Ka-52 helicopter with FPV drone,defense_osint
+193,2,"{rt_russian,tass_ru}",{russian_state},t,f,2026-03-20 14:25:57+00,2026-03-20 15:19:24+00,,Лукашенко: Белоруссия готова продать США рудник минимум за $3 млрд,russian_state
+176,2,"{err_rus,pravda_en}","{estonian_media,ukraine_media}",f,t,2026-03-20 13:37:00+00,2026-03-20 16:51:00+00,,"Belarusian leader announces ""big deal"" with US: ""How could I refuse?""",ukraine_media
+125,2,{defence_blog},{defense_osint},f,f,2026-03-21 10:20:08+00,2026-03-21 10:42:15+00,,Elbit America to showcase SIGMA howitzer at AUSA,defense_osint
+152,2,"{rt_russian,tass_ru}",{russian_state},t,f,2026-03-20 20:22:43+00,2026-03-20 20:32:26+00,,Трамп поддержал предложение закрыть американские военные базы в Испании,russian_state
+147,2,"{15min_lt,delfi_lt_rus}",{baltic_media},f,t,2026-03-20 16:31:03+00,2026-03-21 04:26:30+00,,Глава МИД Литвы: мы заинтересованы в расширении двустороннего сотрудничества с Чили,baltic_media
+170,2,"{interfax,rt_russian}",{russian_state},t,f,2026-03-20 12:55:17+00,2026-03-20 17:11:00+00,,НАТО вывела из Ирака военных из консультативной миссии,russian_state
+129,1,{defence_blog},{defense_osint},f,f,2026-03-21 09:53:47+00,2026-03-21 09:53:47+00,,BAE Systems reveals Army combat systems at AUSA Global Force,defense_osint
+130,1,{tvnet},{mainstream},f,f,2026-03-21 09:24:12+00,2026-03-21 09:24:12+00,,Latvijas karavīrus plāno uzņemt prestižajā Reindžeru vienībā,mainstream
+131,1,{mke_ee},{russian_language_ee},f,f,2026-03-21 09:12:54+00,2026-03-21 09:12:54+00,,"США рассматривают возможность сворачивания военной операции против Ирана, — Трамп",russian_language_ee
+132,1,{15min_lt},{baltic_media},f,t,2026-03-21 08:56:03+00,2026-03-21 08:56:03+00,,KAM viceministras: JAV atstovai dėl Lietuvos skiriamų lėšų gynybai šalį pristato kaip pavyzdį,baltic_media
+134,1,{postimees_rus},{estonian_media},f,t,2026-03-21 08:30:24+00,2026-03-21 08:30:24+00,,"Кристен Михал о скандальной базе данных педофилов: «Нужно благодарить тех, кто начал дискуссию»",estonian_media
+135,1,{15min_lt},{baltic_media},f,t,2026-03-21 08:17:29+00,2026-03-21 08:17:29+00,,Plinta nauja manipuliacija: ar Lietuvą iš tiesų gins vos 500 šaulių?,baltic_media
+136,1,{mke_ee},{russian_language_ee},f,f,2026-03-21 08:15:53+00,2026-03-21 08:15:53+00,,Дмитрий Кузнецов: кто следующий?,russian_language_ee
+137,1,{err_rus},{estonian_media},f,t,2026-03-21 08:14:00+00,2026-03-21 08:14:00+00,,Реформист Ээрик-Нийлес Кросс приостановил полномочия в Таллиннском горсобрании,estonian_media
+138,1,{15min_lt},{baltic_media},f,t,2026-03-21 08:04:43+00,2026-03-21 08:04:43+00,,"„Atlydėjo asmenys, galimai susiję su Baltarusijos tarnybomis“: VSAT sulaikė sieną kirtusius migrantus",baltic_media
+139,1,{ukrinform},{ukraine_media},f,f,2026-03-21 07:54:00+00,2026-03-21 07:54:00+00,,NATO fully committed to supporting Ukraine – Admiral Vandier,ukraine_media
+141,1,{postimees_rus},{estonian_media},f,t,2026-03-21 07:29:36+00,2026-03-21 07:29:36+00,,Умер выдающийся эстонский зоолог,estonian_media
+142,1,{kommersant},{russian_state},t,f,2026-03-21 07:26:53+00,2026-03-21 07:26:53+00,,"Новосибирский губернатор рассказал о выплате 647 тыс. руб. за пять коров, три свиньи и четыре козы // Новосибирским фермерам пообещали компенсировать утраченный семейный доход",russian_state
+143,1,{err_rus},{estonian_media},f,t,2026-03-21 07:19:00+00,2026-03-21 07:19:00+00,,Трагедия в пярнуском аквапарке: Госсуд рассмотрит дело о гибели клиента на открытом заседании,estonian_media
+144,1,{lsm_rus},{baltic_media},f,t,2026-03-21 07:00:00+00,2026-03-21 07:00:00+00,,Эстония планирует построить ядерный реактор. Латвия — не исключает такую возможность,baltic_media
+145,1,{est_mod},{government},f,t,2026-03-21 06:40:10+00,2026-03-21 06:40:10+00,,„Riigikaitsjate toetaja“ tunnustusele saab kandidaate esitada kuni 25. maini,government
+146,1,{ukrinform},{ukraine_media},f,f,2026-03-21 05:04:00+00,2026-03-21 05:04:00+00,,"Unmanned systems in Belgorod sector strike “ Solntsepyok,” “Acacia” SPG, and enemy armored vehicles",ukraine_media
+148,1,{delfi_lt_rus},{baltic_media},f,t,2026-03-21 04:08:32+00,2026-03-21 04:08:32+00,,Linava подтвердила: в понедельник Лукашенко примет решение об освобождении задержанных в Беларуси грузовиков,baltic_media
+149,1,{kommersant},{russian_state},t,f,2026-03-21 04:06:07+00,2026-03-21 04:06:07+00,,Силы ПВО сбили более 90 БПЛА в Ростовской области,russian_state
+150,1,{kommersant},{russian_state},t,f,2026-03-21 02:22:45+00,2026-03-21 02:22:45+00,,В России приостановили работу более 10 аэропортов,russian_state
+151,1,{tass_ru},{russian_state},t,f,2026-03-20 20:57:47+00,2026-03-20 20:57:47+00,,Дмитриев предрек нелегкую жизнь гражданам ЕС из-за бюрократов-русофобов,russian_state
+154,1,{tass_ru},{russian_state},t,f,2026-03-20 20:16:23+00,2026-03-20 20:16:23+00,,В Самарской области объявили угрозу подлета БПЛА,russian_state
+155,1,{15min_lt},{baltic_media},f,t,2026-03-20 19:50:04+00,2026-03-20 19:50:04+00,,Lenkijos gynybos ministerija: remiame Lietuvos planus plėtoti poligonus,baltic_media
+156,1,{tass_ru},{russian_state},t,f,2026-03-20 19:44:59+00,2026-03-20 19:44:59+00,,Эксперты: ВСУ ускорили внедрение натовских алгоритмов ИИ в беспилотные системы,russian_state
+157,1,{breaking_defense},{defense_osint},f,f,2026-03-20 19:39:41+00,2026-03-20 19:39:41+00,,"Navy, Hadrian launch partnership, open facility to build submarine parts",defense_osint
+158,1,{err_rus},{estonian_media},f,t,2026-03-20 19:26:00+00,2026-03-20 19:26:00+00,,Министерство: первая АЭС в Эстонии может появиться не раньше 2035 года,estonian_media
+159,1,{tass_ru},{russian_state},t,f,2026-03-20 19:21:32+00,2026-03-20 19:21:32+00,,В Пензенской области объявили режим беспилотной опасности,russian_state
+160,1,{tribuna_ee},{russian_language_ee},f,f,2026-03-20 19:15:28+00,2026-03-20 19:15:28+00,,Президент Эстонии вручил ежегодные премии молодым инженерам,russian_language_ee
+174,1,{postimees_rus},{estonian_media},f,t,2026-03-20 16:55:27+00,2026-03-20 16:55:27+00,,МИКК САЛУ ⟩ Ключ к президентским выборам по-прежнему в руках Партии реформ,estonian_media
+163,1,{lsm_rus},{baltic_media},f,t,2026-03-20 18:31:03+00,2026-03-20 18:31:03+00,,Коллективная молитва на улице. Вице-мэр Ратниекс — против,baltic_media
+164,1,{rt_russian},{russian_state},t,f,2026-03-20 18:17:46+00,2026-03-20 18:17:46+00,,В день 16—20 беспилотников: как бойцы ВС РФ работают на Добропольском направлении,russian_state
+165,1,{err_rus},{estonian_media},f,t,2026-03-20 18:06:00+00,2026-03-20 18:06:00+00,,Кивисельг о пожаре в Псковской области: Эстония следит за ситуацией на другой стороне границы,estonian_media
+166,1,{err_rus},{estonian_media},f,t,2026-03-20 17:59:00+00,2026-03-20 17:59:00+00,,Кая Каллас приветствует освобождение 250 белорусских политзаключенных,estonian_media
+167,1,{tass_ru},{russian_state},t,f,2026-03-20 17:52:42+00,2026-03-20 17:52:42+00,,ТАСС: командиром бригады теробороны ВСУ стал превышавший полномочия офицер,russian_state
+168,1,{tass_ru},{russian_state},t,f,2026-03-20 17:29:14+00,2026-03-20 17:29:14+00,,Глава дипмиссии Белоруссии прокомментировал отключение в ЕС карт Visa трех банков страны,russian_state
+171,1,{breaking_defense},{defense_osint},f,f,2026-03-20 17:05:00+00,2026-03-20 17:05:00+00,,Space Force shifts GPS III launch from ULA to SpaceX,defense_osint
+172,1,{tass_ru},{russian_state},t,f,2026-03-20 17:02:10+00,2026-03-20 17:02:10+00,,Путин поздравил 60-ю бригаду и 127-ю дивизию с присвоением почетных наименований,russian_state
+173,1,{tass_ru},{russian_state},t,f,2026-03-20 17:00:18+00,2026-03-20 17:00:18+00,,"Подполье: в Днепропетровской области под удар ""Гераней"" могли попасть офицеры ВСУ",russian_state
+175,1,{15min_lt},{baltic_media},f,t,2026-03-20 16:55:04+00,2026-03-20 16:55:04+00,,"Robertas Kaunas: Vokietijos brigada Lietuvoje signalizuoja, kad Aljanso gynyba prasideda čia",baltic_media
+177,1,{rt_russian},{russian_state},t,f,2026-03-20 16:50:37+00,2026-03-20 16:50:37+00,,Политолог Светов объяснил слова Стубба о территориальных уступках со стороны Киева,russian_state
+178,1,{defence_blog},{defense_osint},f,f,2026-03-20 16:45:25+00,2026-03-20 16:45:25+00,,British Army retires iconic Land Rover fleet,defense_osint
+179,1,{interfax},{russian_state},t,f,2026-03-20 16:40:00+00,2026-03-20 16:40:00+00,,"Депутаты предложили переходный период для ужесточения маркировки ""фермерской"" продукции",russian_state
+180,1,{err_business},{estonian_media},f,t,2026-03-20 16:38:00+00,2026-03-20 16:38:00+00,,"Sutt: tuumajaama rajamine on Eestile tulu-, mitte kuluprojekt",estonian_media
+181,1,{breaking_defense},{defense_osint},f,f,2026-03-20 16:31:42+00,2026-03-20 16:31:42+00,,"Answering the demand signal to move faster, field sooner, iterate continuously",defense_osint
+182,1,{defence_blog},{defense_osint},f,f,2026-03-20 16:27:15+00,2026-03-20 16:27:15+00,,U.S. Army awards XTech win to ABRIS DG unmanned support vehicle,defense_osint
+184,1,{tass_ru},{russian_state},t,f,2026-03-20 16:07:02+00,2026-03-20 16:07:02+00,,"Захарова: учет поставляемых Киеву вооружений ""хромает""",russian_state
+187,1,{tass_ru},{russian_state},t,f,2026-03-20 15:35:34+00,2026-03-20 15:35:34+00,,Сенатор Ламонова: успех на Паралимпиаде повысит интерес россиян к спорту,russian_state
+188,1,{lsm_rus},{baltic_media},f,t,2026-03-20 15:35:13+00,2026-03-20 15:35:13+00,,Очередной выезд «Twitter-конвоя» в Украину — один из крупнейших за все время,baltic_media
+205,1,{15min_lt},{baltic_media},f,t,2026-03-20 14:23:03+00,2026-03-20 14:23:03+00,,"Donaldas Trumpas – NATO sąjungininkams: bailiai, ir mes tai atsiminsime!",baltic_media
+189,1,{breaking_defense},{defense_osint},f,f,2026-03-20 15:32:00+00,2026-03-20 15:32:00+00,,Israel’s Elbit reveals military contract to put high-powered laser weapon on aircraft,defense_osint
+190,1,{lsm_rus},{baltic_media},f,t,2026-03-20 15:31:24+00,2026-03-20 15:31:24+00,,В Латвии заморожены активы 160 фигурантов международных санкций,baltic_media
+191,1,{tass_ru},{russian_state},t,f,2026-03-20 15:24:40+00,2026-03-20 15:24:40+00,,"Лукашенко назвал полным дураком того, кто считает, что он держится за власть",russian_state
+206,1,{ukrinform},{ukraine_media},f,f,2026-03-20 14:23:00+00,2026-03-20 14:23:00+00,,Defense forces repel massive Russian assault in Lyman area,ukraine_media
+192,1,"{""""}","{""""}",f,f,2026-03-20 15:20:51+00,2026-03-20 15:20:51+00,,"📣 Александр Лукашенко подписал Указ, которым одобрил в качестве основы для проведения переговоров проект протокола о…",
+194,1,{lsm_rus},{baltic_media},f,t,2026-03-20 15:18:00+00,2026-03-20 15:18:00+00,,"Андрей Шаврей. Юбилей тихого классика живописи и тайна Штирлица, гостившего в Мурьяни",baltic_media
+195,1,{tass_ru},{russian_state},t,f,2026-03-20 15:08:45+00,2026-03-20 15:08:45+00,,"В Мурманске открылся первый в СЗФО научно-технологический центр ""Родина""",russian_state
+93,1,{15min_lt},{baltic_media},f,t,2026-03-21 15:32:02+00,2026-03-21 15:32:02+00,,"Europos šalys, įskaitant Lietuvą, smerkia „didėjantį naujakurių terorą“ Vakarų Krante",baltic_media
+210,1,{err_en},{estonian_media},f,t,2026-03-20 14:02:00+00,2026-03-20 14:02:00+00,,Estonian government greenlights nuclear energy bill,estonian_media
+199,1,{15min_lt},{baltic_media},f,t,2026-03-20 14:53:27+00,2026-03-20 14:53:27+00,,Buvęs Estijos kariuomenės vadas įspėja NATO: „Rusija jau dabar yra pasirengusi“,baltic_media
+200,1,{err_rus},{estonian_media},f,t,2026-03-20 14:51:00+00,2026-03-20 14:51:00+00,,Финляндия на выделенные ЕС 17 миллионов на укрепление границы закупит беспилотники,estonian_media
+201,1,{kommersant},{russian_state},t,f,2026-03-20 14:46:56+00,2026-03-20 14:46:56+00,,Лукашенко пообещал не допустить протестов в стране после освобождения политзаключенных,russian_state
+202,1,{delfi_lt_rus},{baltic_media},f,t,2026-03-20 14:36:11+00,2026-03-20 14:36:11+00,,"МИД: несмотря на решения США, Литва продолжает эффективно применять санкции против Беларуси",baltic_media
+203,1,{tass_ru},{russian_state},t,f,2026-03-20 14:26:53+00,2026-03-20 14:26:53+00,,"Медведев и Медведчук отметили, что Украина ""исчезает, как шагреневая кожа""",russian_state
+207,1,{rt_russian},{russian_state},t,f,2026-03-20 14:13:26+00,2026-03-20 14:13:26+00,,У хоккейного тренера Крикунова отобрали вид на жительство в Латвии,russian_state
+211,1,{err_rus},{estonian_media},f,t,2026-03-20 14:01:00+00,2026-03-20 14:01:00+00,,Артур Тооман: Минфин решил выбросить на ветер 300 000 евро,estonian_media
+208,1,{rt_russian},{russian_state},t,f,2026-03-20 14:11:11+00,2026-03-20 14:11:11+00,,«Для многих стала проводником в мир высокого искусства»: умерла телеведущая Галина Мшанская,russian_state
+209,1,"{""""}","{""""}",f,f,2026-03-20 14:09:40+00,2026-03-20 14:09:40+00,,Экипаж российского газовоза Arctic Metagaz дрейфовал на спасательной шлюпке в течение 15 часов после атаки в…,
+213,1,{tass_ru},{russian_state},t,f,2026-03-20 13:53:13+00,2026-03-20 13:53:13+00,,ТАСС: бывший управделами челябинского губернатора останется под стражей до 22 июня,russian_state
+214,1,{breaking_defense},{defense_osint},f,f,2026-03-20 13:52:18+00,2026-03-20 13:52:18+00,,India seeking to join European sixth-generation fighter program: Reports,defense_osint
+215,1,{rt_russian},{russian_state},t,f,2026-03-20 13:51:11+00,2026-03-20 13:51:11+00,,"Источник: в Петербурге немецкий дипломат, выезжая с парковки, сбил курьера",russian_state
+216,1,{tass_ru},{russian_state},t,f,2026-03-20 13:45:12+00,2026-03-20 13:45:12+00,,"Лукашенко: американцы болезненно относятся к тому, что европейцы их ""кинули""",russian_state
+217,1,"{""""}","{""""}",f,f,2026-03-20 13:45:01+00,2026-03-20 13:45:01+00,,"«Наши ребята сорвали наступление россиян» — Зеленский
+
+Президент отметил, что украинские защитники смогли помешать…",
+218,1,{postimees_rus},{estonian_media},f,t,2026-03-20 13:41:34+00,2026-03-20 13:41:34+00,,ВИДЕО ⟩ Суд вынес решение по делу о гибели украинского строителя в Эстонии,estonian_media
+219,1,{15min_lt},{baltic_media},f,t,2026-03-20 13:31:03+00,2026-03-20 13:31:03+00,,"Robertas Kaunas sako, kad planai su Lenkija dėl poligono nesikeičia",baltic_media
+221,1,{breaking_defense},{defense_osint},f,f,2026-03-20 13:26:31+00,2026-03-20 13:26:31+00,,"What is the Pentagon’s ‘Space Data Network,’ and why does it matter for Golden Dome?",defense_osint
+222,1,{rt_russian},{russian_state},t,f,2026-03-20 13:22:57+00,2026-03-20 13:22:57+00,,Лукашенко: США не преследуют цель оторвать Белоруссию от России,russian_state
+223,1,"{""""}","{""""}",f,f,2026-03-20 13:20:01+00,2026-03-20 13:20:01+00,,"🗡️ 7 корпус ДШВ першим у Силах оборони тестує екзоскелети
+
+👥 До підрозділів 7 корпусу швидкого реагування ДШВ надійшли…",
+224,1,{interfax},{russian_state},t,f,2026-03-20 13:16:00+00,2026-03-20 13:16:00+00,,Лукашенко не полетел в феврале на Совет мира в США из-за проверки боеготовности армии,russian_state
+225,1,{tass_ru},{russian_state},t,f,2026-03-20 13:08:35+00,2026-03-20 13:08:35+00,,"Лукашенко констатировал, что армия Белоруссии в целом боеготова",russian_state
+226,1,{err_en},{estonian_media},f,t,2026-03-20 13:06:00+00,2026-03-20 13:06:00+00,,Arakas and Lõhmus: How to marry increased defense spending with tidy public finances?,estonian_media
+227,1,{tass_ru},{russian_state},t,f,2026-03-20 13:01:51+00,2026-03-20 13:01:51+00,,Путин одобрил идею договора с Белоруссией о взыскании долгов в бюджеты,russian_state
+229,1,{err_rus},{estonian_media},f,t,2026-03-20 12:55:00+00,2026-03-20 12:55:00+00,,"Эксперт: цены на топливо пойдут вниз, как только появятся первые признаки завершения конфликта",estonian_media
+230,1,"{""""}","{""""}",f,f,2026-03-20 12:53:37+00,2026-03-20 12:53:37+00,,Would You Fight For Your Country? The Most and Least Willing Among NATO Allies,
+231,1,{interfax},{russian_state},t,f,2026-03-20 12:53:00+00,2026-03-20 12:53:00+00,,Суд обратил в доход РФ имущество экс-главы челябинского Роспотребнадзора на 400 млн руб.,russian_state
+248,1,{postimees_en},{estonian_media},f,t,2026-03-20 12:13:29+00,2026-03-20 12:13:29+00,,JAAK MADISON ⟩ A cool head takes you further in foreign policy than emotional chest‑beating,estonian_media
+233,1,{delfi_lt_rus},{baltic_media},f,t,2026-03-20 12:51:02+00,2026-03-20 12:51:02+00,,Гирайтский оружейный завод отныне будет самостоятельно производить все необходимые пули,baltic_media
+234,1,"{""""}","{""""}",f,f,2026-03-20 12:50:51+00,2026-03-20 12:50:51+00,,"🇫🇷Le Monde: Французский военный раскрыл местоположение авианосца «Шарль де Голль» через фитнес-приложение.
+
+Офицер…",
+235,1,{rt_russian},{russian_state},t,f,2026-03-20 12:49:05+00,2026-03-20 12:49:05+00,,«Расширит диалог со зрителем»: открылся Новый музей Донецкого театра кукол,russian_state
+236,1,{tass_ru},{russian_state},t,f,2026-03-20 12:43:57+00,2026-03-20 12:43:57+00,,Лукашенко считает необходимым либерализировать сферу ЭКО в интересах женщин,russian_state
+238,1,{rt_russian},{russian_state},t,f,2026-03-20 12:37:29+00,2026-03-20 12:37:29+00,,Депутат ГД Аксаков перечислил факторы роста доллара в марте,russian_state
+239,1,{err_rus},{estonian_media},f,t,2026-03-20 12:34:00+00,2026-03-20 12:34:00+00,,Испания вдвое снизит НДС на топливо,estonian_media
+240,1,{err_en},{estonian_media},f,t,2026-03-20 12:33:00+00,2026-03-20 12:33:00+00,,Urmet Kook: Riigikogu Chancellery director duly deserves enemy of the press title,estonian_media
+241,1,{tribuna_ee},{russian_language_ee},f,f,2026-03-20 12:30:43+00,2026-03-20 12:30:43+00,,Михал в Брюсселе: необходимо сохранять давление и вводить новые санкции против РФ,russian_language_ee
+242,1,{postimees_rus},{estonian_media},f,t,2026-03-20 12:30:00+00,2026-03-20 12:30:00+00,,"МНЕНИЕ ⟩ «Чего ты ноешь, у самого под ж***й комбайн за сто тысяч!»",estonian_media
+243,1,"{""""}","{""""}",f,f,2026-03-20 12:24:01+00,2026-03-20 12:24:01+00,,"🚫 Брехня: «Боєць ЗСУ заявив, що командування 43-ї бригади кинуло їх помирати». 
+
+У Telegram-каналах поширюють відео із…",
+244,1,{kommersant},{russian_state},t,f,2026-03-20 12:22:25+00,2026-03-20 12:22:25+00,,Тренер «Балтики» Талалаев дисквалифицирован на четыре матча РПЛ,russian_state
+245,1,"{""""}","{""""}",f,f,2026-03-20 12:20:15+00,2026-03-20 12:20:15+00,,"31
+Певно, вже один із пʼяти моїх днів народження. 
+
+Ще один рік, який вдалося прожити. 
+Рік, якого могло у мене не бути…",
+249,1,"{""""}","{""""}",f,f,2026-03-20 12:08:22+00,2026-03-20 12:08:22+00,,"Правда ли, что губернаторы четырёх сибирских регионов выпустили срочные заявления по поводу опасной болезни?
+
+Читайте в…",
+250,1,{kommersant},{russian_state},t,f,2026-03-20 12:07:18+00,2026-03-20 12:07:18+00,,Лукашенко предложил США свой вариант окончания конфликта в Иране,russian_state
+251,1,{err_rus},{estonian_media},f,t,2026-03-20 12:02:00+00,2026-03-20 12:02:00+00,,Финский депутат: страна движется к неконтролируемому финансовому кризису,estonian_media
+252,1,{lsm_rus},{baltic_media},f,t,2026-03-20 12:00:00+00,2026-03-20 12:00:00+00,,Членов правления Latvijas valsts meži уволили. Они же без конкурса получают должности директоров,baltic_media
+253,1,"{""""}","{""""}",f,f,2026-03-20 11:59:58+00,2026-03-20 11:59:58+00,,"🇪🇪 Атомная фея прилетела: эстонское правительство вспомнило, что уран не кусаетсяПравительство Эстон…",
+254,1,"{""""}","{""""}",f,f,2026-03-20 11:51:18+00,2026-03-20 11:51:18+00,,"🥴Трамп запропонував Білорусі велику угоду, — Лукашенко.
+
+Документ включає звільнення ув'язнених, поновлення роботи…",
+197,1,"{""""}","{""""}",f,f,2026-03-20 15:05:06+00,2026-03-20 15:05:06+00,,🔥 Почему Лукашенко для белорусов выгодный Президент?!,
+94,1,{tass_ru},{russian_state},t,f,2026-03-21 15:15:29+00,2026-03-21 15:15:29+00,,"В Нарьян-Маре юбилейный ""Буран-День"" открылся парадом династий",russian_state
+95,1,{tass_ru},{russian_state},t,f,2026-03-21 15:01:28+00,2026-03-21 15:01:28+00,,ТАСС: созданная по стандартам НАТО бригада ВСУ записывает погибших в дезертиры,russian_state
+96,1,{tass_ru},{russian_state},t,f,2026-03-21 14:49:47+00,2026-03-21 14:49:47+00,,Фицо призвал ЕС отказаться от зеленых технологий и наращивать свою экономику,russian_state
+97,1,{15min_lt},{baltic_media},f,t,2026-03-21 14:41:34+00,2026-03-21 14:41:34+00,,"Šengeno erdvė, užsienio kariai ir euras – tokiais argumentais propaganda neigia Lietuvos nepriklausomybę",baltic_media
+98,1,{lsm_rus},{baltic_media},f,t,2026-03-21 14:38:00+00,2026-03-21 14:38:00+00,,"Остапенко из Майами так быстро не прогонишь, Семенистая — уже с сумкой на выходе",baltic_media
+99,1,{defence_blog},{defense_osint},f,f,2026-03-21 14:23:56+00,2026-03-21 14:23:56+00,,Turkish firm develops new-gen kamikaze drone boat,defense_osint
+100,1,{rt_russian},{russian_state},t,f,2026-03-21 14:19:10+00,2026-03-21 14:19:10+00,,Силы ПВО уничтожили два беспилотника над Тульской областью,russian_state
+101,1,{err_en},{estonian_media},f,t,2026-03-21 14:13:00+00,2026-03-21 14:13:00+00,,EU takes up Estonia's proposal to restrict visas for Russian fighters,estonian_media
+102,1,{defence_blog},{defense_osint},f,f,2026-03-21 14:07:12+00,2026-03-21 14:07:12+00,,Aeon tests low-cost alternative to Javelin missile,defense_osint
+103,1,{ukrinform},{ukraine_media},f,f,2026-03-21 14:05:00+00,2026-03-21 14:05:00+00,,Cognitive warfare plays crucial role in countering hybrid threats - NATO admiral,ukraine_media
+104,1,{mke_ee},{russian_language_ee},f,f,2026-03-21 13:59:37+00,2026-03-21 13:59:37+00,,ЕС призвал страны срочно наполнять газовые хранилища на фоне войны в Иране,russian_language_ee
+105,1,{meduza},{russian_independent},f,f,2026-03-21 13:50:05+00,2026-03-21 13:50:05+00,,"В соцсетях появились группы с призывами к созданию «Нарвской народной республики». Правительство Эстонии считает, что это информационная операция России. Полиция предупреждает о возможных «уголовных последствиях»",russian_independent
+106,1,{err_rus},{estonian_media},f,t,2026-03-21 13:50:00+00,2026-03-21 13:50:00+00,,Рийгикогу 23 марта начнет обсуждение отмены акцизов на энергоресурсы,estonian_media
+107,1,{defence_blog},{defense_osint},f,f,2026-03-21 13:47:26+00,2026-03-21 13:47:26+00,,U.S.-made naval drone found off Turkish coast,defense_osint
+109,1,{defence_blog},{defense_osint},f,f,2026-03-21 13:28:10+00,2026-03-21 13:28:10+00,,Ukraine repels mass Russian assault near Lyman,defense_osint
+110,1,{ukrinform},{ukraine_media},f,f,2026-03-21 13:00:00+00,2026-03-21 13:00:00+00,,"Ukraine’s ability to adapt becomes important lesson for NATO, says alliance admiral",ukraine_media
+111,1,{15min_lt},{baltic_media},f,t,2026-03-21 12:59:50+00,2026-03-21 12:59:50+00,,Žurnalistas Aurimas Perednis įvertino ginčus dėl šūkio „Lietuva lietuviams“: Kremliuje kažkas mokasi premijas,baltic_media
+112,1,{err_en},{estonian_media},f,t,2026-03-21 12:57:00+00,2026-03-21 12:57:00+00,,"31 Estonian MPs back US, Israeli action against Iran",estonian_media
+114,1,{postimees_rus},{estonian_media},f,t,2026-03-21 12:30:49+00,2026-03-21 12:30:49+00,,Более половины работников в Эстонии пережили выгорание,estonian_media
+116,1,{kommersant},{russian_state},t,f,2026-03-21 12:14:37+00,2026-03-21 12:14:37+00,,17-летнюю петербурженку арестовали по делу об убийстве подростка в Ленобласти,russian_state
+117,1,{lsm_rus},{baltic_media},f,t,2026-03-21 11:57:00+00,2026-03-21 11:57:00+00,,Что такое центр и периферия в искусстве? Беседа о культуре в регионах с Тиной Петерсоне и Элиной Вейнштейн,baltic_media
+118,1,{tass_ru},{russian_state},t,f,2026-03-21 11:56:05+00,2026-03-21 11:56:05+00,,"Офис Орбана: атака Украины на ""Турецкий поток"" станет нападением на страну НАТО",russian_state
+119,1,{postimees_rus},{estonian_media},f,t,2026-03-21 11:53:19+00,2026-03-21 11:53:19+00,,"ИНТЕРВЬЮ ⟩ Алар Карис о новом киногородке: в Голливуде технику поднимают вручную, в Йыхви планируется техническое решение",estonian_media
+120,1,{mke_ee},{russian_language_ee},f,f,2026-03-21 11:40:50+00,2026-03-21 11:40:50+00,,Паэт: в странах Северной Европы вырос интерес к вступлению в ЕС,russian_language_ee
+122,1,{ukrinform},{ukraine_media},f,f,2026-03-21 11:30:00+00,2026-03-21 11:30:00+00,,"West underestimates scale and volume of ballistic missile production, says NATO admiral",ukraine_media
+124,1,{defence_blog},{defense_osint},f,f,2026-03-21 11:06:20+00,2026-03-21 11:06:20+00,,Russian military gets new batch of Pantsir-S air defense systems,defense_osint
+126,1,{defence_blog},{defense_osint},f,f,2026-03-21 10:34:24+00,2026-03-21 10:34:24+00,,Overland AI to showcase autonomy solutions at AUSA,defense_osint
+127,1,{defence_blog},{defense_osint},f,f,2026-03-21 10:02:28+00,2026-03-21 10:02:28+00,,Kraus Hamdani reveals K1000ULE updates at AUSA,defense_osint
+128,1,{mke_ee},{russian_language_ee},f,f,2026-03-21 10:00:38+00,2026-03-21 10:00:38+00,,Неуправляемый дрон нарушил авиасообщение в Таллинне,russian_language_ee

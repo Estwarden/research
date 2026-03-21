@@ -63,3 +63,5 @@ python3 optimize.py      # Phase 1: 85K trials, 3-fold CV
 ## License
 
 MIT
+
+| 07 | [Campaign Detection](notebooks/07_campaign_detection.ipynb) | How to detect real info ops? | Event clustering, framing analysis, outrage chain detection |
