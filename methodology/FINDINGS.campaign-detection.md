@@ -314,3 +314,42 @@ entities/regions.
 4. Stubb NATO military assistance — western_fatigue (HIGH)
 5. NATO dissolution narrative — Trump amplification (MEDIUM)
 6. Estonian airspace violation hedging (MEDIUM)
+
+## Autonomy Audit (2026-03-21)
+
+### What is fully autonomous now
+| Component | Status | How |
+|-----------|--------|-----|
+| Signal collection | ✅ | Dagu DAGs, every 2-4h |
+| Relevance gate | ✅ | Config-driven keywords, auto-pass categories |
+| Embedding | ✅ | Google API, every 4h, 14-day window |
+| Event clustering | ✅ | pgvector cosine, config threshold |
+| Framing analysis | ✅ | LLM comparison, Baltic entity filter |
+| Operation naming | ✅ | LLM generates `operation_name` describing manipulation |
+| Outrage chain detection | ✅ | Structural, config-driven keywords |
+| Injection cascade detection | ✅ | Scoring formula, config-driven thresholds |
+| Target region assignment | ✅ | Auto-derived from cluster signal regions |
+| Severity classification | ✅ | Signal count + confidence based |
+| Campaign auto-resolution | ✅ | 5-day decay (configurable) |
+| CTI computation | ✅ | Every 3h, campaign decay formula |
+| Briefing generation | ✅ | On-demand, uses operation names not headlines |
+| Dashboard rendering | ✅ | Compact cards, method-specific labels |
+
+### What was removed from human loop today
+| Was manual | Now autonomous | How |
+|-----------|---------------|-----|
+| Campaign naming | LLM `operation_name` in prompt | Describes manipulation, not event |
+| Target regions | Auto-derived from signal regions | No more SQL UPDATEs |
+| False positive resolution | Baltic entity filter in SQL | Removed NATO-only matches |
+| Threshold tuning | YAML config file | Edit on server, no redeploy |
+| Keyword updates | YAML config file | Same |
+
+### Remaining autonomy gaps (future work)
+1. **LLM prompt changes** still require editing detection_config.yaml or framing.go
+   → Future: store prompts in DB, version-controlled, A/B testable
+2. **Precision tracking** not implemented — no automated FP monitoring
+   → Future: analyst feedback loop (approve/reject in admin UI) → auto-adjust confidence
+3. **Narrative taxonomy** is static (20 IDs) — system can't discover new narrative types
+   → Future: LLM already proposes new slugs in classifier; need to track + validate
+4. **No self-tuning thresholds** — values validated in research but not adaptive
+   → Future: Bayesian optimization on labeled dataset, online learning from outcomes
