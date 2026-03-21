@@ -536,3 +536,40 @@ Tier 3 (auto-clean):          score < -0.7 → not hostile, skip LLM
 ```
 
 Expected LLM call reduction: ~70%. F1 maintained at 1.00.
+
+## Experiment 26: Tiered Detection — 77% LLM Reduction at F1=1.00
+
+Full pipeline simulation on 13 mixed-source clusters:
+
+| Approach | Precision | Recall | F1 | LLM Calls | Cost/day |
+|----------|-----------|--------|----|-----------|----------|
+| CURRENT (LLM for all) | 1.00 | 1.00 | 1.00 | 13 | $0.13 |
+| **TIERED (structural + LLM)** | **1.00** | **1.00** | **1.00** | **3** | **$0.03** |
+
+Tier routing (Fisher discriminant, validated):
+- **T1 AUTO_HOSTILE** (score > 0.5): 4 clusters → all correct, 0 FP
+- **T2 LLM_NEEDED** (score -0.7 to 0.5): 3 clusters → LLM decides, all correct
+- **T3 AUTO_CLEAN** (score < -0.7): 6 clusters → all correct, 0 FN
+
+**The Fisher score perfectly separates 10/13 samples without LLM.**
+Only 3 borderline cases require LLM analysis.
+
+The single hardest case: Trump NATO coverage (score=-0.27, state_ratio=0.53, fimi=0).
+State media dominates but just reports Trump's actual words. Only the LLM can
+distinguish "reporting real statements" from "manufacturing a narrative."
+This is the irreducible LLM dependency.
+
+## Optimal Architecture Summary (12 experiments, 14 days data)
+
+```
+Signals → Gate(96% filter) → Embed($0.002/d) → Cluster(0.75 cos, cap 15)
+  → Mixed-source filter → Baltic entity check
+  → Fisher pre-screen(w=[0.670, 0.742])
+    T1: score>0.5 → AUTO hostile
+    T2: borderline → LLM($0.01/call)
+    T3: score<-0.7 → AUTO clean
+  + Outrage chain detector (structural)
+  + Injection cascade detector (scoring formula)
+
+Cost: $0.02/day. F1: 1.00. LLM calls: 77% reduced.
+```
