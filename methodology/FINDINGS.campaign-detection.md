@@ -573,3 +573,40 @@ Signals → Gate(96% filter) → Embed($0.002/d) → Cluster(0.75 cos, cap 15)
 
 Cost: $0.02/day. F1: 1.00. LLM calls: 77% reduced.
 ```
+
+## Experiment 27: Narrative Evolution Over 3 Weeks
+
+**Dataset**: 44K signals, March 1-21, 2026
+
+Key narratives and their persistence:
+| Narrative | Signals | Days | Sources | State% | Events |
+|-----------|---------|------|---------|--------|--------|
+| russian_speakers_oppressed | 114 | 17 | 9 | 47% | 1* |
+| baltic_failed_states | 179 | 20 | 13 | 13% | 2 |
+| nato_weakness | 161 | 16 | 13 | 62% | 1* |
+| separatism_fear | 198 | 16 | 11 | 33% | 1* |
+
+*"1 event" means the 48h gap threshold NEVER triggers — signals arrive daily.
+
+**CRITICAL FINDING**: Strategic narratives are NOT discrete events.
+They are CONTINUOUS STREAMS maintained by daily drip of related content.
+State media publishes 2-5 articles/day on each theme, never allowing
+a 48h gap that would split them into separate events.
+
+The "russian_speakers_oppressed" stream includes 6+ distinct real-world events
+(Krikounov, Kalinka, language policy, citizenship, Hopp "genocide" claims)
+all feeding the same strategic narrative over 17 days continuously.
+
+**Implication**: Per-event detection captures FRAGMENTS of campaigns.
+Strategic campaign detection requires NARRATIVE-LEVEL clustering (level 2)
+where embeddings group different events by the strategic goal they serve.
+
+## Experiment 28: Cross-Event TF-IDF Similarity
+
+Could not separate events within themes because 48h gap never triggers.
+The continuous drip of state media prevents event boundary detection.
+
+**Alternative approach needed**: Use embedding similarity between event 
+DESCRIPTIONS (not signals) to cluster by narrative. The Fisher discriminant 
+finding (state_ratio + FIMI keywords) identifies INDIVIDUAL hostile framings.
+The narrative clustering groups these into STRATEGIC CAMPAIGNS over weeks.
