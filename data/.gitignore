@@ -1,0 +1,6 @@
+# NEVER commit real signal data to public repos
+*.csv
+*.jsonl
+*.parquet
+*.gz
+!README.md
