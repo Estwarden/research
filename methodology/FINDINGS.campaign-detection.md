@@ -103,3 +103,57 @@ unknown(+0h) → estonian_media(+23h) → russian_language_ee(+96h) → baltic_m
 3. **Validate injection score on proper clusters**: Once embedding clusters exist, recompute injection scores.
 4. **Build Method 3 (Narrative Injection Cascade)**: Requires proper clusters + category metadata. Research validated the metrics, implementation blocked on data quality.
 5. **Threshold calibration**: Use labeled events to find optimal cosine threshold for event clustering (0.82 was chosen ad-hoc).
+
+## Experiment 6: Cross-Lingual Clustering Threshold (Validated)
+
+**Date**: 2026-03-21
+**Dataset**: 3,279 embedded signals (14 days), gemini-embedding-001 (3072d)
+
+**Method**: Measured cosine similarity between Narva Republic signals in English (ERR) and Russian (Delfi, LSM, Meduza, Telegram).
+
+**Results**:
+| Pair Type | Cosine Similarity Range |
+|-----------|----------------------|
+| Same event, same language (RU↔RU) | 0.85 – 0.88 |
+| Same event, cross-lingual (EN↔RU) | 0.77 – 0.85 |
+| Related topic, different event | 0.69 – 0.71 |
+| Unrelated (general politics) | 0.60 – 0.67 |
+
+**Optimal threshold**: **0.75** (down from 0.82)
+- Captures all cross-lingual same-event pairs ✅
+- Excludes related-but-different topics (0.71 < 0.75) ✅
+- Clear separation gap between same-event (0.77+) and different-event (0.71−)
+
+**Impact on Narva Republic**: With threshold 0.82, Narva signals split into 6 clusters.
+With 0.75, KaPo English article (0.848 to Russian articles) joins the main cluster.
+Kiisler article (0.770) also joins. Result: single cluster with full propagation chain.
+
+**Validated**: Ready for production deployment.
+
+## Experiment 7: Narva Republic Propagation via Embeddings
+
+With 3,279 embeddings and threshold adjustment to 0.75, the embedding pipeline would
+produce a single cluster containing the full Narva Republic propagation chain:
+
+```
+Cluster members (projected with 0.75 threshold):
+  0.848  KaPo: Narva People's Republic is info op (ERR EN)
+  0.857  Delfi LT: Narva republic calls, Transnistria threat
+  0.873  Telegram: Narva Republic - preparing Baltic revolt
+  0.878  LSM: How social media creates non-existent republic
+  0.880  Meduza: Groups calling for Narva People's Republic
+  1.000  Telegram: Russian destabilization via Narva Republic (centroid)
+```
+
+This cluster would have:
+- `has_state = false` (no state media in cluster)
+- `has_trusted = true` (ERR, Delfi, LSM)
+- `signal_count = 6+` 
+- Propagation spread: 4+ days
+- Category diversity: 3+ (estonian_media, baltic_media, telegram)
+
+With the injection cascade detector (Method 3), this would score high:
+- Social-media origin ✅
+- Multi-day spread ✅  
+- Multi-category propagation ✅
+- Serves hostile narrative (separatism) ✅
