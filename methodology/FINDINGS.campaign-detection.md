@@ -652,3 +652,37 @@ TAKES OVER the coverage, adding hostile framing.
 3. **Campaign = sustained narrative with rising state coverage**.
    Not a single event, but a TREND over weeks.
    Detection: track state_ratio per narrative per week. Alert when velocity > 0.5.
+
+## Experiment 30: Nyquist Sampling Analysis
+
+**Theorem**: To detect a signal at frequency f, sample at ≥ 2f.
+
+### Signal frequencies (info op dynamics)
+
+| Pattern | Duration | Min sampling | Our rate | Status |
+|---------|----------|-------------|----------|--------|
+| Outrage chain | 8-24h | 4-12h | 2h | ✅ |
+| Framing divergence | 6-48h | 3-24h | 2h | ✅ |
+| Injection cascade | 3-13 days | 12-36h | 2h | ✅ |
+| Breaking event spike | 2-4h | 1-2h | 2h | ⚠️ at limit |
+
+### Source sampling rates
+
+| Source | Median signal gap | Collection cycle | Nyquist | Status |
+|--------|------------------|------------------|---------|--------|
+| TASS | 1 min | 2h | 30s needed, 2h actual | ⚠️ but RSS buffers |
+| RT | 2 min | 2h | 1m needed, 2h actual | ⚠️ but RSS buffers |
+| ERR | 9 min | 2h | 4.5m needed, 2h actual | ⚠️ but RSS buffers |
+| Telegram | ~30 min | 2h (was 4h) | 15m needed | ⚠️ |
+| OSINT Perplexity | 8h | 8h | 4h needed | ✅ |
+
+### Resolution
+
+RSS feeds buffer 50-100 items — even with 2h collection, we don't lose signals.
+We lose **temporal precision** (exact publication time is known, but detection 
+lag is 2h). For Nyquist, what matters is detection of PATTERNS not individual signals.
+
+**Applied**: Telegram collection 4h→2h, detection pipeline 4h→2h.
+
+**Remaining gap**: For breaking events (airspace violation), 2h lag means we detect 
+the pattern 2h after it forms. Could add real-time webhook triggers for volume spikes.
