@@ -284,3 +284,33 @@ signals into mega-clusters.
 
 **Production recommendation**: Implement option 1 (cap at 15) immediately.
 Research option 2 or 4 for better quality.
+
+## Experiment 13: Telegram Data Unlocked + False Positive Analysis
+
+**Date**: 2026-03-21
+**Finding**: telegram_channel metadata was double-encoded (JSON string inside JSONB),
+causing ALL 804 Telegram signals to have NULL channel/category when queried.
+Fixed by unwrapping in DB and preventing in collector + ingest API.
+
+**Impact**: 80 telegram_channel signals now embedded (from 0). Pipeline sees
+ru_proxy channels (rybar, RVvoenkor, colonel_cassad, etc.) and ru_state (pul_1).
+
+**Framing analysis results with full data**: 8 hostile framings detected (up from 2).
+However, 4 were FALSE POSITIVES — Russian domestic events (Novosibirsk livestock,
+Belarus sanctions) that aren't Baltic-relevant.
+
+**Root cause**: The framing pipeline analyzes ALL mixed-source clusters, not just
+Baltic-relevant ones. Kommersant + Meduza covering Russian domestic events creates
+mixed-source clusters that get analyzed unnecessarily.
+
+**Production fix needed**: Add Baltic relevance check at the CLUSTER level before
+framing analysis. Only analyze clusters where at least one signal mentions Baltic
+entities/regions.
+
+**Valid detections after filtering**:
+1. TASS fabricated NATO commander (HIGH)
+2. Krikounov manufactured outrage chain (HIGH)
+3. Butyagin extradition political framing (HIGH)
+4. Stubb NATO military assistance — western_fatigue (HIGH)
+5. NATO dissolution narrative — Trump amplification (MEDIUM)
+6. Estonian airspace violation hedging (MEDIUM)
