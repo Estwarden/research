@@ -353,3 +353,54 @@ entities/regions.
    → Future: LLM already proposes new slugs in classifier; need to track + validate
 4. **No self-tuning thresholds** — values validated in research but not adaptive
    → Future: Bayesian optimization on labeled dataset, online learning from outcomes
+
+## Experiment 14: Confidence Distribution — Routing Analysis
+
+**Date**: 2026-03-21
+**Dataset**: 13 framing analyses, 30 campaigns
+
+**CRITICAL FINDING**: LLM confidence does NOT separate hostile from clean.
+
+| Assessment | Confidence Range | Mean |
+|-----------|-----------------|------|
+| Hostile (is_hostile=true) | 0.80 — 0.90 | 0.87 |
+| Clean (is_hostile=false) | 0.80 — 1.00 | 0.90 |
+
+The confidence field measures "how sure the LLM is about its assessment,"
+not "probability of being hostile." A clean rejection scored 1.00 
+("I'm 100% sure this is normal journalism") while hostile detections 
+scored 0.80-0.90 ("I'm 80-90% sure this is manipulation").
+
+**Overlap zone**: 0.80-0.90 contains BOTH hostile and clean assessments.
+The threshold sweep shows no threshold cleanly separates them:
+
+```
+th=0.70: prec=0.46 rec=1.00 F1=0.63  (catches all hostile, but also all clean)
+th=0.85: prec=0.40 rec=0.67 F1=0.50  (misses 2 hostile, still gets 6 clean FP)
+th=0.95: prec=0.00 rec=0.00 F1=0.00  (misses everything)
+```
+
+**Conclusion**: Confidence-based routing (≥0.85→ACTIVE, <0.85→WATCH) is 
+meaningless for framing campaigns. The binary `is_hostile` field is the 
+correct decision boundary, not the confidence score.
+
+**Production fix**: 
+- Framing campaigns: `is_hostile=true` → ACTIVE, regardless of confidence
+- Outrage chains: score ≥ threshold → ACTIVE (structural, no confidence issue)
+- Injection cascades: score/12 → ACTIVE if ≥7 (validated formula)
+- The WATCH queue should be for injection cascades with score 4-6, not for
+  framing detections with confidence <0.85
+
+## Experiment 15: Campaign Quality Audit
+
+30 total campaigns created. By detection method:
+- framing_analysis: 6 (4 active, 2 resolved as non-Baltic domestic)
+- injection_cascade: 1 active (Narva Republic)
+- outrage_chain: 1 active (Krikounov)
+- Old tag-counter methods: 22 (all resolved)
+
+False positive rate from framing analysis: 2/6 = 33% (Novosibirsk domestic events).
+Root cause: "NATO" keyword in Baltic entity filter matched unrelated clusters.
+Fixed by removing NATO from the filter (require specific country mentions).
+
+Post-fix FP rate: 0/4 = 0% (too small sample for statistical significance).
