@@ -610,3 +610,45 @@ The continuous drip of state media prevents event boundary detection.
 DESCRIPTIONS (not signals) to cluster by narrative. The Fisher discriminant 
 finding (state_ratio + FIMI keywords) identifies INDIVIDUAL hostile framings.
 The narrative clustering groups these into STRATEGIC CAMPAIGNS over weeks.
+
+## Experiment 29: 50-Day Narrative Lifecycle — The Escalation Pattern
+
+**Dataset**: 45K signals, Feb 1 — Mar 21, 2026 (50 days)
+
+### Narva Republic Timeline
+| Date | Source | Signal |
+|------|--------|--------|
+| Feb 1 | osint_perplexity | Telegram channels created for "Narva People's Republic" |
+| Feb 1 | osint_perplexity | TikTok account spreading separatist narrative |
+| Feb 1 | osint_perplexity | VKontakte page active |
+| ... 39 DAYS GAP ... | | |
+| Mar 12 | Propastop/KaPo | "Discovery" and first media coverage |
+| Mar 12-21 | ERR, Postimees, Delfi, LSM, Meduza | Full media cascade |
+
+**Key**: Our OSINT scanner detected the channels **39 days before** the media cascade.
+
+### State Media Escalation Pattern
+The "russian_speakers_oppressed" narrative shows week-over-week escalation:
+```
+W6  (Feb):      1 signal,  0% state media
+W10 (early Mar): 15 signals, 0% state media  ← organic discussion
+W11 (mid Mar):  31 signals, 10% state media  ← state begins covering
+W12 (late Mar): 73 signals, 59% state media  ← STATE DOMINATES
+```
+
+**The escalation signature**: state_ratio rising from 0% → 10% → 59% over 3 weeks.
+This is the weaponization pattern — a narrative starts organic, then state media
+TAKES OVER the coverage, adding hostile framing.
+
+### Production Implications
+
+1. **Early warning from OSINT scanner**: 39-day lead time on Narva Republic.
+   Could alert before media cascade if we track social media channel creation.
+
+2. **Narrative velocity metric**: `Δstate_ratio / Δweek`.
+   If state_ratio increases >20% week-over-week, the narrative is being weaponized.
+   Formula: `velocity = (state_ratio_this_week - state_ratio_last_week) / state_ratio_last_week`
+
+3. **Campaign = sustained narrative with rising state coverage**.
+   Not a single event, but a TREND over weeks.
+   Detection: track state_ratio per narrative per week. Alert when velocity > 0.5.
