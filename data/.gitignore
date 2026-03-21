@@ -1,6 +1,2 @@
-# NEVER commit real signal data to public repos
-*.csv
-*.jsonl
+# Large files — use git lfs or download separately
 *.parquet
-*.gz
-!README.md
