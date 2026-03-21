@@ -223,3 +223,64 @@ reaction to a social media event arrives in our data before the original observa
 
 Formula validated on 7 events with zero false positives and zero false negatives.
 Implement as `detect/injection-cascade` endpoint in the ingest service.
+
+## Experiment 9: Temporal Coordination via Inter-Arrival Times
+
+**Date**: 2026-03-21
+**Dataset**: 3,404 cluster members from 1,275 event clusters
+
+**Finding**: State media (CV=1.95) is MORE bursty than trusted media (CV=1.78), 
+not more regular. This is OPPOSITE of the naive expectation.
+
+**Implication**: Coordination in state media manifests as SYNCHRONIZED BURSTS 
+on the same topic, not as regular scheduled posting. The Hawkes process α 
+(excitation/self-exciting parameter) is the correct metric — it captures 
+how much one signal from an outlet group triggers more signals from the 
+same group in a short window.
+
+**Production recommendation**: Don't use inter-arrival time variance alone. 
+Use Hawkes excitation parameter α and compare state vs trusted outlets 
+covering the same event cluster.
+
+## Experiment 10: Co-Coverage Network
+
+**Finding**: State media outlets have higher pairwise co-coverage Jaccard 
+(kommersant↔interfax J=0.26) than trusted media (err_rus↔postimees_rus J=0.16).
+
+**Implication**: State media outlets are significantly more likely to cover the 
+SAME stories than independent outlets. This is expected (editorial coordination) 
+but quantifies it: state outlets share 26% of their stories with each other, 
+vs 16% for independent outlets.
+
+**Production recommendation**: Co-coverage Jaccard could be a feature in 
+coordination detection. Outlets with J>0.20 are likely coordinated.
+
+## Experiment 11: Embedding Quality by Language
+
+**Finding**: EN (0.927) > RU (0.896) > LT (0.878) within-cluster similarity.
+Gap is 3-5%, small enough for practical use. LT embeddings are viable.
+No ET/LV data in current clusters (insufficient signals).
+
+**Production recommendation**: gemini-embedding-001 works for EN/RU/LT. 
+Need to backfill more ET/LV media sources to validate those languages.
+
+## Experiment 12: Cluster Quality at Scale
+
+**CRITICAL**: Threshold 0.75 creates garbage clusters at large sizes.
+- Clusters of 2-8 signals: HIGH quality (same specific event) ✅
+- Clusters of 15+ signals: OFTEN merge unrelated events ❌
+  Example: Cluster 2778 mixes Bryansk attack + Kaliningrad spy + 
+  Polish jets + St Petersburg temperature record. 
+
+**Root cause**: At 0.75 cosine, signals sharing general topic vocabulary 
+(military, region names, government) can chain-link through intermediary 
+signals into mega-clusters.
+
+**Fix options**:
+1. Cap cluster size at 15 signals (simple, effective)
+2. Two-pass clustering: initial at 0.75, then re-validate at 0.82 for clusters >10
+3. Add entity-overlap requirement for joining large clusters
+4. Hierarchical clustering (HDBSCAN) instead of greedy assignment
+
+**Production recommendation**: Implement option 1 (cap at 15) immediately.
+Research option 2 or 4 for better quality.
