@@ -15,7 +15,7 @@ EXP 15: Isolation Forest anomaly detection on multispectral data
 All GEE experiments run server-side — only final numbers downloaded.
 """
 
-# Results from server-side experiments (run on 89.167.126.145)
+# Results from server-side experiments (run on [REDACTED])
 
 exp09_trend = {
     "Chkalovsk": {"slope_per_yr": 3.279, "r": -0.282, "n_images": 108},
