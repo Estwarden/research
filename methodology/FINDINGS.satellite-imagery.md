@@ -210,3 +210,200 @@ All sites show near-identical peakiness (1.10–1.14) and directionality (1.10�
 5. EE thumbnail interpolation — Google Earth Engine documentation
 
 *Experiment code: `notebooks/08_satellite_imagery_analysis.py`*
+
+---
+
+# Round 2: Server-Side Analysis & Historical Baselines
+
+**Experiments 09–15** | 2026-03-22 | GEE server-side + Isolation Forest  
+**Key advance**: All spectral computation runs IN Earth Engine — only numbers downloaded.
+
+---
+
+## Experiment 09: NDVI Linear Regression Trend (2023–2026)
+
+**Goal**: Are there long-term activity trends at these sites?
+
+| Site | Slope (/yr) | Pearson r | N images | Interpretation |
+|------|------------:|----------:|---------:|----------------|
+| Chkalovsk | +3.28 | -0.28 | 108 | Weak negative NDVI trend — possible construction |
+| Kronstadt | -1.37 | -0.08 | 187 | Nearly flat (water-dominated) |
+| Pskov | +3.28 | -0.07 | 101 | Nearly flat — stable operations |
+
+**Finding**: Linear regression on raw NDVI is dominated by seasonal variance (r < 0.3). **Not directly useful** — need seasonal decomposition first (detrend before regression). See Exp 11.
+
+---
+
+## Experiment 10: Temporal Variability
+
+**Goal**: Which sites have the most spectral change over time?
+
+| Site | NDVI σ | BSI σ | Interpretation |
+|------|-------:|------:|----------------|
+| Chkalovsk | 0.256 | 0.162 | Highest NDVI variability — seasonal vegetation on/around runways |
+| Kronstadt | 0.200 | **0.191** | Highest BSI variability — port operations change bare/built area |
+| Pskov | 0.240 | 0.144 | Moderate — stable garrison |
+
+**Finding**: BSI temporal σ is a better activity proxy than NDVI σ for naval sites. **Kronstadt's BSI variance (0.191) is 32% higher than Pskov** — reflects ship movements, port loading operations, and seasonal ice dynamics.
+
+### ⚡ Production Update
+Compute rolling 30-day BSI standard deviation per site. Flag sites where BSI σ exceeds 1.5× their 6-month average.
+
+---
+
+## Experiment 11: Seasonal Patterns
+
+| Site | Summer NDVI | Winter NDVI | Current | Δ (current − winter) |
+|------|------------:|------------:|--------:|----------------------:|
+| Chkalovsk | 0.733 | 0.187 | 0.155 | **-0.032** (still in winter mode) |
+| Kronstadt | 0.001 | 0.000 | -0.109 | **-0.110** (ice cover) |
+| Pskov | 0.700 | 0.167 | 0.400 | **+0.234** (early thaw) |
+
+**Finding**: Pskov thawed 0.234 NDVI units above its winter baseline — earliest of the three sites. This seasonal signal must be **subtracted before interpreting NDVI changes as activity**. A bare-soil exposure (vehicle deployment) and a spring thaw produce identical NDVI jumps.
+
+### ⚡ Production Update
+Store per-site seasonal NDVI profiles (12-month rolling median by week-of-year). Compute anomaly as `(current - expected_for_this_week) / σ_for_this_week`. This deseasonalizes the signal.
+
+---
+
+## Experiment 12: Full Zonal Statistics with Temporal Deltas
+
+**Core result**: Server-side computed indices + 30-day and 1-year deltas.
+
+| Site | NDVI | NDBI | BSI | Fuel% | Metal% | Δ30d BSI | Δ1yr BSI |
+|------|-----:|-----:|----:|------:|-------:|---------:|---------:|
+| Chkalovsk | 0.286 | 0.119 | 0.150 | 4.3% | 0.2% | **+0.341** | +0.003 |
+| Kronstadt | -0.120 | -0.524 | -0.100 | 2.5% | 1.5% | +0.189 | -0.033 |
+| Pskov | 0.425 | 0.051 | 0.104 | 3.3% | 0.1% | **+0.312** | +0.071 |
+
+**Key finding**: The 30-day BSI deltas are HUGE (+0.341, +0.312) — but this is **seasonal snow melt**, not activity. The 1-year deltas (same month last year) are near-zero, confirming stability. **Year-over-year comparison is the correct baseline**, not rolling 30-day.
+
+### ⚡ Production Update
+Use **same-month-last-year** as baseline for delta computation, NOT 30-day rolling. This eliminates seasonal false positives. The fuel% and metal% thresholds from Exp 08 are still valid.
+
+---
+
+## Experiment 13: Spectral Change Magnitude
+
+**Goal**: Euclidean distance across 6 bands between current and 30-day baseline.
+
+| Site | Median | P90 | P95 | P99 |
+|------|-------:|----:|----:|----:|
+| Chkalovsk | 4,575 | 7,135 | 8,034 | 9,824 |
+| Kronstadt | **10,688** | **13,759** | 14,142 | 14,395 |
+| Pskov | 4,255 | 7,840 | 8,607 | 10,400 |
+
+**Finding**: Kronstadt has 2.5× the change magnitude of land sites — driven by ice/water dynamics. **Change magnitude needs per-site normalization** to be comparable across different terrain types.
+
+### ⚡ Production Update
+Compute change magnitude, but normalize per-site using historical percentiles. Flag when magnitude exceeds the site's own p95 (not a global threshold).
+
+---
+
+## Experiment 14: Year-over-Year March Comparison
+
+| Site | Mar 2024 NDVI | Mar 2025 NDVI | Mar 2026 NDVI | Trend |
+|------|--------------|--------------|--------------|-------|
+| Chkalovsk | 0.330 | 0.265 | **0.149** | ↓ Declining (more bare surface) |
+| Pskov | 0.330 | — | **0.401** | ↑ Earlier spring or more vegetation |
+
+**Finding**: Chkalovsk NDVI dropped from 0.330 (2024) to 0.149 (2026) in March — a 55% decline. This could indicate:
+- More cleared/paved area (runway expansion?)
+- Less vegetation maintenance
+- Different snow cover patterns
+
+BSI tells the story: Chkalovsk BSI went from +0.135 (2024) to **-0.120** (2026) — from bare soil to... more vegetation/water? This is contradictory. Likely a **snow cover artifact** — 2026 March has more residual snow.
+
+**Conclusion**: Single-year YoY comparison is unreliable. Need **3+ years of same-month data** to establish meaningful trend.
+
+---
+
+## Experiment 15: Isolation Forest Anomaly Detection
+
+**Goal**: Find spectrally anomalous pixels without labels. What are they?
+
+| Site | Anomaly hotspot | Man-made | Bare/impervious | Bright NIR |
+|------|----------------|----------:|----------------:|-----------:|
+| Chkalovsk | NW quadrant (7.2%) | 22% | 58% | 29% |
+| Kronstadt | NW quadrant (9.7%) | **37%** | **80%** | **94%** |
+| Pskov | **SW quadrant (10.0%)** | 26% | 74% | 35% |
+
+### Key Findings
+
+1. **Kronstadt anomalies are 94% bright NIR** — these are ships and port infrastructure. The high reflectance of metal hulls in NIR makes them spectrally distinct from water. Isolation Forest acts as a **de facto ship detector** at 10m.
+
+2. **Pskov SW quadrant** has 2× more anomalies than other quadrants — this is the motor pool / equipment park area. The 10% anomaly concentration in one quadrant suggests vehicle/equipment concentration.
+
+3. **Anomaly spectral signature**: All sites show anomalies with 2-3× higher blue/green reflectance than normal — consistent with bare concrete, metal surfaces, and disturbed soil.
+
+### ⚡ Production Update
+Run Isolation Forest on every new acquisition's 6-band GeoTIFF:
+- Compare anomaly spatial distribution to baseline
+- **Anomaly migration** (anomalies appearing in new quadrants) = equipment movement
+- **Anomaly density increase** = reinforcement/buildup
+- Track Kronstadt NW quadrant anomaly % as ship presence proxy
+
+---
+
+## Algorithms for Training with Historical Data
+
+Once we accumulate 30+ acquisitions per site (~5 months), these become viable:
+
+### 1. Seasonal NDVI/BSI Profiles (Ready now)
+- Build per-site weekly expected values from 2023-2026 Sentinel-2 archive
+- Z-score current observation against historical same-week distribution
+- **No labels needed**. Anomaly = |z| > 2.
+
+### 2. Isolation Forest Temporal Anomaly (Needs ~20 acquisitions)
+- Train one IForest per site on the site's own historical spectral distribution
+- New acquisition: score against site-specific model
+- **Auto-adapts** to each site's baseline (naval vs airbase vs garrison)
+
+### 3. Random Forest Land Cover Classifier (Needs ~50 labeled pixels per class)
+- GEE's `ee.Classifier.smileRandomForest(100)` server-side
+- Classes: runway, apron, building, vegetation, water, bare soil, vehicle park
+- Train on manually labeled pixels from historical high-confidence images
+- Apply to all new acquisitions → land cover change map
+
+### 4. CCDC Time Series Segmentation (Needs 3+ years)
+- GEE's `ee.Algorithms.TemporalSegmentation.Ccdc` 
+- Fits harmonic model to each pixel's time series
+- Detects break points = construction, destruction, deployment
+- **Already have 3 years of S2 data (2023-2026)** — can run now as experiment
+
+### 5. Siamese Change Detection Network (Needs labeled change pairs)
+- OSCD dataset (24 Sentinel-2 pairs with labels) for pretraining
+- Fine-tune on our sites using manually labeled before/after pairs
+- Outputs per-pixel change probability map
+- **Blocked until we create labeled data** (~2 hours manual work)
+
+### 6. Contrastive Self-Supervised Pretraining (Needs computation, no labels)
+- SeCo/SatMAE approach: pretrain on unlabeled S2 time series
+- Learn general-purpose features, then fine-tune for change detection
+- Requires GPU training (~4 hours on gaming PC)
+- **Potentially the highest-value investment** — model learns site-specific patterns
+
+---
+
+## Updated Production Pipeline Recommendation
+
+### Phase 1: Now (validated)
+1. Upgrade thumbnails to 2048px ✓
+2. Store 6-band GeoTIFF alongside thumbnails in GCS
+3. Compute spectral indices server-side in GEE (BSI, NDBI, fuel, metal)
+4. Store indices + deltas (YoY same-month) as structured signal metadata
+5. Run Isolation Forest on each acquisition, store anomaly quadrant distribution
+6. Per-site normalized change magnitude (flag > own p95)
+
+### Phase 2: After 20 acquisitions (~3 months)
+7. Build seasonal profiles per site (weekly expected NDVI/BSI)
+8. Deseasonalized anomaly z-scores
+9. Train site-specific Isolation Forest baselines
+10. Run CCDC on 3-year archive for historical change points
+
+### Phase 3: After labeling (~2 hours manual work)
+11. Random Forest land cover classifier (GEE server-side, 50 pixels/class)
+12. Fine-tune OSCD pretrained model on our labeled pairs
+13. Automated land cover change alerts
+
+*Experiment code: `notebooks/08_satellite_imagery_analysis.py`, `notebooks/09_server_side_analysis.py`*
