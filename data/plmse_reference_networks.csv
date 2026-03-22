@@ -1,0 +1,17 @@
+﻿politics?,files,average_degree,number_of_clusters,num_nodes,num_edges,LOGLOG SLOPE
+1,bangladesh_linked_tweets_csv_2019.csv,6.93876698,24,62205,215813,-0.824
+1,china_082019_2_tweets_csv_election.csv,7.577729355,705,383195,1451874,-0.816
+1,iranian_tweets_csv_election2018.csv,8.536711147,98,376575,1607356,-0.84
+1,china_082019_1_tweets_csv_election.csv,8.74832354,1781,306151,1339154,-0.833
+1,catalonia_201906_1_tweets_csv_hashed.csv,10.01191961,1,28860,144472,-0.802
+1,2016_US_election_tweets_100k.csv,11.06993836,1,91981,509112,-0.858
+1,egypt_uae_082019_tweets_csv_hashed.csv,11.17745714,68,288588,1612840,-0.829
+1,ecuador_082019_tweets_csv_hashed.csv,11.55639771,98,186559,1077975,-0.864
+1,russian_linked_tweets_csv_2019.csv,11.91805303,105,268808,1601834,-0.874
+1,elections_202011_prt1prt2.csv,12.84498786,1,157278,1010117,-0.883
+0,2012-hurricane-sandy.jsonl,14.55491749,1,267128,1944013,-0.89
+0,2013-boston-marathon-bombing.jsonl,15.57640268,1,130964,1019974,-0.897
+0,2015-hurricanepatricia.jsonl,17.73664604,6,96638,857017,-0.893
+0,2014-typhoon-hagupit.jsonl,17.84311915,1,181947,1623251,-0.914
+0,2015-nepalearthquake.jsonl,20.06479924,1,156329,1568355,-0.911
+0,2014-ottawashooting.jsonl,23.27453873,2,137609,1601393,-0.918
