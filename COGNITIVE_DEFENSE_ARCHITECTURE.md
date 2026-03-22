@@ -308,3 +308,33 @@ CTL = w1 × Coordination + w2 × Mutation + w3 × Amplification + w4 × Divergen
 8. EU DisinfoLab. "CIB Detection Tree" (2024)
 9. Frontiers in Communication. "Granger Causality for CIB Impact" (2025)
 10. EstWarden CTI Methodology (internal, validated)
+
+---
+
+## Appendix: Unsolved Problem — Three Modes of Content Convergence
+
+When multiple channels post the same content simultaneously, current detection methods cannot distinguish:
+
+| Mode | Motivation | Behavior | Missing science |
+|------|-----------|----------|-----------------|
+| State-directed psyop | Political/military objective | Synchronized posting, content similarity | Well-studied (CooRnet, TIDE-MARK) |
+| Algorithmic herding | Revenue/engagement optimization | Same content chasing trending algorithms | NOT studied — known practitioner behavior, no formal model |
+| Organic convergence | Independent journalism on real event | Similar timing on breaking news | Partially studied (disaster cascades) |
+
+**All three produce identical signals:** temporal clustering, content overlap, network co-posting patterns.
+
+**Potential distinguishing variables (hypotheses to test):**
+
+1. **Topic deviation:** Psyop channels post OUTSIDE their usual topic range. Engagement farmers post WITHIN their niche but chase trending subtopics. Organic channels follow their beat.
+
+2. **Monetization markers:** Engagement farmers add algorithmic optimization signals (clickbait thumbnails, CAPS, question-mark headlines, dramatic emoji). Psyops may or may not. Organic reporting doesn't optimize for engagement.
+
+3. **Ground truth alignment:** Organic convergence correlates with real-world events (sensor data confirms). Psyops diverge from ground truth. Engagement farming may or may not align.
+
+4. **Post-cascade behavior:** Psyops stop after objective achieved. Engagement farmers move to the next trending topic immediately. Organic channels provide follow-up coverage.
+
+5. **Content mutation direction:** Psyops ADD specific claims (fabrication). Engagement farmers ADD emotional intensity (clickbait). Organic channels MAINTAIN or REDUCE specificity.
+
+**This is a testable hypothesis.** Requires: channel baseline topic modeling + monetization marker detection + longitudinal tracking of post-cascade behavior.
+
+No existing literature formalizes this three-way distinction. Current CIB detection methods treat all coordinated-looking behavior as suspicious, generating false positives from engagement farmers.
