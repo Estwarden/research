@@ -1,6 +1,6 @@
 # Regional CTI Threshold Calibration Findings
 
-**Generated:** 2026-03-22T10:16:33.413617
+**Generated:** 2026-03-22T10:19:50.739749
 
 ## Executive Summary
 
