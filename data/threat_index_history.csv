@@ -1,0 +1,123 @@
+region,level,score,components,details,date,computed_at
+baltic,GREEN,6,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-17,2026-03-06 22:06:09.85318+00
+baltic,GREEN,6,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-16,2026-03-06 22:06:09.861263+00
+baltic,GREEN,6,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-15,2026-03-06 22:06:09.86829+00
+baltic,GREEN,7.7,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 1.7}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 1}",2026-02-14,2026-03-06 22:06:09.874796+00
+baltic,GREEN,6.2,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 1.7}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 1}",2026-02-12,2026-03-06 22:06:09.88931+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-11,2026-03-06 22:06:09.895474+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-10,2026-03-06 22:06:09.901341+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-09,2026-03-06 22:06:09.90735+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-08,2026-03-06 22:06:09.913886+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-07,2026-03-06 22:06:09.919366+00
+baltic,GREEN,5.5,"{""fimi"": 5.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 4, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-06,2026-03-06 22:06:09.924419+00
+baltic,GREEN,4.5,"{""fimi"": 4.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-05,2026-03-06 22:06:09.929774+00
+baltic,GREEN,17.3,"{""fimi"": 4, ""hybrid"": 6.0, ""economic"": 0, ""security"": 7.3}","{""anomalies_72h"": 7, ""fimi_signals_7d"": 104, ""active_campaigns"": 0, ""non_green_indicators"": 4}",2026-02-13,2026-03-08 08:40:36.731395+00
+baltic,GREEN,17,"{""fimi"": 0, ""hybrid"": 17.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 104, ""fimi_signals_7d"": 5, ""active_campaigns"": 0, ""non_green_indicators"": 3}",2026-03-1,2026-03-14 12:46:08.364581+00
+baltic,YELLOW,15.87153,"{""fimi"": 8.018336069038856, ""hybrid"": 14.673176379546065, ""economic"": 1.0422349483695006, ""security"": 0}",,2026-03-20,2026-03-20 20:47:08.287401+00
+finland,YELLOW,15.86725,,,2026-03-20,2026-03-20 20:47:09.318712+00
+poland,YELLOW,15.613775,,,2026-03-20,2026-03-20 20:47:10.195062+00
+baltic,GREEN,11.594225,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 3.4}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 2}",2026-02-18,2026-03-20 21:35:33.195377+00
+baltic,GREEN,11.577658,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 5, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-19,2026-03-20 21:35:33.210551+00
+baltic,YELLOW,21.481598,"{""fimi"": 6.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 6, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-20,2026-03-20 21:35:33.223617+00
+baltic,GREEN,13.816956,"{""fimi"": 4.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-21,2026-03-20 21:35:33.241796+00
+baltic,GREEN,10.1424055,"{""fimi"": 4.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-22,2026-03-20 21:35:33.251562+00
+baltic,YELLOW,15.78829,"{""fimi"": 4.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-23,2026-03-20 21:35:33.260606+00
+baltic,GREEN,14.0616665,"{""fimi"": 4.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-24,2026-03-20 21:35:33.267133+00
+baltic,GREEN,13.772517,"{""fimi"": 4.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-25,2026-03-20 21:35:33.272462+00
+baltic,GREEN,13.829131,"{""fimi"": 4.0, ""hybrid"": 2.8, ""economic"": 0, ""security"": 1.7}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 1, ""active_campaigns"": 1, ""non_green_indicators"": 1}",2026-02-26,2026-03-20 21:35:33.278273+00
+baltic,YELLOW,17.965109,"{""fimi"": 6.5, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 3, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-02-27,2026-03-20 21:35:33.286054+00
+baltic,GREEN,10.000348,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 3.9}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 1}",2026-02-28,2026-03-20 21:35:33.297362+00
+baltic,GREEN,13.312352,"{""fimi"": 6.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 2, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-03-01,2026-03-20 21:35:33.306673+00
+baltic,YELLOW,15.435042,"{""fimi"": 8.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 3, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-03-02,2026-03-20 21:35:33.319672+00
+baltic,YELLOW,15.438935,"{""fimi"": 8.0, ""hybrid"": 0.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 0, ""fimi_signals_7d"": 3, ""active_campaigns"": 1, ""non_green_indicators"": 0}",2026-03-03,2026-03-20 21:35:33.330069+00
+baltic,GREEN,14.898844,"{""fimi"": 0, ""hybrid"": 17.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 6, ""active_campaigns"": 0, ""non_green_indicators"": 3}",2026-03-04,2026-03-20 21:35:33.343737+00
+baltic,GREEN,14.120008,"{""fimi"": 2, ""hybrid"": 17.0, ""economic"": 6.0, ""security"": 0.0}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 8, ""active_campaigns"": 1, ""non_green_indicators"": 3}",2026-03-05,2026-03-20 21:35:33.35424+00
+baltic,GREEN,13.933184,"{""fimi"": 4, ""hybrid"": 17.0, ""economic"": 4.5, ""security"": 0.0}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 26, ""active_campaigns"": 8, ""non_green_indicators"": 3}",2026-03-06,2026-03-20 21:35:33.364453+00
+baltic,YELLOW,16.152603,"{""fimi"": 6, ""hybrid"": 17.0, ""economic"": 6.0, ""security"": 1.7}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 44, ""active_campaigns"": 9, ""non_green_indicators"": 4}",2026-03-07,2026-03-20 21:35:33.375051+00
+baltic,YELLOW,19.883595,"{""fimi"": 6, ""hybrid"": 17.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 46, ""active_campaigns"": 9, ""non_green_indicators"": 3}",2026-03-08,2026-03-20 21:35:33.388754+00
+baltic,YELLOW,18.463758,"{""fimi"": 8, ""hybrid"": 17.0, ""economic"": 0, ""security"": 4.1}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 51, ""active_campaigns"": 10, ""non_green_indicators"": 5}",2026-03-09,2026-03-20 21:35:33.39451+00
+baltic,GREEN,14.710503,"{""fimi"": 10, ""hybrid"": 17.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 87, ""fimi_signals_7d"": 85, ""active_campaigns"": 11, ""non_green_indicators"": 3}",2026-03-10,2026-03-20 21:35:33.3997+00
+baltic,YELLOW,16.550354,"{""fimi"": 10, ""hybrid"": 17.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 80, ""fimi_signals_7d"": 167, ""active_campaigns"": 11, ""non_green_indicators"": 3}",2026-03-11,2026-03-20 21:35:33.407747+00
+baltic,YELLOW,16.010408,"{""fimi"": 10, ""hybrid"": 9.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 73, ""fimi_signals_7d"": 256, ""active_campaigns"": 11, ""non_green_indicators"": 1}",2026-03-12,2026-03-20 21:35:33.414529+00
+baltic,YELLOW,15.728704,"{""fimi"": 4, ""hybrid"": 9.7, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 60, ""fimi_signals_7d"": 257, ""active_campaigns"": 3, ""non_green_indicators"": 1}",2026-03-13,2026-03-20 21:35:33.425515+00
+baltic,YELLOW,20.63237,"{""fimi"": 4, ""hybrid"": 11.8, ""economic"": 0, ""security"": 1.7}","{""anomalies_72h"": 63, ""fimi_signals_7d"": 276, ""active_campaigns"": 3, ""non_green_indicators"": 2}",2026-03-14,2026-03-20 21:35:33.433485+00
+baltic,GREEN,11.792618,"{""fimi"": 4, ""hybrid"": 9.0, ""economic"": 0, ""security"": 0.0}","{""anomalies_72h"": 49, ""fimi_signals_7d"": 272, ""active_campaigns"": 3, ""non_green_indicators"": 1}",2026-03-15,2026-03-20 21:35:33.438173+00
+baltic,GREEN,13.453836,"{""fimi"": 6.699678747479116, ""hybrid"": 15.649507914608328, ""economic"": 1.1240593479133905, ""security"": 1.6799999999999997}",,2026-03-16,2026-03-20 21:35:33.452586+00
+baltic,YELLOW,20.86911,"{""fimi"": 6.832498321714887, ""hybrid"": 18.421621362434497, ""economic"": 1.0970729140518036, ""security"": 2.4}",,2026-03-17,2026-03-20 21:35:33.462158+00
+baltic,YELLOW,16.67409,"{""fimi"": 7.58295996436757, ""hybrid"": 16.92865514454799, ""economic"": 1.0845082189101136, ""security"": 0}",,2026-03-18,2026-03-20 21:35:33.468834+00
+baltic,YELLOW,16.870056,"{""fimi"": 8.03033624989541, ""hybrid"": 15.031285600992405, ""economic"": 1.0352941139849179, ""security"": 2.4}",,2026-03-19,2026-03-20 21:35:33.474011+00
+finland,GREEN,10.932268,,,2026-02-18,2026-03-20 21:35:34.600041+00
+finland,GREEN,12.824176,,,2026-02-19,2026-03-20 21:35:34.608503+00
+finland,YELLOW,18.908133,,,2026-02-20,2026-03-20 21:35:34.618768+00
+finland,GREEN,12.804113,,,2026-02-21,2026-03-20 21:35:34.625218+00
+finland,YELLOW,18.614235,,,2026-02-22,2026-03-20 21:35:34.630225+00
+finland,YELLOW,21.645466,,,2026-02-23,2026-03-20 21:35:34.634573+00
+finland,YELLOW,18.051664,,,2026-02-24,2026-03-20 21:35:34.638758+00
+finland,YELLOW,17.42165,,,2026-02-25,2026-03-20 21:35:34.645106+00
+finland,GREEN,13.831966,,,2026-02-26,2026-03-20 21:35:34.649524+00
+finland,YELLOW,19.325481,,,2026-02-27,2026-03-20 21:35:34.653894+00
+finland,YELLOW,16.019814,,,2026-02-28,2026-03-20 21:35:34.666706+00
+finland,GREEN,11.202255,,,2026-03-01,2026-03-20 21:35:34.674134+00
+finland,GREEN,12.786994,,,2026-03-02,2026-03-20 21:35:34.67928+00
+finland,GREEN,14.881455,,,2026-03-03,2026-03-20 21:35:34.68428+00
+finland,YELLOW,16.150978,,,2026-03-04,2026-03-20 21:35:34.693922+00
+finland,YELLOW,16.95468,,,2026-03-05,2026-03-20 21:35:34.699125+00
+finland,YELLOW,16.73055,,,2026-03-06,2026-03-20 21:35:34.705366+00
+finland,GREEN,8.668064,,,2026-03-07,2026-03-20 21:35:34.713689+00
+finland,YELLOW,18.221298,,,2026-03-08,2026-03-20 21:35:34.720747+00
+finland,YELLOW,15.44381,,,2026-03-09,2026-03-20 21:35:34.725922+00
+finland,YELLOW,17.914057,,,2026-03-10,2026-03-20 21:35:34.731806+00
+finland,GREEN,14.293781,,,2026-03-11,2026-03-20 21:35:34.736857+00
+finland,YELLOW,15.948876,,,2026-03-12,2026-03-20 21:35:34.741337+00
+finland,YELLOW,20.06843,,,2026-03-13,2026-03-20 21:35:34.750608+00
+finland,YELLOW,16.54992,,,2026-03-14,2026-03-20 21:35:34.757076+00
+finland,YELLOW,18.725836,,,2026-03-15,2026-03-20 21:35:34.762976+00
+finland,YELLOW,17.421429,,,2026-03-16,2026-03-20 21:35:34.767524+00
+finland,GREEN,12.736492,,,2026-03-17,2026-03-20 21:35:34.773369+00
+finland,GREEN,14.647461,,,2026-03-18,2026-03-20 21:35:34.7783+00
+finland,YELLOW,19.110619,,,2026-03-19,2026-03-20 21:35:34.811902+00
+poland,GREEN,14.589677,,,2026-02-18,2026-03-20 21:35:35.78531+00
+poland,GREEN,13.151804,,,2026-02-19,2026-03-20 21:35:35.793119+00
+poland,YELLOW,19.394323,,,2026-02-20,2026-03-20 21:35:35.799622+00
+poland,YELLOW,19.250648,,,2026-02-21,2026-03-20 21:35:35.806428+00
+poland,YELLOW,15.881262,,,2026-02-22,2026-03-20 21:35:35.815728+00
+poland,YELLOW,21.39553,,,2026-02-23,2026-03-20 21:35:35.820778+00
+poland,YELLOW,18.288641,,,2026-02-24,2026-03-20 21:35:35.828896+00
+poland,YELLOW,19.39789,,,2026-02-25,2026-03-20 21:35:35.834365+00
+poland,YELLOW,22.015259,,,2026-02-26,2026-03-20 21:35:35.840537+00
+poland,YELLOW,16.90475,,,2026-02-27,2026-03-20 21:35:35.847347+00
+poland,YELLOW,19.019678,,,2026-02-28,2026-03-20 21:35:35.855494+00
+poland,YELLOW,19.083948,,,2026-03-01,2026-03-20 21:35:35.863426+00
+poland,YELLOW,18.204353,,,2026-03-02,2026-03-20 21:35:35.868396+00
+poland,YELLOW,15.698637,,,2026-03-03,2026-03-20 21:35:35.880796+00
+poland,YELLOW,18.466305,,,2026-03-04,2026-03-20 21:35:35.888473+00
+poland,GREEN,12.514547,,,2026-03-05,2026-03-20 21:35:35.901708+00
+poland,GREEN,15.173968,,,2026-03-06,2026-03-20 21:35:35.906534+00
+poland,GREEN,14.39547,,,2026-03-07,2026-03-20 21:35:35.911142+00
+poland,YELLOW,17.451052,,,2026-03-08,2026-03-20 21:35:35.915948+00
+poland,YELLOW,17.950348,,,2026-03-09,2026-03-20 21:35:35.920499+00
+poland,YELLOW,18.914665,,,2026-03-10,2026-03-20 21:35:35.924809+00
+poland,YELLOW,18.66492,,,2026-03-11,2026-03-20 21:35:35.929356+00
+poland,GREEN,14.710307,,,2026-03-12,2026-03-20 21:35:35.934125+00
+poland,GREEN,10.35842,,,2026-03-13,2026-03-20 21:35:35.938331+00
+poland,YELLOW,21.747734,,,2026-03-14,2026-03-20 21:35:35.942806+00
+poland,GREEN,13.815059,,,2026-03-15,2026-03-20 21:35:35.95225+00
+poland,YELLOW,16.062557,,,2026-03-16,2026-03-20 21:35:35.957338+00
+poland,YELLOW,16.346294,,,2026-03-17,2026-03-20 21:35:35.963188+00
+poland,GREEN,15.118632,,,2026-03-18,2026-03-20 21:35:35.968287+00
+poland,YELLOW,15.976717,,,2026-03-19,2026-03-20 21:35:35.979901+00
+baltic,YELLOW,27.531584,"{""fimi"": 19.415384615384617, ""hybrid"": 2.572245493009087, ""economic"": 3.5615883033561797, ""security"": 1.9823659898173334}","{""breakdown"": {""campaigns"": 13.5, ""narratives"": 6, ""energy_price"": 0, ""signal_zscore"": 5.8, ""gpsjam_severity"": 2.3}}",2026-03-21,2026-03-21 22:15:01.724802+00
+finland,YELLOW,28.07753,"{""fimi"": 19.415384615384617, ""hybrid"": 2.7121465042117823, ""economic"": 3.980534926398663, ""security"": 1.969464750187707}","{""breakdown"": {""campaigns"": 13.5, ""narratives"": 6, ""energy_price"": 0, ""signal_zscore"": 6.2, ""gpsjam_severity"": 2.5}}",2026-03-21,2026-03-21 22:15:02.895557+00
+poland,YELLOW,27.931002,"{""fimi"": 19.415384615384617, ""hybrid"": 2.988868282560813, ""economic"": 3.5615883033561797, ""security"": 1.9651598429412844}","{""breakdown"": {""campaigns"": 13.5, ""narratives"": 6, ""energy_price"": 0, ""signal_zscore"": 5.8, ""gpsjam_severity"": 2.7}}",2026-03-21,2026-03-21 22:15:03.855093+00
+estonia,YELLOW,30.939693,"{""fimi"": 22.85209710416777, ""hybrid"": 5.773855137232259, ""economic"": 1.6943013133625715, ""security"": 0.6194407107066485}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.5, ""fabrication"": 5.6, ""energy_price"": 0, ""signal_zscore"": 5.9, ""gpsjam_severity"": 2.3}}",2026-03-22,2026-03-22 22:15:01.771217+00
+latvia,YELLOW,30.81727,"{""fimi"": 22.85209710416777, ""hybrid"": 5.651430894808016, ""economic"": 1.6943013133625715, ""security"": 0.6194407107066485}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.5, ""fabrication"": 5.6, ""energy_price"": 0, ""signal_zscore"": 5.9, ""gpsjam_severity"": 2.2}}",2026-03-22,2026-03-22 22:15:02.834338+00
+lithuania,YELLOW,31.381664,"{""fimi"": 22.85209710416777, ""hybrid"": 6.215824834201955, ""economic"": 1.6943013133625715, ""security"": 0.6194407107066485}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.5, ""fabrication"": 5.6, ""energy_price"": 0, ""signal_zscore"": 5.9, ""gpsjam_severity"": 2.8}}",2026-03-22,2026-03-22 22:15:03.869241+00
+finland,YELLOW,32.078045,"{""fimi"": 22.87378822115389, ""hybrid"": 6.676897815685778, ""economic"": 1.90969509623223, ""security"": 0.6176634267422773}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.5, ""fabrication"": 5.6, ""energy_price"": 0, ""signal_zscore"": 6.1, ""gpsjam_severity"": 3.2}}",2026-03-22,2026-03-22 22:15:05.242363+00
+poland,YELLOW,31.420137,"{""fimi"": 22.851389789503894, ""hybrid"": 6.257671212847242, ""economic"": 1.6943013133625715, ""security"": 0.616775301533537}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.5, ""fabrication"": 5.6, ""energy_price"": 0, ""signal_zscore"": 5.9, ""gpsjam_severity"": 2.8}}",2026-03-22,2026-03-22 22:15:06.847455+00
+baltic,YELLOW,31.04621,"{""fimi"": 22.85209710416777, ""hybrid"": 5.88037028874741, ""economic"": 1.6943013133625715, ""security"": 0.6194407107066485}","{""breakdown"": {""campaigns"": 9.1, ""narratives"": 2.5, ""energy_price"": 0, ""signal_zscore"": 5.900000000000001, ""gpsjam_severity"": 2.433333333333333}}",2026-03-22,2026-03-22 22:15:06.854454+00
+estonia,YELLOW,30.280119,"{""fimi"": 24.63506572169416, ""hybrid"": 3.305338034313958, ""economic"": 0.9967032019221844, ""security"": 1.3430124675669963}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.2, ""fabrication"": 7.3, ""energy_price"": 0, ""signal_zscore"": 4.6, ""gpsjam_severity"": 1.7}}",2026-03-23,2026-03-23 16:15:02.011904+00
+latvia,YELLOW,32.72396,"{""fimi"": 24.63506572169416, ""hybrid"": 5.7048943555888, ""economic"": 0.9967032019221844, ""security"": 1.387298834553648}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.2, ""fabrication"": 7.3, ""energy_price"": 0, ""signal_zscore"": 4.7, ""gpsjam_severity"": 4.1}}",2026-03-23,2026-03-23 16:15:03.058946+00
+lithuania,YELLOW,33.55063,"{""fimi"": 24.63506572169416, ""hybrid"": 6.531561022255467, ""economic"": 0.9967032019221844, ""security"": 1.387298834553648}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.2, ""fabrication"": 7.3, ""energy_price"": 0, ""signal_zscore"": 4.7, ""gpsjam_severity"": 4.9}}",2026-03-23,2026-03-23 16:15:04.126803+00
+finland,YELLOW,30.573814,"{""fimi"": 24.69008020212407, ""hybrid"": 3.4667125374069814, ""economic"": 1.0496683413264398, ""security"": 1.367352403045914}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.2, ""fabrication"": 7.3, ""energy_price"": 0, ""signal_zscore"": 4.7, ""gpsjam_severity"": 1.8}}",2026-03-23,2026-03-23 16:15:05.182855+00
+poland,YELLOW,33.321205,"{""fimi"": 24.63510612023807, ""hybrid"": 6.323161418903941, ""economic"": 0.9967032019221844, ""security"": 1.366235496356025}","{""breakdown"": {""campaigns"": 9.1, ""laundering"": 5.5, ""narratives"": 2.2, ""fabrication"": 7.3, ""energy_price"": 0, ""signal_zscore"": 4.6, ""gpsjam_severity"": 4.7}}",2026-03-23,2026-03-23 16:15:06.281034+00
+baltic,YELLOW,32.184902,"{""fimi"": 24.63506572169416, ""hybrid"": 5.180597804052741, ""economic"": 0.9967032019221844, ""security"": 1.372536712224764}","{""breakdown"": {""campaigns"": 9.1, ""narratives"": 2.2, ""energy_price"": 0, ""signal_zscore"": 4.666666666666667, ""gpsjam_severity"": 3.5666666666666664}}",2026-03-23,2026-03-23 16:15:06.293436+00

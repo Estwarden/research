@@ -1,0 +1,51 @@
+fabrication_score,down_views,certainty_escalation,emotional_amplification,root_source,root_category,down_source,down_category,root_title,down_title,added_claims,summary,detected_at
+7,743000,f,f,sternenko,unverified_commentator,yurasumy,ru_proxy,"Іран вперше уразив F-35 США. Літак здійснив екстрену посадку на американській базі на Близькому Сході, — CNN.
+
+У…","«Ормузский пролив — он нам не нужен, мы им не пользуемся», - Трамп...
+
+«Мы уже победили Иран. Что касается Ормузского…",[],"Signal A reports on an alleged Iranian strike on a US F-35, while Signal B discusses a quote from Trump about the Strait of Hormuz and 'defeating Iran', with no mention of an F-35 incident.",2026-03-23 06:30:27.937607+00
+10,203000,f,f,rss:rss,ru_state,deepstatemap,trusted,МИД: Россия ответит на любое посягательство на здания дипмиссий на Украине,"🇹🇷 Туреччина підтвердила невизнання окупації Криму
+
+👥 У 12-ту річницю незаконної анексії Автономної Республіки Крим…",[],"Signal A discusses Russia's response to attacks on diplomatic missions in Ukraine, while Signal B discusses Turkey's non-recognition of the annexation of Crimea, indicating they are about completely different events.",2026-03-23 04:30:30.84261+00
+10,29200,f,f,rss:rss,ru_state,voenacher,ru_proxy,КСИР: Иран нанёс удары по складу ракет в Израиле и по базе США в Катаре,Вчерашние удары США и Израиля по иранскому Дезфулу.,[],"Signal A describes Iranian strikes on Israel and a US base, while Signal B describes US and Israeli strikes on Iran, indicating they are about completely different events.",2026-03-23 04:30:29.801587+00
+10,202000,f,f,rss:rss,ru_state,sternenko,unverified_commentator,В ЕС заявили о подготовке мер на случай обострения ситуации с энергоресурсами,"Велика Британія, Франція, Німеччина, Італія, Нідерланди, Японія та Канада готові допомогти розблокувати Ормузьку…",[],"Signal A discusses EU measures for energy resource escalation, while Signal B discusses multiple countries preparing to unblock the Strait of Hormuz, indicating they are about completely different events.",2026-03-23 02:30:30.944763+00
+4,23100,t,f,rss:rss,russian_state,dva_majors,ru_proxy,Объекты энергетической инфраструктуры повреждены в Белгороде в результате ракетного обстрела,"Ракетный обстрел Белгородской области. Губернатор:
+
+Ракетному обстрелу со стороны ВСУ подверглись социальные объекты в…","[""social facilities were targeted"", ""the attack was from the AFU (Armed Forces of Ukraine)""]","Signal B adds specific claims about the targeting of social facilities and attributes the attack to the AFU, which were not present in Signal A.",2026-03-22 19:57:46.299832+00
+4,1540,t,t,rss:rss,estonian_media,spravdi,trusted,"Пурга: мы не можем принять, что Россия использует культуру как инструмент военной пропаганды","😐 росія на Венеційській бієнале: організатори підтвердили дозвіл
+
+Організатори цьогорічної Венеційська бієнале заявили,…","[""Організатори цьогорічної Венеційська бієнале заявили…""]","Signal B adds the claim that organizers confirmed permission for Russia at the Venice Biennale, escalating certainty and adding an emotional emoji.",2026-03-22 19:52:46.713089+00
+5,519000,t,f,rss:rss,russian_state,yurasumy,ru_proxy,Axios: Уиткофф 17 марта расскажет сенаторам США о ходе операции против Ирана,"Война на Ближнем Востоке: подводим итоги за 19 марта: почему США хотят снять санкции против Ирана…
+
+Новость о том, что…","[""War in the Middle East: summarizing results for March 19"", ""Why the US wants to lift sanctions against Iran""]","Signal B significantly expands on Signal A by framing the event as part of a broader 'War in the Middle East' and introducing a new claim about the US wanting to lift sanctions against Iran, shifting from a specific briefing to a broader geopolitical analysis.",2026-03-22 19:52:45.775192+00
+4,46600,t,f,insider_ua,unverified_anonymous,uniannet,unverified_media,"Прилет иранской баллистики по Димоне (Израиль)
+
+INSIDER UA | Прислать контент","Кадры сегодняшнего обстрела Израиля: на видео — прилет иранской баллистики по городу Димона
+
+Он расположен на юге…","[""Он расположен на юге…""]",Signal B adds a claim about the location of Dimona and escalates certainty by presenting the event as 'Кадры сегодняшнего обстрела Израиля' (Footage of today's shelling of Israel) compared to Signal A's more neutral 'Прилет иранской баллистики по Димоне (Израиль)' (Arrival of Iranian ballistics in Dimona (Israel)).,2026-03-22 19:52:41.283888+00
+4,184000,f,f,rss:rss,ru_state,rybar,ru_proxy,Средства ПВО за восемь часов уничтожили 96 БПЛА ВСУ над территорией России,"#Сводка на утро 21 марта 2026 года
+
+▪️ Противник после непродолжительного перерыва возобновил массированные пуски БПЛА…","[""Противник после непродолжительного перерыва возобновил массированные пуски БПЛА""]","Signal B adds a claim about the enemy resuming massive drone launches after a short break, which is not present in Signal A's factual report of drones destroyed.",2026-03-22 19:52:39.943467+00
+4,117000,t,t,truexanewsua,unverified_anonymous,uniannet,unverified_media,"👀Пишуть, 59 ОШБр щойно збила FPV-дроном ворожий Ка-52 на Покровському напрямку.
+
+$1000 знищили $16 млн…","FPV-дрон буквально только что сбил российский Ка-52 на Покровском направлении, — военные
+
+Ждем видео 🔥","[""военные""]","Signal B adds a claim of military confirmation and escalates certainty and emotional framing by stating the event 'literally just happened' and eagerly awaiting video, while Signal A presents it as unverified information.",2026-03-22 19:52:38.466031+00
+5,71600,f,f,rss:rss,russian_independent,RVvoenkor,ru_proxy,«Это не наша война». Министр обороны Германии отверг призыв Трампа отправить военные корабли в Ормузский пролив,"‼️🇪🇪🇺🇸Эстония в четвёртый раз напомнила, что готова помочь США в Ормузском проливе
+
+➖Конкретного запроса со стороны США…","[""Estonia has reminded for the fourth time that it is ready to help the USA in the Strait of Hormuz"", ""There has been no specific request from the USA""]","Signal B shifts the focus from Germany's rejection of Trump's call to Estonia's repeated offer of help to the US, adding new claims about Estonia's involvement and the lack of a US request.",2026-03-22 19:52:37.277372+00
+4,20800,f,t,rss:rss,russian_state,pul_1,ru_state,Лукашенко поздравил белорусок с 8 марта,"©️ Мы должны делать всё (и не только в Год женщины), чтобы женщина была счастлива. 
+
+«А какое счастье у женщины, если у…","[""We must do everything (and not only in the Year of the Woman) to make a woman happy."", ""What kind of happiness does a woman have if...""]","Signal B adds direct quotes from Lukashenko's speech, introducing specific claims about women's happiness and a more emotional framing not present in the simple announcement of Signal A.",2026-03-22 19:52:35.530304+00
+6,368000,t,t,rss:rss,russian_state,truexanewsua,unverified_anonymous,"Лукашенко анонсировал ""большой договор"" с США","🥴Трамп запропонував Білорусі велику угоду, — Лукашенко.
+
+Документ включає звільнення ув'язнених, поновлення роботи…","[""Трамп запропонував Білорусі велику угоду"", ""Документ включає звільнення ув'язнених, поновлення роботи…""]","Signal B adds specific claims about Trump proposing the deal and details about its contents (prisoner release, renewed work), and includes an emotional emoji, which are not present in Signal A's more general announcement of a 'big agreement' with the USA.",2026-03-22 19:52:34.180803+00
+4,308000,t,f,rss:rss,russian_independent,readovkanews,ru_proxy,Депутат от «Единой России» извинился перед фермерами за принудительный забой скота — «от лица власти Новосибирской облас,"Жителям Новосибирской области начали выплачивать компенсации за изъятых животных
+
+На данный момент уже 58 семей…","[""Residents of Novosibirsk region have started receiving compensation for seized animals."", ""58 families have already received compensation.""]","Signal B adds specific details about compensation payments already being made to a certain number of families, which was not mentioned in Signal A's apology for forced culling.",2026-03-22 19:52:33.124002+00
+5,95300,t,t,uniannet,unverified_media,RVvoenkor,ru_proxy,"«Без США НАТО — бумажный тигр»: Трамп, кажется, обиделся
+
+Он заявил, что союзники по Альянсу не захотели участвовать в…","‼️🇺🇸🇪🇺 «Без США НАТО — бумажный тигр»: Трамп обиделся на Европу
+
+▪️Он заявил, что союзники по НАТО не захотели…","[""Europe is the specific target of Trump's offense""]","Signal B removes the uncertainty regarding Trump's offense, specifies Europe as the target, and adds dramatic emojis, shifting the framing and certainty.",2026-03-22 19:51:38.614386+00
+5,3940,t,f,rss:rss,russian_state,nach_shtabu,ru_proxy,Politico: ЕС нашёл способ предоставить кредит Киеву в обход Венгрии и Словакии,"Европа предоставит Украине обещанный кредит в €90 млрд, несмотря на блокировку со стороны Венгрии, — Урсула фон дер…","[""specific amount of €90 billion"", ""attribution to Ursula von der Leyen"", ""description of the credit as 'promised'""]","Signal B adds specific financial details and attribution, escalating the certainty of the credit provision from a 'found way' to a definitive 'will provide'.",2026-03-22 19:51:23.828689+00
