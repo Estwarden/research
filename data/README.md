@@ -1,21 +1,19 @@
 # Data
 
-Clone the [EstWarden dataset](https://github.com/Estwarden/dataset) here:
+CSV exports from EstWarden production database.
+
+| File | Rows | Description |
+|------|------|-------------|
+| `signals_50d.csv` | 44,908 | 50 days of signals (all source types) |
+| `all_campaigns.csv` | 30 | Full campaign archive |
+| `campaigns.csv` | 26 | Active campaigns |
+| `cluster_members.csv` | 3,362 | Signal-to-cluster mappings |
+| `clusters.csv` | 180 | Narrative event clusters |
+
+To refresh from production:
 
 ```bash
-git clone https://github.com/Estwarden/dataset.git ../data
+ssh root@server "docker exec estwarden-postgres psql -U estwarden -d estwarden \
+  -c \"COPY (SELECT source_type,title,content,url,published_at,region,feed_handle,channel,category FROM signals WHERE published_at >= now()-interval '50 days') TO STDOUT CSV HEADER\"" \
+  > signals_50d.csv
 ```
-
-Notebooks expect these files:
-- `media_signals.jsonl` — 17K RSS, Telegram, YouTube, GDELT signals
-- `military_signals.jsonl` — 2.7K ADS-B, FIRMS, GPS jamming signals
-- `economic_signals.jsonl` — 6.5K sanctions, energy, business signals
-- `environmental_signals.jsonl` — 765 balloon, space weather signals
-- `narrative_tags.jsonl` — 1.1K N1-N5 classifications
-- `daily_reports.jsonl` — 41 daily threat reports
-- `campaigns.jsonl` — 31 detected influence campaigns
-- `indicators.jsonl` — 497 per-category threat indicators (GREEN/YELLOW/ORANGE)
-- `ais_signals.jsonl.gz` — 300K vessel positions (notebook 06 optional)
-
-The `indicators.jsonl` file is the key ground truth — it tells you which
-threat categories were elevated on which days, and why.
