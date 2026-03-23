@@ -35,7 +35,7 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data'
 CLASSIFICATION_PROMPT = """You are a disinformation analyst. Classify this detected campaign into one of four categories based ONLY on the evidence provided.
 
 Categories:
-- HOSTILE_IO: State-directed information operation. Evidence: state media coordination, fabricated content, strategic timing.
+- HOSTILE_IO: State-directed information operation. Evidence: Russian state media coordination, fabricated content, strategic timing.
 - HYPE_FARMING: Engagement-driven content for revenue. Evidence: clickbait patterns, monetization, no state coordination.
 - ORGANIC: Legitimate news coverage. Evidence: accurate reporting, no coordination, factual content.
 - NARRATIVE_TAG: This is a generic narrative category, not a specific campaign.

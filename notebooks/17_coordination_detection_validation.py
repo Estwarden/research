@@ -14,10 +14,10 @@ B =  0: Poisson random (organic)
 B = +1: maximally bursty (coordinated bursts)
 
 Data: cluster_members.csv from EstWarden prod DB
-Ground truth: has_state = contains ru_state/ru_proxy signals
+Ground truth: has_ru_state = contains ru_state/ru_proxy signals
 
 Tests:
-1. Welch's t-test: state vs clean burstiness
+1. Welch's t-test: ru_state vs non-ru_state burstiness
 2. Confound test: is burstiness correlated with cluster size?
 3. Mixed cluster test: do mixed clusters behave like state or clean?
 4. Size-controlled test: compare within same size buckets
@@ -105,26 +105,26 @@ def load_clusters():
             continue
 
         cats = set(s['category'] for s in sigs if s['category'])
-        has_state = any('state' in c or 'ru_proxy' in c for c in cats)
+        has_ru_state = any('state' in c or 'ru_proxy' in c for c in cats)
         only_state = all('state' in c or 'ru_proxy' in c for c in cats if c)
-        has_mixed = has_state and not only_state
+        has_mixed = has_ru_state and not only_state
 
         results.append({
             'cid': cid,
             'n': len(sigs),
             'burstiness': b,
             'n_cats': len(cats),
-            'has_state': has_state,
+            'has_ru_state': has_ru_state,
             'only_state': only_state,
             'has_mixed': has_mixed,
-            'clean': not has_state,
+            'clean': not has_ru_state,
         })
     return results
 
 
 def main():
     results = load_clusters()
-    state = [r for r in results if r['has_state']]
+    state = [r for r in results if r['has_ru_state']]
     clean = [r for r in results if r['clean']]
 
     sb = [r['burstiness'] for r in state]
@@ -170,7 +170,7 @@ def main():
     if abs(mb - clb) < abs(mb - ob):
         print(f"  → Mixed closer to CLEAN → burstiness may be event-driven ⚠️")
     else:
-        print(f"  → Mixed closer to STATE → state media DRIVES burstiness ✅")
+        print(f"  → Mixed closer to STATE → Russian state media DRIVES burstiness ✅")
 
     print()
     print("=" * 70)
@@ -191,7 +191,7 @@ def main():
     print("=" * 70)
     if abs(t) > 2.58 and abs(r_size) < 0.3:
         print("✅ VALIDATED: Burstiness is a statistically significant, confound-free")
-        print("   signal for state media coordination detection.")
+        print("   signal for Russian state media coordination detection.")
     elif abs(t) > 1.96:
         print("🟡 PARTIALLY VALIDATED: Signal is significant but needs more data.")
     else:

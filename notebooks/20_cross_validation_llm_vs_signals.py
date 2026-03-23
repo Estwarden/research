@@ -3,18 +3,18 @@
 20. Cross-Validation: Detection Signals vs LLM Labels
 =====================================================
 
-KEY FINDING: State media presence does NOT predict hostile intent.
+KEY FINDING: Russian state media presence does NOT predict hostile intent.
 
-- ORGANIC campaigns have 80% state media presence
-- HOSTILE campaigns have 45% state media presence  
+- ORGANIC campaigns have 80% Russian state media presence
+- HOSTILE campaigns have 45% Russian state media presence  
 - Category spread is HIGHER in organic (3.4) than hostile (2.4)
 
-This BREAKS the assumption that state media = hostile operation.
-Russian state media covers real news too. Burstiness detects
-"state media temporal patterns" not "hostile operations."
+This BREAKS the assumption that Russian state media = hostile operation.
+Russian Russian state media covers real news too. Burstiness detects
+"Russian state media temporal patterns" not "hostile operations."
 
 The system needs additional signals beyond source classification
-to distinguish hostile from organic state media activity.
+to distinguish hostile from organic Russian state media activity.
 
 Candidates:
 1. Content fabrication detection (claims not in source)
@@ -28,5 +28,5 @@ Candidates:
 # This experiment cross-validates the two
 
 # The honest conclusion: burstiness is a valid BEHAVIORAL signal
-# but it cannot alone distinguish hostile from organic state media activity.
+# but it cannot alone distinguish hostile from organic Russian state media activity.
 # Additional signals needed for a reliable autonomous system.

@@ -164,29 +164,29 @@ print(title_clusters.head(15).to_string())
 # These are the events where framing comparison is possible.
 
 # %%
-has_state = {'russian_state', 'ru_state', 'ru_proxy'}
+has_ru_state = {'russian_state', 'ru_state', 'ru_proxy'}
 has_trusted = {'estonian_media', 'baltic_media', 'finnish_media', 'polish_media',
                'government', 'counter_disinfo', 'russian_independent', 'trusted'}
 
-title_clusters["has_state"] = title_clusters.categories.apply(
-    lambda cats: bool(set(cats) & has_state))
+title_clusters["has_ru_state"] = title_clusters.categories.apply(
+    lambda cats: bool(set(cats) & has_ru_state))
 title_clusters["has_trusted"] = title_clusters.categories.apply(
     lambda cats: bool(set(cats) & has_trusted))
 
-mixed = title_clusters[title_clusters.has_state & title_clusters.has_trusted]
+mixed = title_clusters[title_clusters.has_ru_state & title_clusters.has_trusted]
 print(f"\nMixed-source clusters (state + trusted): {len(mixed)}")
 if len(mixed) > 0:
     print(mixed.head(10).to_string())
 
-state_only = title_clusters[title_clusters.has_state & ~title_clusters.has_trusted]
-trusted_only = title_clusters[~title_clusters.has_state & title_clusters.has_trusted]
+state_only = title_clusters[title_clusters.has_ru_state & ~title_clusters.has_trusted]
+trusted_only = title_clusters[~title_clusters.has_ru_state & title_clusters.has_trusted]
 print(f"State-only clusters: {len(state_only)}")
 print(f"Trusted-only clusters: {len(trusted_only)}")
 
 # %% [markdown]
 # ## 5. Manufactured Outrage Chain Detection
 #
-# **Hypothesis**: State media creates outrage chains:
+# **Hypothesis**: Russian state media creates outrage chains:
 # 1. Original event report
 # 2. Official reaction (quoting Duma member, senator, etc.)
 # 3. Expert outrage
@@ -195,7 +195,7 @@ print(f"Trusted-only clusters: {len(trusted_only)}")
 
 # %%
 # Look for chains: same feed, 3+ signals in 24h, same title_key prefix
-state_signals = passed_text[passed_text.category.isin(has_state)].copy()
+state_signals = passed_text[passed_text.category.isin(has_ru_state)].copy()
 state_signals = state_signals.sort_values(["feed_handle", "published_at"])
 
 chains = []
@@ -248,14 +248,14 @@ for c in unique_chains[:10]:
 # - Emotional language markers (СРОЧНО, !!!, 🔴, BREAKING)
 # - Quote attribution patterns (anonymous vs named)
 # - Headline verb aggressiveness
-# - State media coverage lag (do they wait to add spin?)
+# - Russian state media coverage lag (do they wait to add spin?)
 
 # %%
 # Emotional markers in state vs trusted media
 EMOTIONAL_RE = re.compile(r'СРОЧНО|BREAKING|URGENT|!!!|⚡⚡|🔴🔴|МОЛНИЯ|ТЕРМІНОВО')
 HEDGE_RE = re.compile(r'по данным|сообщает|как стало известно|according to|reportedly|sources say')
 
-for cat_group, label in [(has_state, "State"), (has_trusted, "Trusted")]:
+for cat_group, label in [(has_ru_state, "State"), (has_trusted, "Trusted")]:
     subset = passed_text[passed_text.category.isin(cat_group)]
     if len(subset) == 0:
         continue
@@ -282,5 +282,5 @@ for cat_group, label in [(has_state, "State"), (has_trusted, "Trusted")]:
 #    train a lightweight classifier on LLM is_hostile labels
 #
 # 5. **Temporal coordination metric** — compare inter-arrival times of state vs
-#    trusted media for the same events. If state media is significantly more
+#    trusted media for the same events. If Russian state media is significantly more
 #    synchronized, that's a coordination signal.
