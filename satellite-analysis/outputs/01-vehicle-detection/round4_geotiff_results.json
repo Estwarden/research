@@ -1,0 +1,64 @@
+{
+  "round": 4,
+  "method": "YOLOv8x-OBB (DOTA pretrained) on original GeoTIFFs",
+  "note": "Full-resolution 16-bit GeoTIFFs, 4096px sliding window with 512px overlap",
+  "sites": {
+    "luga-skysat": {
+      "geotiff": "9726x11518, 4 bands, 0.50m/px",
+      "tiles_processed": 12,
+      "raw_detections": 285,
+      "raw_military": 172,
+      "verified_military": 0,
+      "assessment": "All 172 military detections are false positives: snow patches, building roofs, river features, rail tracks, image edge artifacts. No military vehicles or aircraft detected.",
+      "top_false_positives": [
+        {
+          "class": "plane",
+          "conf": 0.623,
+          "actual": "Snow patches + road intersection"
+        },
+        {
+          "class": "ship",
+          "conf": 0.587,
+          "actual": "Image edge / nodata boundary"
+        },
+        {
+          "class": "ship",
+          "conf": 0.493,
+          "actual": "Building roof in town"
+        },
+        {
+          "class": "plane",
+          "conf": 0.464,
+          "actual": "Rail tracks and shadows"
+        }
+      ]
+    },
+    "cherekha-wv3": {
+      "geotiff": "15744x10033, 8 bands, 0.34m/px",
+      "tiles_processed": 3,
+      "raw_detections": 4,
+      "raw_military": 2,
+      "verified_military": 0,
+      "assessment": "Both military detections are false positives: tree shadows on snow field, village buildings.",
+      "top_false_positives": [
+        {
+          "class": "plane",
+          "conf": 0.402,
+          "actual": "Snow field with tree shadows"
+        },
+        {
+          "class": "large vehicle",
+          "conf": 0.28,
+          "actual": "Village buildings with snow"
+        }
+      ]
+    }
+  },
+  "positive_control": {
+    "site": "Tallinn Airport (TLL)",
+    "image": "2304x2304 ESRI tiles, ~0.6m/px",
+    "detections": "10 planes (0.84-0.88 conf) + 1 helicopter (0.79)",
+    "validates": "Model correctly detects aircraft at comparable resolution when present"
+  },
+  "conclusion": "At full GeoTIFF resolution, DOTA-OBB produces high false positive rates on winter satellite imagery (snow/shadow contrast). After human verification of all detections, zero military vehicles or aircraft confirmed at either site. Combined with the positive control validating the model works on active airfields, this is consistent with the visual and spectral evidence: the garrisons are empty."
+}
