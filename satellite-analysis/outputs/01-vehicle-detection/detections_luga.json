@@ -1,0 +1,32 @@
+[
+  {
+    "class": "car",
+    "conf": 0.5835811495780945,
+    "x1": 149,
+    "y1": 3900,
+    "x2": 361,
+    "y2": 4094,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "RECLASSIFIED: building roofs with snow shadows (human review)"
+  },
+  {
+    "class": "car",
+    "conf": 0.41207027435302734,
+    "x1": 492,
+    "y1": 3561,
+    "x2": 639,
+    "y2": 3768,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE\n\nThe object appears to be a a building or structure, not a vehicle."
+  },
+  {
+    "class": "car",
+    "conf": 0.31710028648376465,
+    "x1": 602,
+    "y1": 3478,
+    "x2": 840,
+    "y2": 3661,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE\n\nThe object appears to be a a building or structure, not a vehicle."
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "sensor": "Planet SkySat",
+  "resolution_m": 0.5,
+  "date": "2026-03-07",
+  "geotiff_size": "9726x11518",
+  "bands": 4,
+  "crs": "EPSG:32635",
+  "raw_detections": 3,
+  "after_nms": 3,
+  "verified_military": 0,
+  "verified_civilian": 0,
+  "false_positive": 3
+}
