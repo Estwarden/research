@@ -1,0 +1,148 @@
+{
+  "pskov-76vdv": {
+    "image_size": "4096x3393",
+    "detections": 21,
+    "details": [
+      {
+        "class": "plane",
+        "confidence": 0.743
+      },
+      {
+        "class": "plane",
+        "confidence": 0.719
+      },
+      {
+        "class": "plane",
+        "confidence": 0.703
+      },
+      {
+        "class": "soccer ball field",
+        "confidence": 0.651
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.647
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.378
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.338
+      },
+      {
+        "class": "storage tank",
+        "confidence": 0.244
+      },
+      {
+        "class": "ship",
+        "confidence": 0.24
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.219
+      },
+      {
+        "class": "plane",
+        "confidence": 0.2
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.185
+      },
+      {
+        "class": "large vehicle",
+        "confidence": 0.174
+      },
+      {
+        "class": "plane",
+        "confidence": 0.173
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.149
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.141
+      },
+      {
+        "class": "storage tank",
+        "confidence": 0.137
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.137
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.132
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.124
+      },
+      {
+        "class": "ground track field",
+        "confidence": 0.121
+      }
+    ]
+  },
+  "pskov-cherekha": {
+    "image_size": "4096x2671",
+    "detections": 2,
+    "details": [
+      {
+        "class": "large vehicle",
+        "confidence": 0.344
+      },
+      {
+        "class": "large vehicle",
+        "confidence": 0.131
+      }
+    ]
+  },
+  "luga-garrison": {
+    "image_size": "4096x4964",
+    "detections": 9,
+    "details": [
+      {
+        "class": "bridge",
+        "confidence": 0.588
+      },
+      {
+        "class": "storage tank",
+        "confidence": 0.544
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.469
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.404
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.38
+      },
+      {
+        "class": "bridge",
+        "confidence": 0.333
+      },
+      {
+        "class": "ship",
+        "confidence": 0.287
+      },
+      {
+        "class": "storage tank",
+        "confidence": 0.119
+      },
+      {
+        "class": "ground track field",
+        "confidence": 0.114
+      }
+    ]
+  }
+}

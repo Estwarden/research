@@ -50,7 +50,16 @@ DOTA classes include satellite-specific targets: `plane`, `helicopter`, `large-v
 
 **Round 1 (deprecated):** COCO-pretrained YOLOv8x → 48 raw detections → 42 after NMS → all 42 were false positives (building roofs/shadows). COCO is trained on street-level photos and cannot detect military equipment in satellite imagery. Round 1 crops preserved in `outputs/01-vehicle-detection/findings/` for transparency.
 
-**Round 2:** DOTA-OBB YOLOv8x → **0 detections across all 3 sites, 129 tiles**. No false positives. The model knows what planes, vehicles, and ships look like at satellite scale and found none.
+**Round 2 (tiled, 640px):** DOTA-OBB YOLOv8x → 0 detections across 3 sites, 129 tiles. Tiling at 640px splits objects across boundaries — the model cannot assemble detections across tiles.
+
+**Round 3 (full-image, validated):** DOTA-OBB YOLOv8x at full image resolution (`imgsz=4096`). Positive control: Tallinn Airport → **10 planes + 1 helicopter detected (>0.79 conf)**, confirming the model works. Regular YOLOv8x (COCO) on the same image detects "boats" and "toilets" — confirming COCO is useless for satellite imagery.
+
+LVO results at full resolution:
+- **Pskov 76th VDV**: 5 plane detections (0.17–0.74) — all located in a **wooded park area in the city**, NOT on the airfield. These are static display/monument aircraft at the VDV museum. The operational airfield apron, runway, and taxiways have **zero detections**. 1 "ship" = river boats on the Velikaya. 1 "large vehicle" = watermark text.
+- **Pskov Cherekha**: 2 "large vehicle" detections (0.13–0.34) — both triggered by provider watermark text at image edge. Zero military objects in the garrison area.
+- **Luga**: 1 "ship" (0.29) = red-roofed building in town. Zero military detections.
+
+All detection crops, annotated full images, and the positive control are in `outputs/01-vehicle-detection/round3/`.
 
 ### Pskov — 76th VDV Airfield (SkySat 50cm, Mar 14)
 
