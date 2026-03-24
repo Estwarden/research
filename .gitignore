@@ -19,3 +19,4 @@ satellite-analysis/data/imagery
 .venv/
 satellite-analysis/notebooks/*.pt
 satellite-analysis/notebooks/*-executed.ipynb
+satellite-analysis/data/geotiff/

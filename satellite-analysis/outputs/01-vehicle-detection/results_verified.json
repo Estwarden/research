@@ -1,0 +1,28 @@
+{
+  "pskov_76vdv": {
+    "sensor": "Planet SkySat",
+    "resolution_m": 0.5,
+    "date": "2026-03-14",
+    "geotiff_size": "16923x13699",
+    "bands": 4,
+    "crs": "EPSG:32635",
+    "raw_detections": 1,
+    "after_nms": 1,
+    "verified_military": 0,
+    "verified_civilian": 0,
+    "false_positive": 1
+  },
+  "pskov_cherekha": {
+    "sensor": "Maxar WorldView-3",
+    "resolution_m": 0.34,
+    "date": "2026-02-05",
+    "geotiff_size": "15744x10033",
+    "bands": 8,
+    "crs": "EPSG:32635",
+    "raw_detections": 44,
+    "after_nms": 38,
+    "verified_military": 0,
+    "verified_civilian": 0,
+    "false_positive": 38
+  }
+}

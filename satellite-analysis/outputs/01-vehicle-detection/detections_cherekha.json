@@ -1,0 +1,382 @@
+[
+  {
+    "class": "car",
+    "conf": 0.6831406354904175,
+    "x1": 3168,
+    "y1": 8493,
+    "x2": 3197,
+    "y2": 8512,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.613398015499115,
+    "x1": 2499,
+    "y1": 7424,
+    "x2": 2525,
+    "y2": 7438,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.6041277647018433,
+    "x1": 2509,
+    "y1": 7112,
+    "x2": 2528,
+    "y2": 7122,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5867539048194885,
+    "x1": 3255,
+    "y1": 3997,
+    "x2": 3293,
+    "y2": 4024,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5729220509529114,
+    "x1": 3273,
+    "y1": 9485,
+    "x2": 3293,
+    "y2": 9496,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.5719307661056519,
+    "x1": 3242,
+    "y1": 9230,
+    "x2": 3264,
+    "y2": 9243,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5666237473487854,
+    "x1": 3303,
+    "y1": 8666,
+    "x2": 3336,
+    "y2": 8684,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.5643925070762634,
+    "x1": 3181,
+    "y1": 4549,
+    "x2": 3214,
+    "y2": 4567,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.563147783279419,
+    "x1": 3241,
+    "y1": 4045,
+    "x2": 3271,
+    "y2": 4065,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5526783466339111,
+    "x1": 2617,
+    "y1": 1920,
+    "x2": 2640,
+    "y2": 1950,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.55112624168396,
+    "x1": 2451,
+    "y1": 2266,
+    "x2": 2481,
+    "y2": 2283,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5474727749824524,
+    "x1": 3154,
+    "y1": 9526,
+    "x2": 3173,
+    "y2": 9537,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5431837439537048,
+    "x1": 3376,
+    "y1": 8609,
+    "x2": 3398,
+    "y2": 8621,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5376988053321838,
+    "x1": 3126,
+    "y1": 8471,
+    "x2": 3166,
+    "y2": 8499,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.5329281687736511,
+    "x1": 3368,
+    "y1": 9189,
+    "x2": 3428,
+    "y2": 9265,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 shadow"
+  },
+  {
+    "class": "car",
+    "conf": 0.5033640265464783,
+    "x1": 3188,
+    "y1": 9225,
+    "x2": 3238,
+    "y2": 9248,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.4723825454711914,
+    "x1": 3895,
+    "y1": 4247,
+    "x2": 3968,
+    "y2": 4323,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.4459199011325836,
+    "x1": 3245,
+    "y1": 9638,
+    "x2": 3315,
+    "y2": 9669,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.40503495931625366,
+    "x1": 2014,
+    "y1": 7299,
+    "x2": 2052,
+    "y2": 7316,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.40106868743896484,
+    "x1": 3415,
+    "y1": 4011,
+    "x2": 3458,
+    "y2": 4052,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 shadow"
+  },
+  {
+    "class": "car",
+    "conf": 0.38079357147216797,
+    "x1": 3839,
+    "y1": 6982,
+    "x2": 3876,
+    "y2": 7004,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.3662824034690857,
+    "x1": 2394,
+    "y1": 2251,
+    "x2": 2442,
+    "y2": 2278,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.3563421070575714,
+    "x1": 3474,
+    "y1": 4593,
+    "x2": 3519,
+    "y2": 4656,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.3397623598575592,
+    "x1": 3843,
+    "y1": 4254,
+    "x2": 3911,
+    "y2": 4331,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.33854252099990845,
+    "x1": 2097,
+    "y1": 7319,
+    "x2": 2136,
+    "y2": 7335,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.3380497694015503,
+    "x1": 2759,
+    "y1": 2645,
+    "x2": 2781,
+    "y2": 2664,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.32796943187713623,
+    "x1": 3102,
+    "y1": 8481,
+    "x2": 3135,
+    "y2": 8507,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.32014670968055725,
+    "x1": 3024,
+    "y1": 8096,
+    "x2": 3040,
+    "y2": 8105,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.3198228180408478,
+    "x1": 3041,
+    "y1": 8692,
+    "x2": 3078,
+    "y2": 8703,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  },
+  {
+    "class": "car",
+    "conf": 0.31736963987350464,
+    "x1": 2686,
+    "y1": 7047,
+    "x2": 2716,
+    "y2": 7072,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "RECLASSIFIED: MILITARY \u2014 military helicopter \u2192 FALSE_POSITIVE \u2014 building roof/shadow in village (human review)"
+  },
+  {
+    "class": "car",
+    "conf": 0.3045104742050171,
+    "x1": 2162,
+    "y1": 1869,
+    "x2": 2189,
+    "y2": 1892,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.30004310607910156,
+    "x1": 3729,
+    "y1": 4104,
+    "x2": 3788,
+    "y2": 4150,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "RECLASSIFIED: MILITARY \u2014 military truck \u2192 FALSE_POSITIVE \u2014 building roof/shadow in village (human review)"
+  },
+  {
+    "class": "car",
+    "conf": 0.2966238260269165,
+    "x1": 3205,
+    "y1": 4043,
+    "x2": 3227,
+    "y2": 4059,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.27782949805259705,
+    "x1": 3466,
+    "y1": 4227,
+    "x2": 3490,
+    "y2": 4246,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 vegetation"
+  },
+  {
+    "class": "car",
+    "conf": 0.27052217721939087,
+    "x1": 1792,
+    "y1": 1442,
+    "x2": 1812,
+    "y2": 1458,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.2601093053817749,
+    "x1": 2897,
+    "y1": 6928,
+    "x2": 2920,
+    "y2": 6946,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.2545536458492279,
+    "x1": 2917,
+    "y1": 8409,
+    "x2": 2957,
+    "y2": 8435,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  },
+  {
+    "class": "car",
+    "conf": 0.2537685036659241,
+    "x1": 3058,
+    "y1": 4014,
+    "x2": 3089,
+    "y2": 4040,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 image artifact"
+  }
+]

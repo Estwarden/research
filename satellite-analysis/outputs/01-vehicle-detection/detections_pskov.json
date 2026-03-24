@@ -1,0 +1,12 @@
+[
+  {
+    "class": "car",
+    "conf": 0.4112759530544281,
+    "x1": 5049,
+    "y1": 5184,
+    "x2": 5179,
+    "y2": 5277,
+    "verified": "FALSE_POSITIVE",
+    "vision_reason": "FALSE_POSITIVE \u2014 building roof"
+  }
+]

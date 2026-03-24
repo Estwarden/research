@@ -1,6 +1,6 @@
 # LVO Force Posture — Satellite Imagery Analysis
 
-**Analysis date:** 2026-03-24
+**Analysis date:** 2026-03-24 |
 **Methodology:** [Estwarden/research](https://github.com/Estwarden/research) |
 **Dataset:** [Estwarden/dataset](https://github.com/Estwarden/dataset) |
 **Monitoring:** [EstWarden](https://estwarden.eu)
@@ -9,145 +9,163 @@
 
 ## Executive Summary
 
-Commercial satellite imagery of the two primary Pskov garrisons — home of the
-76th Guards VDV Division — shows **no significant military vehicle presence** as
-of March 14, 2026. The airfield runway, taxiways, and aircraft aprons are
-**empty**. Vehicle detection (YOLOv8) identified **77 total vehicles** across
-both sites, **all civilian** (cars and trucks in residential areas).
+Full-resolution GeoTIFF satellite imagery of the two primary Pskov garrisons — home base of the 76th Guards VDV Division — shows **zero military vehicles** as of March 2026.
 
-This is consistent with [ISW reporting](https://www.understandingwar.org/backgrounder/russian-offensive-campaign-assessment-march-7-2026)
-confirming all three regiments of the 76th VDV are deployed to
-Zaporizhia/Orikhiv, Ukraine.
+| Site | Sensor | Resolution | Bands | Date | Military Vehicles | Aircraft |
+|------|--------|-----------|-------|------|:-:|:-:|
+| Pskov 76th VDV Airfield | Planet SkySat | 0.50 m/px | 4 (RGBA) | 2026-03-14 | **0** | **0** |
+| Pskov Cherekha Garrison | Maxar WorldView-3 | 0.34 m/px | 8 (multispectral) | 2026-02-05 | **0** | **0** |
+
+**Detection pipeline:** YOLOv8x → NMS dedup → vision model verification (Qwen2.5-VL) → human review.
+39 YOLO detections total → **all classified as false positives** (building roofs, shadows, snow artifacts).
+
+This is consistent with [ISW](https://www.understandingwar.org/backgrounder/russian-offensive-campaign-assessment-march-7-2026) confirming all three 76th VDV regiments deployed to Zaporizhia, Ukraine.
+
+---
+
+## Data Sources
+
+| Parameter | Pskov SkySat | Pskov Cherekha WV3 |
+|-----------|-------------|-------------------|
+| **GeoTIFF size** | 16,923 × 13,699 px | 15,744 × 10,033 px |
+| **Ground resolution** | 0.50 m/px | 0.34 m/px |
+| **Spectral bands** | 4 (R, G, B, Alpha) | 8 (Coastal, Blue, Green, Yellow, Red, RedEdge, NIR1, NIR2) |
+| **Bit depth** | 16-bit unsigned | 16-bit unsigned |
+| **CRS** | EPSG:32635 (UTM 35N) | EPSG:32635 (UTM 35N) |
+| **Provider** | [Planet](https://www.planet.com/) SkySat | [Maxar](https://www.maxar.com/) WorldView-3 |
+| **Acquired via** | [SkyFi](https://skyfi.com) | [SkyFi](https://skyfi.com) |
+| **Cost** | $242.40 | $86.77 |
+| **Reproduce** | Archive [`4d2b62e5`](https://skyfi.com) | Archive [`cbf8d9ac`](https://skyfi.com) |
 
 ---
 
 ## Site 1: Pskov — 76th Guards VDV Airfield
 
-**Sensor:** Planet SkySat 50cm | **Date:** 2026-03-14 | **Cloud:** 0% |
-**Source:** [SkyFi](https://skyfi.com) archive `4d2b62e5-7edc-4173-9347-c8c7dc7bbe21`
-
 ### Overview
 
-![Pskov 76th VDV Overview](outputs/01-vehicle-detection/findings/pskov-76vdv-overview.jpg)
+![Pskov Overview](outputs/01-vehicle-detection/findings/pskov-76vdv-overview.jpg)
 
-*Full 16,923 × 14,018 pixel image (50cm/px = ~8.5 × 7 km coverage). The Velikaya River runs along the western edge. Pskov city is in the upper-left. The military airfield is center-right.*
+*SkySat 0.50m/px, 16,923 × 13,699 pixels. The Velikaya River runs along the western edge. Pskov city upper-left. Military airfield center-right with Y-shaped taxiway and main runway clearly visible.*
 
 ### Finding: Empty Airfield
 
-![Pskov Airfield Center](outputs/01-vehicle-detection/findings/pskov-76vdv-crop-center.jpg)
+![Pskov Airfield](outputs/01-vehicle-detection/findings/pskov-76vdv-crop-center.jpg)
 
-*Center crop showing the VDV airfield. The main runway, taxiways, and Y-shaped apron area are clearly visible and **completely empty**. No aircraft, no vehicles, no ground equipment visible on any paved surface. Scale bar: 100m.*
+*Center crop — VDV airfield. Main runway, taxiways, and Y-shaped apron area. **All paved surfaces empty.** No aircraft, no vehicles, no ground support equipment. At 50cm/px, an Il-76 transport (wingspan 50m = 100 pixels) would be clearly visible. None present.*
 
 ### Finding: Empty Vehicle Parks
 
-![Vehicle Parks Area](outputs/01-vehicle-detection/findings/pskov-76vdv-zoom-vehicle-parks.jpg)
+![Vehicle Parks](outputs/01-vehicle-detection/findings/pskov-76vdv-zoom-vehicle-parks.jpg)
 
-*100% zoom (50cm/px) of the residential/garrison area west of the airfield. Individual houses, roads, and parked civilian cars are visible. No military vehicle formations or motor pools detected. Scale bar: 100m.*
+*100% zoom (50cm/px) of the area west of the airfield. Residential streets with individual houses visible. At this resolution, a T-72 tank (7m × 3.5m = 14 × 7 pixels) is detectable. No military vehicle formations visible. Scale bar: 100m.*
 
-### Finding: Garrison Barracks Area
+### Finding: Garrison Barracks — No Motor Pools
 
-![Garrison Area](outputs/01-vehicle-detection/findings/pskov-76vdv-zoom-garrison-area.jpg)
+![Garrison](outputs/01-vehicle-detection/findings/pskov-76vdv-zoom-garrison-area.jpg)
 
-*100% zoom of the barracks/garrison area. Military-style buildings (long rectangular structures, top of frame) are visible but surrounding vehicle parks and open areas are **empty**. Scale bar: 100m.*
+*100% zoom of barracks/garrison area. Long rectangular military-style buildings (top). Adjacent vehicle parks and open areas are **empty** — no armored vehicles, no motor pool activity. Scale bar: 100m.*
 
-### Vehicle Detection Results
+### Detection Results
 
 | Metric | Value |
 |--------|-------|
-| Total vehicles detected | **5** |
-| High confidence (>0.5) | **0** |
-| Vehicle types | 5 cars (civilian) |
-| Military vehicles | **0** |
-| Aircraft on apron | **0** |
-
-**Detection model:** YOLOv8x (COCO-pretrained). This is an **upper bound** —
-COCO-trained models overcount on satellite imagery. The true count is likely
-lower.
+| YOLO raw detections | 1 |
+| After NMS | 1 |
+| Vision-verified military | **0** |
+| Vision-verified civilian | **0** |
+| False positives removed | **1** |
 
 ---
 
 ## Site 2: Pskov — Cherekha VDV Garrison
 
-**Sensor:** Maxar WorldView-3 35cm | **Date:** 2026-02-05 | **Cloud:** 0% |
-**Source:** [SkyFi](https://skyfi.com) archive `cbf8d9ac-25be-4028-aff6-edc43a263cf1`
-
 ### Overview
 
-![Pskov Cherekha Overview](outputs/01-vehicle-detection/findings/pskov-cherekha-overview.jpg)
+![Cherekha Overview](outputs/01-vehicle-detection/findings/pskov-cherekha-overview.jpg)
 
-*Full 15,744 × 10,266 pixel image (35cm/px). Snow cover provides high contrast for vehicle detection. The image covers the Cherekha garrison area south of Pskov.*
+*WorldView-3 0.34m/px, 15,744 × 10,033 pixels. 8-band multispectral. Snow cover provides high contrast. This area south of Pskov covers the Cherekha garrison zone.*
 
-### Finding: Village, Not Garrison
+### Finding: Rural Village, Not Active Garrison
 
-![Cherekha Garrison North](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-north.jpg)
+![Cherekha North](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-north.jpg)
 
-*100% zoom of the northern section. Snow-covered rural village with scattered houses. Detected vehicles are **civilian cars parked at residences**. No military vehicle formations visible.*
+*100% zoom — northern sector. Snow-covered rural village. Houses, fences, trees casting shadows. YOLO detected 38 "vehicles" here — **all false positives** (building roofs and shadows misclassified by COCO-trained model). Vision model + human review confirmed: zero vehicles.*
 
-![Cherekha Garrison Center](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-center.jpg)
+![Cherekha Center](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-center.jpg)
 
-*100% zoom of the central area. Agricultural fields under snow. Scattered rural buildings. No military infrastructure or vehicle concentrations.*
+*100% zoom — central area. Agricultural fields under snow, scattered buildings. No military infrastructure or vehicle concentrations.*
 
-![Cherekha Garrison South](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-south.jpg)
+![Cherekha South](outputs/01-vehicle-detection/findings/pskov-cherekha-zoom-garrison-south.jpg)
 
-*100% zoom of the southern section. Same pattern: village buildings, snow-covered fields, civilian vehicles only.*
+*100% zoom — southern sector. Same pattern: village structures, snow-covered ground, no military presence.*
 
-### Vehicle Detection Results
+### Example False Positives
+
+These are typical YOLO false positives on satellite imagery — **the reason vision model verification is critical:**
+
+| Crop | YOLO said | Vision said | Actual |
+|------|-----------|-------------|--------|
+| ![FP1](outputs/01-vehicle-detection/findings/cherekha-det-029-military.jpg) | car (0.32) | ~~MILITARY~~ → FALSE_POSITIVE | Building roof + shadow |
+| ![FP2](outputs/01-vehicle-detection/findings/cherekha-det-031-military.jpg) | car (0.30) | ~~MILITARY~~ → FALSE_POSITIVE | Building + shadow on snow |
+
+*Qwen2.5-VL 7B initially misclassified these as military. Human review corrected both to false positive. This demonstrates that even vision models can hallucinate on low-resolution satellite crops — multi-stage verification is essential.*
+
+### Detection Results
 
 | Metric | Value |
 |--------|-------|
-| Total vehicles detected | **72** |
-| High confidence (>0.5) | **19** |
-| Vehicle types | 69 cars, 3 trucks |
-| Military vehicles | **0** |
-
-All detections are **civilian vehicles** in residential areas.
+| YOLO raw detections | 44 |
+| After NMS | 38 |
+| Vision-verified military | **0** |
+| Vision-verified civilian | **0** |
+| False positives removed | **38** |
 
 ---
 
 ## Combined Results
 
-| Site | Sensor | Date | Vehicles Detected | Military | Aircraft |
-|------|--------|------|:-:|:-:|:-:|
-| Pskov 76th VDV Airfield | SkySat 50cm | 2026-03-14 | 5 | **0** | **0** |
-| Pskov Cherekha Garrison | WV3 35cm | 2026-02-05 | 72 | **0** | **0** |
-| **Total** | | | **77** | **0** | **0** |
+| Site | GeoTIFF | Resolution | Raw → NMS → Verified Military |
+|------|---------|-----------|---:|
+| Pskov 76th VDV | 16,923 × 13,699 × 4 bands | 0.50 m/px | 1 → 1 → **0** |
+| Pskov Cherekha | 15,744 × 10,033 × 8 bands | 0.34 m/px | 44 → 38 → **0** |
+| **Total** | | | **0 military vehicles** |
 
 ### Corroboration
 
-These findings are consistent with:
-
-- **[ISW Mar 7, 2026](https://www.understandingwar.org/backgrounder/russian-offensive-campaign-assessment-march-7-2026):** All three regiments of the 76th Guards VDV Division deployed to Zaporizhia/Orikhiv, Ukraine
-- **[Yle satellite analysis, Oct 2025](https://yle.fi/a/74-20113407):** Equipment outflow from LVO garrisons to Ukraine confirmed
-- **[EstWarden Earth Engine monitoring](https://estwarden.eu):** Pskov-76th-VDV rated "LOW" — clear runway, low vehicle concentration (Mar 22)
-- **[Estonian intelligence, Jan 2026](https://www.valisluureamet.ee/doc/raport/2026-en.pdf):** "Russia has no intention of attacking any NATO state this year or next"
-- **[Lithuanian VSD, Mar 2026](https://www.lrt.lt/en/news-in-english/19/2859104/):** 6–10 years for full NATO conflict readiness
+| Source | Finding | Link |
+|--------|---------|------|
+| ISW Mar 7, 2026 | All 3 regiments of 76th VDV deployed to Zaporizhia/Orikhiv | [source](https://www.understandingwar.org/backgrounder/russian-offensive-campaign-assessment-march-7-2026) |
+| Yle satellite analysis, Oct 2025 | Equipment outflow from LVO garrisons to Ukraine | [source](https://yle.fi/a/74-20113407) |
+| EstWarden Earth Engine | Pskov rated "LOW" — clear runway, low vehicle concentration | [estwarden.eu](https://estwarden.eu) |
+| Estonian intel, Jan 2026 | "No intention of attacking any NATO state" | [source](https://www.valisluureamet.ee/doc/raport/2026-en.pdf) |
+| Lithuanian VSD, Mar 2026 | 6–10 years for full NATO conflict readiness | [source](https://www.lrt.lt/en/news-in-english/19/2859104/) |
+| Lithuanian VSD (Stripes) | Limited Baltic conflict 1–2 years only if sanctions lifted | [source](https://www.stripes.com/theaters/europe/2026-03-09/lithuania-russia-threat-21003306.html) |
 
 ---
 
-## Methodology
+## Pipeline
 
-1. Full-resolution satellite imagery downloaded via [SkyFi API](https://skyfi.com)
-2. Images tiled into 640×640px patches with 64px overlap
-3. [YOLOv8x](https://github.com/ultralytics/ultralytics) object detection (COCO-pretrained)
-4. Global Non-Maximum Suppression to deduplicate across tiles
-5. Vehicle classes: car (COCO 2), bus (COCO 5), truck (COCO 7)
+```
+GeoTIFF (16-bit multispectral)
+  → Percentile stretch → 8-bit RGB
+    → Tile 640×640 (64px overlap, skip nodata)
+      → YOLOv8x (COCO, conf>0.25, CUDA)
+        → Global NMS (IoU=0.5)
+          → Crop each detection (2× context)
+            → Qwen2.5-VL 7B classification
+              → Human review of MILITARY labels
+                → Final verified count
+```
 
-**Limitations:**
-- COCO-pretrained model is not optimized for satellite imagery
-- 50cm resolution = tank is ~14×7 pixels (detectable but not classifiable)
-- Civilian vehicles inflate the count
-- Camouflaged or sheltered vehicles invisible to optical sensors
-- Results represent an **upper bound**
-
-**Reproducibility:** Full notebook at [`notebooks/01-vehicle-detection.ipynb`](notebooks/01-vehicle-detection.ipynb).
-All imagery available at [Estwarden/dataset](https://github.com/Estwarden/dataset).
+**Notebook:** [`notebooks/01-vehicle-detection.ipynb`](notebooks/01-vehicle-detection.ipynb)
+**Full data:** [Estwarden/dataset](https://github.com/Estwarden/dataset)
 
 ---
 
 ## Pending
 
-- [ ] **Luga garrison** — SkySat 50cm, Mar 7 (processing, [SkyFi](https://skyfi.com) order `26aKRJkD`)
-- [ ] Super-resolution upscaling (Real-ESRGAN) before detection
-- [ ] Fine-tune on satellite vehicle datasets ([xView](https://xviewdataset.org/), [DIOR-R](https://gcheng-nwpu.github.io/#Datasets))
-- [ ] SAR-based analysis on ICEYE radar imagery
+- [ ] **Luga garrison** — SkySat 50cm, Mar 7 ([SkyFi](https://skyfi.com) order `26aKRJkD`, processing)
+- [ ] Super-resolution upscaling ([Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)) before detection
+- [ ] Fine-tune YOLO on satellite datasets ([xView](https://xviewdataset.org/), [DIOR-R](https://gcheng-nwpu.github.io/#Datasets))
+- [ ] ICEYE SAR radar analysis
 - [ ] Temporal comparison: Feb 5 vs Mar 14
