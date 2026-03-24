@@ -1,0 +1,11 @@
+{
+  "site": "Pskov Cherekha",
+  "sensor": "WorldView-3 8-band",
+  "date": "2026-02-05",
+  "total_metallic_m2": 1489003.6414428377,
+  "building_roof_m2": 1484707.1410041405,
+  "non_building_metallic_m2": 4296.5004386971705,
+  "max_vehicle_capacity": 114,
+  "n_large_clusters": 596,
+  "methodology": "NDVI + brightness + RedEdge/NIR ratio thresholding, no ML"
+}

@@ -1,0 +1,16 @@
+{
+  "site": "Luga garrison",
+  "sensor": "ICEYE SAR (VV polarization)",
+  "resolution_m": 2.5,
+  "dates": [
+    "2026-01-30",
+    "2026-02-05"
+  ],
+  "methodology": "Local contrast bright target detection (>3x local mean), no ML",
+  "findings": {
+    "temporal_change": "Minimal \u2014 no significant vehicle movement between dates",
+    "bright_targets": "Detected clusters are building-scale structures, not vehicle concentrations",
+    "resolution_limitation": "At 2.5m/px, individual vehicles (25m\u00b2 \u2248 4 pixels) cannot be reliably distinguished from small structures"
+  },
+  "conclusion": "SAR data consistent with optical analysis \u2014 no evidence of military vehicle concentrations at Luga garrison"
+}
