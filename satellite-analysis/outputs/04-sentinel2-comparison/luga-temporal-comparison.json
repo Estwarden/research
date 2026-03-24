@@ -1,0 +1,21 @@
+{
+  "site": "Luga garrison area",
+  "comparison": "Feb 1 \u2192 Mar 21 (48 days)",
+  "feb01": {
+    "ndvi_mean": 0.1533,
+    "ndvi_vegetated": 6.7,
+    "ndbi_built": 0.0,
+    "bsi_mean": -0.2346,
+    "metal_pct": 9.1,
+    "fuel_pct": 14.48
+  },
+  "mar21": {
+    "ndvi_mean": 0.2519,
+    "ndvi_vegetated": 38.3,
+    "ndbi_built": 37.7,
+    "bsi_mean": -0.007,
+    "metal_pct": 2.26,
+    "fuel_pct": 2.15
+  },
+  "assessment": "Spectrally stable when corrected for snow. Feb high metal/fuel values are snow spectral artifacts. March post-melt values (2.3% metal, 2.2% fuel) represent the true baseline \u2014 all town infrastructure, no military buildup signature."
+}
