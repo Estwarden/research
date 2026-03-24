@@ -38,16 +38,19 @@ All imagery acquired via [SkyFi API](https://docs.skyfi.com). Archive IDs for in
 
 **Notebook:** [`01-vehicle-detection.ipynb`](notebooks/01-vehicle-detection.ipynb)
 
-**Pipeline:**
+**Pipeline (Round 2 — DOTA-OBB):**
 ```
-GeoTIFF (16-bit multispectral) → percentile stretch → 8-bit RGB
-  → tile 640×640 (64px overlap, skip nodata)
-    → YOLOv8x (COCO pretrained, conf>0.25, CUDA)
-      → global NMS (IoU=0.5)
-        → crop each detection (2× context padding)
-          → Qwen2.5-VL 7B classification
-            → human review of MILITARY labels
+Image → tile 640×640 (128px overlap, skip nodata tiles)
+  → YOLOv8x-OBB (DOTA pretrained, conf>0.15, CUDA)
+    → classify by military relevance
+      → annotated output + JSON report
 ```
+
+DOTA classes include satellite-specific targets: `plane`, `helicopter`, `large-vehicle`, `small-vehicle`, `ship`, `harbor`, `storage-tank`, `helipad`, `airport`. This replaces the original COCO-pretrained pipeline which produced only false positives on satellite imagery.
+
+**Round 1 (deprecated):** COCO-pretrained YOLOv8x → 48 raw detections → 42 after NMS → all 42 were false positives (building roofs/shadows). COCO is trained on street-level photos and cannot detect military equipment in satellite imagery. Round 1 crops preserved in `outputs/01-vehicle-detection/findings/` for transparency.
+
+**Round 2:** DOTA-OBB YOLOv8x → **0 detections across all 3 sites, 129 tiles**. No false positives. The model knows what planes, vehicles, and ships look like at satellite scale and found none.
 
 ### Pskov — 76th VDV Airfield (SkySat 50cm, Mar 14)
 
@@ -262,6 +265,24 @@ All analysis is reproducible:
 | ISW daily assessments | [understandingwar.org](https://www.understandingwar.org/backgrounder/russian-offensive-campaign-assessment) |
 
 **Requirements:** Python 3.10+, PyTorch, ultralytics, rasterio, opencv, scipy, matplotlib. GPU recommended for YOLO inference.
+
+---
+
+## Known Limitations
+
+This analysis has real limitations that readers should understand:
+
+1. **Object detection model scope.** YOLOv8x-OBB is trained on DOTA — a general satellite object detection dataset. It is NOT specifically trained on Russian military equipment (BTRs, BMPs, T-72/T-80/T-90, Iskander TELs, Il-76s). It detects generic categories (`large-vehicle`, `plane`, etc). A domain-specific model trained on Russian military equipment at these resolutions would be stronger evidence.
+
+2. **Compressed imagery.** The publicly available images are 4096px JPGs downsampled from the original 16-bit GeoTIFFs (16,923×13,699 for Pskov SkySat). Individual vehicles at the downsampled resolution are ~2 pixels and may not be detectable. Vehicle **formations** (motor pools, runway equipment lines) would still be visible. The original GeoTIFFs were used for Round 1 analysis.
+
+3. **Spectral analysis coverage.** The WorldView-3 scene covers the Cherekha settlement area south of Pskov — the garrison zone is partially covered but the dominant metallic signatures are civilian building roofs in the village. The "max 114 vehicles" upper bound includes all non-building metal including fences, poles, and utility structures.
+
+4. **SAR resolution.** ICEYE SAR at 2.5m/px cannot reliably detect individual vehicles (~4 pixels). It CAN detect large motor pool formations (hundreds of vehicles create unmistakable bright clusters) and detect movement between passes. None were found, but single-vehicle or small-group detection is below the resolution floor.
+
+5. **Temporal scatter.** Imagery spans 6 weeks: WorldView-3 Feb 5, SAR Jan 30 + Feb 5, SkySat Mar 7 + Mar 14. This is not a single-day coherent snapshot. Equipment could theoretically move between acquisition dates.
+
+6. **The visual evidence is the primary evidence.** At 50cm resolution, an empty runway is obviously empty. The object detection and spectral analysis are supplementary quantitative methods. The qualitative visual assessment — empty aprons, empty vehicle parks, deserted garrison areas — is what any GEOINT analyst would see first.
 
 ---
 
