@@ -14,3 +14,8 @@ daily_matrix.json
 # Large data exports (download separately)
 data/signals_14d.csv
 data/*.parquet
+satellite-analysis/data/fullres/
+satellite-analysis/data/imagery
+.venv/
+satellite-analysis/notebooks/*.pt
+satellite-analysis/notebooks/*-executed.ipynb

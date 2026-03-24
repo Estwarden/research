@@ -1,0 +1,21 @@
+{
+  "pskov_76vdv": {
+    "sensor": "SkySat 50cm",
+    "date": "2026-03-14",
+    "count": 5,
+    "high_conf": 0,
+    "by_class": {
+      "car": 5
+    }
+  },
+  "pskov_cherekha": {
+    "sensor": "WV3 35cm",
+    "date": "2026-02-05",
+    "count": 72,
+    "high_conf": 19,
+    "by_class": {
+      "car": 69,
+      "truck": 3
+    }
+  }
+}
