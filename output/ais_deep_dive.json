@@ -1,0 +1,30 @@
+{
+  "total_ais_signals": 782288,
+  "date_range": {
+    "start": "2026-03-08",
+    "end": "2026-03-25"
+  },
+  "data_days": 18,
+  "raw_cv_pct": 117.0,
+  "downtime_days": 8,
+  "regimes_detected": 7,
+  "stable_regimes": 3,
+  "best_regime": {
+    "start": "2026-03-22",
+    "end": "2026-03-24",
+    "cv_pct": 2.6,
+    "mean_daily": 139644.0
+  },
+  "defense_osint_signals": 1885,
+  "coord_extractable_pct": 61.6,
+  "current_weight": 6,
+  "recommended_weight_stable": 6,
+  "recommended_weight_unstable": 3,
+  "recommended_method_stable": "robust_z",
+  "recommended_method_unstable": "binary",
+  "base_proximity_totals": {
+    "Baltiysk": 0,
+    "Kronstadt": 5773,
+    "Kaliningrad_port": 0
+  }
+}
