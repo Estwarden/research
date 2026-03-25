@@ -584,18 +584,18 @@ ET/LV signals for statistical analysis.
 
 ## Applied Changes
 
-### Validated and Ready for Production
+### Production Status (updated 2026-03-25)
 
 | # | Change | Source | Impact | Status |
 |---|--------|--------|--------|:------:|
-| 1 | Laundering relevance filter + category_count ≥ 3 | nb15 (R-003) | −80% laundering noise | Ready |
-| 2 | Campaign evidence tiers (T3 excluded from scoring) | nb16 (R-004) | −73% phantom severity | Ready |
-| 3 | Robust z-score (median + MAD × 1.4826) default | nb17 (R-005) | Outlier-resistant baselines | Ready |
-| 4 | Dead source weights → 0 (acled, ioda, telegram, gdelt) | nb18 (R-006) | Honest signal weights | Ready |
-| 5 | DEGRADED flag when live weight < 70% | nb17/nb18 | Prevents false confidence | Ready |
-| 6 | New thresholds (Y=7.9, O=55.8, R=88.7) | nb19 (R-007) | GREEN achievable | Ready* |
-| 7 | Fisher pre-screen (77% LLM reduction) | Exp 25/nb25 | F1=1.00, cost −77% | Ready |
-| 8 | Narrative velocity alert | nb27 (R-015) | Strategic campaign detection | Ready |
+| 1 | Laundering relevance filter + category_count ≥ 3 | nb15 (R-003) | −80% laundering noise | ✅ Deployed |
+| 2 | Campaign evidence tiers + auto-resolve 48h | nb16 (R-004) | −73% phantom severity | ✅ Deployed |
+| 3 | Robust z-score (median + MAD × 1.4826) default | nb17 (R-005) | Outlier-resistant baselines | ✅ Deployed |
+| 4 | Signal weight fixes (adsb=5, tg_channel=4, +3 new) | VALIDITY.md | Honest signal weights | ✅ Deployed |
+| 5 | DEGRADED flag when live weight < 70% | nb17/nb18 | Prevents false confidence | ✅ Deployed |
+| 6 | New thresholds (Y=7.9, O=55.8, R=88.7) | nb19 (R-007) | — | 🔴 DO NOT DEPLOY |
+| 7 | Fisher pre-screen (77% LLM reduction) | Exp 25/nb25 | F1=0.615 at N=30 | ⚠️ Not validated |
+| 8 | Narrative velocity alert | nb27 (R-015) | F1=1.00 on N=8 | ⚠️ Not validated |
 | 9 | Cluster size cap at 15 | Exp 12 | Prevent mega-cluster merging | Already deployed |
 | 10 | Cosine threshold 0.75 | Exp 6 | Cross-lingual capture | Already deployed |
 | 11 | Baltic entity filter (NATO removed) | Exp 13 | Reduce false positives | Already deployed |

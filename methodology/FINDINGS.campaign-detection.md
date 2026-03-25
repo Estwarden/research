@@ -511,33 +511,37 @@ The p=0.029 finding on state_ratio is appropriately powered for the observed eff
 | B6: LLM (our system) | 1.00 | 1.00 | 1.00 | 1.00 |
 | B7: state_ratio>0.4 AND fimi>0 | 1.00 | 0.50 | 0.67 | 0.77 |
 
-**Key finding**: B5 (state_ratio OR FIMI keywords) achieves **F1=0.92 without any LLM**.
+**Key finding**: B5 (state_ratio OR FIMI keywords) achieves **F1=0.92 at N=13 without LLM**.
 Pure structural features detect 6/6 hostile framings with only 1 false positive.
+
+> **⚠️ Replication warning (nb25):** Fisher F1 dropped to 0.615 on expanded N=30 dataset
+> with LOO cross-validation. Bootstrap CI [0.333, 1.000]. The F1=0.92 result at N=13
+> likely benefited from small sample size. See [VALIDITY.md](VALIDITY.md).
 
 ## Experiment 25: Fisher Linear Discriminant (Fisher 1936)
 
-Optimal weights for hostile classification:
+Optimal weights for hostile classification (N=13):
 - state_ratio: w = +0.670
 - fimi_score:  w = +0.742
 
 Fisher score formula: `score = 0.670·state_ratio_std + 0.742·fimi_score_std`
 
-At optimal threshold (-0.70): F1=0.92, identical to B5.
+At optimal threshold (-0.70): F1=0.92 **at N=13 only**. Did NOT replicate at N=30
+(nb25: F1=0.615, LOO cross-validation). The concept is sound (state_ratio + fimi_score
+discriminates hostile from organic) but the specific thresholds are not validated.
 
-The single false positive (score=-0.19): Trump NATO coverage, state_ratio=0.53,
-fimi_score=0. State media dominates coverage but just reports Trump's actual words.
-This is the ONLY case where the LLM adds value over structural features.
+> **Do NOT deploy the -0.7/+0.5 cutoffs.** Need 33+ hostile-labeled clusters for p<0.01.
 
-**Tiered detection architecture** (validated):
+**Tiered detection architecture** (concept validated, thresholds NOT):
 ```
-Tier 1 (structural, $0/call): Fisher score → hostile if score > 0.5
+Tier 1 (structural, $0/call): Fisher score → hostile if score > 0.5  ← threshold unvalidated
 Tier 2 (LLM, ~$0.01/call):   borderline (-0.7 < score < 0.5) → run LLM
-Tier 3 (auto-clean):          score < -0.7 → not hostile, skip LLM
+Tier 3 (auto-clean):          score < -0.7 → not hostile, skip LLM   ← threshold unvalidated
 ```
 
-Expected LLM call reduction: ~70%. F1 maintained at 1.00.
+Expected LLM call reduction: ~70%. F1 maintained at 1.00 **on N=13 only**.
 
-## Experiment 26: Tiered Detection — 77% LLM Reduction at F1=1.00
+## Experiment 26: Tiered Detection — 77% LLM Reduction (N=13, caveat: small sample)
 
 Full pipeline simulation on 13 mixed-source clusters:
 

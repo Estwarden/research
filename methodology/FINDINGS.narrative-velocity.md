@@ -98,13 +98,14 @@ Best F1 = 1.00 achieved across a wide stable range:
 - velocity_threshold: 0.10 — 0.20 (all give F1=1.00 when state_ratio ≥ 0.25)
 - state_ratio_threshold: 0.25 — 0.50 (all give F1=1.00 when velocity ≥ 0.10)
 
-**Recommended production thresholds**: velocity > 0.15, 
-state_ratio > 0.30. These sit in the middle of the 
-stable zone, providing margin against noise.
+> **⚠️ Statistical caveat:** F1=1.00 on N=8 (5 hostile, 3 organic) is **statistically
+> meaningless**. ANY 2-parameter model with reasonable parameters achieves F1≥0.83 on
+> this dataset. The wide stable range is expected with 8 data points, not evidence
+> against overfitting. Need 30+ labeled narratives before setting production thresholds.
+> See [VALIDITY.md](VALIDITY.md).
 
-The wide stable range suggests GENUINE separation between hostile and organic
-narratives, not overfitting. However, N=8 is small — more labeled narratives
-needed for statistical confidence.
+**Do NOT deploy these thresholds.** The weaponization PATTERN (0%→10%→59%) is
+real and documented. The specific numbers (0.15, 0.30) are not validated.
 
 ## Production Alert Formula
 

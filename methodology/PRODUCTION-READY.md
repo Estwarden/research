@@ -1,48 +1,52 @@
 # Production-Ready Changes from Research
 
-## Validated and ready to implement
+**Updated:** 2026-03-25 (post-validity audit)
+**See:** [VALIDITY.md](VALIDITY.md) for full assessment
 
-### 1. Fisher Pre-Screen (Experiment 25, F1=0.92 → 1.00 with LLM fallback)
-```
-score = 0.670 × state_ratio_normalized + 0.742 × fimi_score_normalized
+## ✅ Already deployed to production (2026-03-25)
 
-if score > 0.5:  auto-flag hostile (skip LLM)
-if score < -0.7: auto-skip clean (skip LLM)  
-else:            run LLM framing analysis
-```
-LLM calls reduced 77%. F1 maintained at 1.00.
+| Fix | Source | Status |
+|-----|--------|--------|
+| Robust baselines (median+MAD) | nb17 | In prod since Mar 21 |
+| Campaign evidence filter | nb16 | `detection_method IS NOT NULL` + signal_count > 0 |
+| Laundering relevance filter | nb15 | `category_count >= 3` + content_regex per region |
+| Cluster size cap at 15 | nb12 | In prod |
+| Cosine threshold 0.75 | nb06 | In prod |
+| Cluster two-pass (>10 need ≥0.82) | nb26 | Deployed 2026-03-25 |
+| Campaign auto-resolve (48h stale) | R-004 | Deployed 2026-03-25 |
+| DEGRADED flag (<70% sources) | nb18 | Deployed 2026-03-25 |
+| Signal weight fixes | VALIDITY.md | telegram_channel, adsb=5, gdelt=2, firms=6, +3 new |
+| Dead collector restoration | nb32 | All collectors fixed 2026-03-25 |
 
-### 2. Narrative Velocity Alert (Experiment 29)
-```
-velocity = (state_ratio_this_week - state_ratio_last_week) / max(state_ratio_last_week, 0.05)
+## 🟡 Validated concept, insufficient data for thresholds
 
-if velocity > 1.0 AND state_ratio_this_week > 0.3:
-    alert: "narrative being weaponized"
-```
-Catches the W10→W11→W12 escalation pattern (0%→10%→59%).
+### Fisher Pre-Screen
+Original claim: F1=0.92 at N=13 (Experiment 25).
+**Replication (nb25):** F1=0.615 at N=30, bootstrap CI [0.333, 1.000].
+**Status:** Concept sound (state_ratio + fimi_score discriminates), but specific
+weights and thresholds are NOT validated. Do NOT deploy the -0.7/+0.5 cutoffs.
+**Need:** 33+ hostile-labeled clusters for p<0.01.
 
-### 3. OSINT Early Warning Integration (Experiment 29)
-Track osint_perplexity signals mentioning new channels/groups.
-If a topic detected by OSINT later appears in mainstream media with rising
-state_ratio → confirm as emerging info op.
-39-day lead time demonstrated on Narva Republic.
+### Narrative Velocity Alert
+Original claim: F1=1.00.
+**Reality:** N=8 total (5 hostile, 3 organic). ANY reasonable threshold gives F1≥0.83.
+**Status:** The weaponization escalation pattern (0%→10%→59%) is real and documented.
+The specific thresholds (0.20, 0.15) are not validated.
+**Need:** 30+ labeled narratives.
 
-### 4. Baltic Entity Filter Without NATO (Experiment 13, 18)
-Remove `nato|нато` from Baltic filter — too broad, causes Russian domestic FPs.
-Already applied. Documented for reference.
+### Hawkes Branching Ratio
+**Status:** Solid metric. BR=0.52 for state clusters vs 0.22 organic (N=281).
+Statistical power is moderate. Ready for supplementary use in campaign detection.
+Not yet implemented in Go.
 
-### 5. Cluster Size Cap at 15 (Experiment 12)
-Already applied. Documented for reference.
+### FIMI Regex Detection
+**Status:** Interesting. Hedging/omission patterns on N=30 (6 hostile).
+Supplement to LLM, don't replace.
 
-### 6. Cosine Threshold 0.75 (Experiment 6)
-Already applied. Documented for reference.
+## 🔴 Do NOT deploy
 
-## Not ready — needs more data
-
-### Self-Tuning Thresholds
-Need 50+ labeled outcomes from detection_outcomes table.
-Current: 13 framing analyses labeled. Need ~4 months at current rate.
-
-### Propagation Shape Features
-Temporal entropy and CV show trends (experiment 19) but p>0.3 at N=13.
-Need N=50+ to validate. Supplementary signal, not primary detector.
+| Item | Why |
+|------|-----|
+| Consensus weights (72→24) | Makes algorithm dead, 30/50 days score=0 |
+| YELLOW=7.9 threshold | Calibrated to broken algorithm |
+| Per-region thresholds | <10 data points per region |
