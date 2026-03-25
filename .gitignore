@@ -27,3 +27,4 @@ satellite-analysis/data/geotiff/
 # Ralph agent loop artifacts
 .ralph/
 data/satellite/quadrant_stats.csv
+data/satellite/ccdc_*.csv
