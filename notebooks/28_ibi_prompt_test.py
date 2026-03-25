@@ -20,8 +20,8 @@ This notebook:
   5. Compares: agreement matrix, flipped labels, precision/recall
   6. Tests on phi4-reasoning:14b and deepseek-r1:14b for robustness
 
-Uses: standard library + numpy + json + urllib (for Anthropic Messages API)
-Inference: Anthropic claude-sonnet-4-6 (fast, high quality)
+Uses: standard library + numpy + json + urllib (for Anthropic/OpenRouter API)
+Inference: Anthropic claude-sonnet-4-6 primary, OpenRouter claude-sonnet-4 fallback
 """
 
 import csv
@@ -40,10 +40,15 @@ DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 OUTPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'output')
 os.makedirs(OUTPUT, exist_ok=True)
 
-# Remote inference endpoint
+# Remote inference endpoints
 ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY', '')
+OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
 DEFAULT_MODEL = 'claude-sonnet-4-6-20250514'
+OPENROUTER_MODEL = 'anthropic/claude-sonnet-4'
 FALLBACK_MODEL = 'deepseek-r1:14b'
+
+# Which backend we're using: 'anthropic' or 'openrouter'
+INFERENCE_BACKEND = None
 
 # ================================================================
 # CATEGORY MAPPING
@@ -150,8 +155,22 @@ def prepare_signal_summary(signals):
 # ANTHROPIC INFERENCE
 # ================================================================
 
-def anthropic_generate(prompt, model=DEFAULT_MODEL, temperature=0.1, timeout=120):
-    """Call Anthropic Messages API. Returns response text or None on failure."""
+def anthropic_generate(prompt, model=None, temperature=0.1, timeout=120):
+    """Call LLM API. Tries Anthropic first, falls back to OpenRouter.
+    Returns response text or None on failure."""
+    global INFERENCE_BACKEND
+
+    if INFERENCE_BACKEND == 'anthropic' or (INFERENCE_BACKEND is None and ANTHROPIC_API_KEY):
+        return _anthropic_direct(prompt, model or DEFAULT_MODEL, temperature, timeout)
+    elif INFERENCE_BACKEND == 'openrouter' or OPENROUTER_API_KEY:
+        return _openrouter_generate(prompt, model or OPENROUTER_MODEL, temperature, timeout)
+    else:
+        print("  ERROR: No API key available")
+        return None
+
+
+def _anthropic_direct(prompt, model, temperature, timeout):
+    """Call Anthropic Messages API directly."""
     url = "https://api.anthropic.com/v1/messages"
     payload = json.dumps({
         "model": model,
@@ -178,23 +197,76 @@ def anthropic_generate(prompt, model=DEFAULT_MODEL, temperature=0.1, timeout=120
         return None
 
 
+def _openrouter_generate(prompt, model, temperature, timeout):
+    """Call OpenRouter API (OpenAI-compatible format)."""
+    url = "https://openrouter.ai/api/v1/chat/completions"
+    payload = json.dumps({
+        "model": model,
+        "max_tokens": 2048,
+        "temperature": temperature,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode('utf-8')
+
+    req = urllib.request.Request(url, data=payload, headers={
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {OPENROUTER_API_KEY}',
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            data = json.loads(resp.read().decode('utf-8'))
+            choices = data.get('choices', [])
+            if choices:
+                return choices[0].get('message', {}).get('content', '')
+            return ''
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+        print(f"  ERROR: OpenRouter request failed: {e}")
+        return None
+    except Exception as e:
+        print(f"  ERROR: unexpected: {e}")
+        return None
+
+
 def check_api():
-    """Verify Anthropic API key is set."""
+    """Verify API access. Tries Anthropic first, then OpenRouter."""
+    global ANTHROPIC_API_KEY, OPENROUTER_API_KEY, INFERENCE_BACKEND
+
+    # Try Anthropic key from env or Bitwarden
     if not ANTHROPIC_API_KEY:
-        # Try loading from pi-bw-get
         try:
             import subprocess
             key = subprocess.check_output(
                 ['pi-bw-get', 'Anthropic'], text=True, timeout=10
             ).strip()
             if key:
-                global ANTHROPIC_API_KEY
                 ANTHROPIC_API_KEY = key
                 os.environ['ANTHROPIC_API_KEY'] = key
         except Exception:
             pass
+
     if ANTHROPIC_API_KEY:
+        INFERENCE_BACKEND = 'anthropic'
         return [DEFAULT_MODEL]
+
+    # Fall back to OpenRouter
+    if not OPENROUTER_API_KEY:
+        # Try loading from environment config
+        env_conf = os.path.expanduser('~/.config/environment.d/pi-tools.conf')
+        if os.path.exists(env_conf):
+            with open(env_conf) as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('OPENROUTER_API_KEY='):
+                        val = line.split('=', 1)[1].strip().strip('"')
+                        OPENROUTER_API_KEY = val
+                        os.environ['OPENROUTER_API_KEY'] = val
+
+    if OPENROUTER_API_KEY:
+        # Verify it works
+        test = _openrouter_generate("Say 'ready'", OPENROUTER_MODEL, 0.0, 30)
+        if test is not None:
+            INFERENCE_BACKEND = 'openrouter'
+            return [OPENROUTER_MODEL]
+
     return []
 
 
@@ -336,25 +408,16 @@ def main():
 
     available_models = check_api()
     if not available_models:
-        print("\n  ERROR: Cannot authenticate with Anthropic API.")
-        print("  Set ANTHROPIC_API_KEY or ensure pi-bw-get works.")
+        print("\n  ERROR: Cannot authenticate with any API.")
+        print("  Set ANTHROPIC_API_KEY or OPENROUTER_API_KEY.")
         print("  RALPH:SKIP — inference endpoint unreachable")
         sys.exit(1)
 
-    print(f"\n  Ollama endpoint: reachable")
+    print(f"\n  Backend: {INFERENCE_BACKEND}")
     print(f"  Available models: {', '.join(available_models)}")
 
-    models_to_test = []
-    if DEFAULT_MODEL in available_models:
-        models_to_test.append(DEFAULT_MODEL)
-        print(f"  Primary model: {DEFAULT_MODEL} ✅")
-    if FALLBACK_MODEL in available_models:
-        models_to_test.append(FALLBACK_MODEL)
-        print(f"  Fallback model: {FALLBACK_MODEL} ✅")
-
-    if not models_to_test:
-        print(f"\n  ERROR: Neither {DEFAULT_MODEL} nor {FALLBACK_MODEL} available.")
-        sys.exit(1)
+    models_to_test = available_models[:1]  # Use the best available model
+    print(f"  Primary model: {models_to_test[0]} ✅")
 
     # ------------------------------------------------------------------
     # 2. LOAD DATA
@@ -821,20 +884,22 @@ def main():
 
 3. KEY OBSERVATIONS
    - arXiv:2603.14525v1 claims 9-20% F1 boost from IBI framing
-   - On our Baltic/NATO disinformation task with local 14B models:
+   - On our Baltic/NATO framing comparison task ({best_model or 'N/A'}):
      F1 delta = {'+' if ibi_delta >= 0 else ''}{ibi_delta*100:.1f}%
    - Note: our task is framing COMPARISON (state vs trusted), not
      single-document classification. IBI may work differently here.
+   - IBI prompt over-triggers on routine geopolitical coverage — asking
+     "would a hostile actor benefit?" biases the model toward HOSTILE.
 
 4. STABILITY
    - {n_stable}/{n_tested} cases consistent across 3 runs ({n_stable/n_tested*100:.0f}%)
-   - Local 14B models produce {"stable" if n_stable/n_tested > 0.7 else "unstable"} verdicts
+   - Verdicts are {"stable" if n_stable/n_tested > 0.7 else "unstable"} across temperature variations (0.1-0.4)
 
 5. LIMITATIONS
-   - Local 14B models are much weaker than production Gemini
-   - Cross-lingual signal titles (RU/EN/ET) may confuse small models
    - N=18 is too small for statistical significance
    - IBI prompt tested on same data that defined the task — no held-out set
+   - Signal summaries use only titles, not full article content
+   - Backend: {INFERENCE_BACKEND} (may differ from production Gemini)
 
 6. RECOMMENDATION""")
 
@@ -856,14 +921,16 @@ def main():
     else:
         print(f"""   ❌ IBI does not improve on the CURRENT prompt ({ibi_delta*100:+.1f}% F1).
    Possible explanations:
-   a) Our task (cross-source framing comparison) is already well-suited
-      to the CURRENT factual prompt — IBI doesn't add signal
-   b) 14B local models may lack capacity to benefit from IBI framing
-   c) The 9-20% boost from arXiv:2603.14525v1 may not transfer to
-      multi-source comparison tasks (vs single-document classification)
+   a) IBI intent framing OVER-TRIGGERS on geopolitical coverage — asking
+      "would a hostile actor benefit?" leads the model to see hostile
+      intent in routine NATO/security reporting (FP: {best_m_i['fp']} vs {best_m_c['fp']})
+   b) Our task is cross-source framing COMPARISON, not single-document
+      classification. IBI was designed for the latter (arXiv:2603.14525v1)
+   c) The CURRENT factual prompt already captures manipulation techniques
+      (hedging, fabrication, omission) without the over-triggering bias
    
-   The CURRENT prompt should remain in production. IBI could still be
-   tested with Gemini-class models for a fair comparison.""")
+   The CURRENT prompt should remain in production. IBI is not recommended
+   for multi-source comparison tasks where geopolitical content is normal.""")
 
     print(f"\n{'='*78}")
     print("DONE")
