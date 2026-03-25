@@ -1,0 +1,102 @@
+{
+  "best": {
+    "yellow": 7.92,
+    "orange": 55.8,
+    "red": 88.72,
+    "momentum": 0.671,
+    "trend_mult": 0.1104,
+    "window": 7,
+    "accuracy": 0.6744,
+    "stability": 0.9773,
+    "lead_time": 0.4615,
+    "eval_score": 0.7227,
+    "cv_score": 0.8752,
+    "fold_scores": [
+      0.9444,
+      0.7111,
+      0.97
+    ]
+  },
+  "trials": 157369,
+  "data_days": 50,
+  "k_folds": 3,
+  "fold_variance": 0.1165,
+  "corrected_algorithm": {
+    "signal_weights": {
+      "gpsjam": 10,
+      "adsb": 3,
+      "acled": 0,
+      "firms": 3,
+      "ais": 3,
+      "telegram": 0,
+      "rss": 1,
+      "gdelt": 0,
+      "energy": 2,
+      "business": 2,
+      "ioda": 0
+    },
+    "fimi_weights": {
+      "campaigns": 10,
+      "fabrication": 8,
+      "laundering": 6,
+      "narratives": 4,
+      "gpsjam_sev": 10
+    },
+    "total_weight": 62,
+    "fixes_applied": [
+      "R-003: laundering relevance filter",
+      "R-004: campaign evidence tiers (T3 excluded)",
+      "R-005: robust z-scores (median+MAD)",
+      "R-006: consensus signal weights"
+    ]
+  },
+  "fimi_analysis": {
+    "corrected_fimi_floor": 0.0,
+    "corrected_fimi_avg": 10.3413,
+    "stored_fimi_avg": 8.3805,
+    "green_achievable": true
+  },
+  "per_region_thresholds": {
+    "baltic": {
+      "yellow": 11.0,
+      "orange": 12.93,
+      "red": 13.74,
+      "n": 50,
+      "yellow_stored": 16.97,
+      "orange_stored": 19.96
+    },
+    "finland": {
+      "yellow": 11.87,
+      "orange": 12.76,
+      "red": 15.07,
+      "n": 36,
+      "yellow_stored": 18.32,
+      "orange_stored": 19.7
+    },
+    "poland": {
+      "yellow": 12.5,
+      "orange": 13.98,
+      "red": 15.22,
+      "n": 36,
+      "yellow_stored": 19.29,
+      "orange_stored": 21.57
+    }
+  },
+  "percentile_thresholds": {
+    "P75/P90/P95": {
+      "yellow": 14.93,
+      "orange": 30.87,
+      "red": 45.76
+    },
+    "P80/P92/P97": {
+      "yellow": 17.33,
+      "orange": 33.18,
+      "red": 47.35
+    },
+    "P85/P90/P95": {
+      "yellow": 20.61,
+      "orange": 30.87,
+      "red": 45.76
+    }
+  }
+}
