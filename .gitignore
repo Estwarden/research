@@ -13,6 +13,7 @@ daily_matrix.json
 
 # Large data exports (download separately)
 data/signals_14d.csv
+data/signals_90d.csv
 data/*.parquet
 satellite-analysis/data/fullres/
 satellite-analysis/data/imagery
@@ -20,3 +21,6 @@ satellite-analysis/data/imagery
 satellite-analysis/notebooks/*.pt
 satellite-analysis/notebooks/*-executed.ipynb
 satellite-analysis/data/geotiff/
+
+# Ralph agent loop artifacts
+.ralph/
