@@ -1,0 +1,173 @@
+origin_id,cluster_id,title,categories,category_count,first_category,first_published,signal_count,is_relevant,is_baltic,is_security,noise_class
+1071,6818,"Стубб заявил, что США изменили внешнюю политику, перестав быть «доброжелательным гегемоном» и став непредсказуемыми.…","{ru_proxy,russian_state}",2,ru_proxy,2026-03-22 10:31:52+00,2,False,False,False,other
+1064,5570,Формирования «Хезболлы» в Ираке на пять дней прекратили атаки на посольство США,"{ru_proxy,russian_state}",2,russian_state,2026-03-19 01:04:17+00,2,True,False,True,
+1059,7245,"ВХ: судя по всему, США готовятся к наземной операции в Иране","{ru_proxy,ru_state}",2,ru_state,2026-03-20 06:48:46+00,2,False,False,False,middle_east_iran
+1041,6931,Овечкин забросил 1000 шайб в НХЛ с учетом чемпионатов и плей-офф,"{ru_proxy,russian_state}",2,russian_state,2026-03-22 18:52:37+00,3,False,False,False,sports_culture
+1037,6835,IHA: боеголовку вынесло берег Чёрного моря в Турции,"{ru_proxy,ru_state,unverified_anonymous}",3,ru_state,2026-03-19 23:20:46+00,3,False,False,False,other
+1032,5750,Матвиенко: крымчане в 2014 году сорвали планы западных кукловодов,"{russian_state,ru_state}",2,russian_state,2026-03-18 02:49:10+00,2,False,False,False,other
+991,6427,"Расчет БПЛА ПВО ""Днепра"" уничтожил разведывательный дрон ВСУ над Херсонщиной","{ru_proxy,russian_state}",2,russian_state,2026-03-22 10:21:52+00,2,True,False,True,
+1021,7115,SHOT: России грозит дефицит авиазапчастей из-за войны на Ближнем Востоке,"{ru_proxy,ru_state}",2,ru_state,2026-03-17 09:48:40+00,2,True,False,True,
+994,6539,Ким Чен Ын с дочерью прокатился на новом танке,"{ru_state,unverified_commentator}",2,ru_state,2026-03-20 03:11:54+00,2,True,False,True,
+1005,6812,Ракету с кораблём «Прогресс МС-33» установили на стартовый стол на Байконуре,"{ru_proxy,russian_state,ru_state}",3,ru_state,2026-03-17 05:39:24+00,4,False,False,False,space_context
+1003,6799,Сигнал бедствия подал борт авиакомпании «Россия» над Ленобластью. Прямо сейчас самолёт кружит во Всеволожском районе.…,"{ru_proxy,trusted}",2,ru_proxy,2026-03-22 17:06:30+00,3,True,True,False,
+936,6509,"Новым предстоятелем Киевского патриархата избран архиепископ Сумский и Ахтырский Никодим Кобзарь
+
+Одной из ключевых…","{ru_proxy,unverified_anonymous}",2,ru_proxy,2026-03-21 13:27:20+00,2,False,False,False,ukraine_frontline
+963,7037,Донецк под атакой украинских БПЛА,"{ru_proxy,unverified_commentator}",2,ru_proxy,2026-03-22 19:51:22+00,2,True,False,True,
+966,7075,"‼️🇺🇦🏴‍☠️ На Украине будут искать 2 миллиона уклонистов, — депутат Рады
+
+▪️По словам Бобровской, уклонистов могут начать…","{ru_proxy,unverified_anonymous}",2,ru_proxy,2026-03-20 13:31:36+00,2,False,False,False,ukraine_frontline
+979,7119,Сийярто: Киев отказался обсуждать возобновление работы нефтепровода «Дружба»,"{ru_state,trusted}",2,ru_state,2026-03-16 11:27:00+00,2,False,False,False,other
+901,6535,Суд взыскал 300 млн рублей с продавца контрафакта Makita на маркетплейсе,"{ru_proxy,ru_state}",2,ru_state,2026-03-20 08:06:26+00,2,False,False,False,domestic_russia
+899,6505,"На кенийском острове с ослами застряли около 4 тыс люксовых немецких машин из-за перекрытия Ормузского пролива
+
+Суда с…","{ru_proxy,unverified_media}",2,ru_proxy,2026-03-21 17:23:17+00,2,False,False,False,middle_east_iran
+898,6526,"«Фигачить, фигачить, фигачить»: педагог побил студента фаллоимитатором в Казанском политехническом колледже 
+
+С улыбкой…","{ru_proxy,unverified_media}",2,ru_proxy,2026-03-20 15:01:11+00,2,False,False,False,other
+891,5486,Депутат Немкин: нужно привлекать профсообщество к обсуждению законопроекта по ИИ,"{ru_proxy,russian_state}",2,russian_state,2026-03-19 11:29:42+00,2,False,False,False,other
+889,5240,Умерла жена Басилашвили Галина Мшанская,"{russian_state,ru_state}",2,ru_state,2026-03-20 10:52:17+00,2,False,False,False,domestic_russia
+835,6017,Пушилин пообещал отдельную награду от ДНР Герою России Ярашеву,"{russian_state,ru_state}",2,ru_state,2026-03-16 05:15:14+00,2,False,False,False,other
+834,5834,Kathimerini: авианосец USS Gerald R. Ford возвращается на критскую базу НАТО,"{russian_state,ru_state}",2,russian_state,2026-03-17 14:21:08+00,2,True,False,True,
+879,6873,"Катар на пути к банкротству: две иранские ракеты нанесли ущерб в десятки миллиардов долларов…
+
+Точно еще не посчитано,…","{ru_proxy,unverified_commentator,unverified_media}",3,ru_proxy,2026-03-19 18:08:09+00,3,True,False,True,
+878,6938,"БПЛА атаковал автомобиль в Белгородской области, есть пострадавший","{ru_proxy,russian_state}",2,russian_state,2026-03-22 05:46:00+00,3,True,False,True,
+866,6847,Вчера в чешском городе Пардубице неизвестные совершили поджог офиса и склада компании по производству беспилотных…,"{ru_proxy,trusted}",2,ru_proxy,2026-03-21 11:15:24+00,2,False,False,False,other
+855,6823,"«Ормузский пролив — он нам не нужен, мы им не пользуемся», - Трамп...
+
+«Мы уже победили Иран. Что касается Ормузского…","{estonian_media,ru_proxy,unverified_anonymous}",3,ru_proxy,2026-03-20 20:49:58+00,4,False,False,False,middle_east_iran
+265,5554,На Ставрополье отменили беспилотную опасность,"{russian_state,ru_state}",2,russian_state,2026-03-09 01:28:29+00,13,False,False,False,other
+268,5568,Литва по примеру Эстонии запретит въезд участникам СВО,"{baltic_media,russian_state,ru_state}",3,russian_state,2026-03-11 09:41:11+00,3,True,True,False,
+271,5555,Сийярто обвинил Сибигу в распространении фейков о вмешательстве России в выборы,"{russian_state,ru_state}",2,ru_state,2026-03-18 22:21:46+00,4,True,False,True,
+281,5553,Дмитриев задался вопросом о будущем НАТО после слов президента США,"{russian_state,ru_state}",2,russian_state,2026-03-16 04:05:42+00,6,True,False,True,
+283,5567,Песков: многие страны хотят приобрести нефть из России,"{russian_state,ru_state}",2,russian_state,2026-03-14 03:28:40+00,10,False,False,False,other
+311,5651,В Запорожской области два человека погибли при ударе дрона по машине,"{russian_state,ru_state}",2,russian_state,2026-03-11 07:35:35+00,8,True,False,True,
+322,5669,WADA не планирует запрещать Трампу и американским чиновникам посещать ЧМ-2026,"{russian_state,ru_state}",2,russian_state,2026-03-14 10:21:01+00,13,False,False,False,sports_culture
+328,5697,"Польша требует передать орден Virtuti Militari, замеченный на аукционе Украины","{russian_state,ru_state}",2,ru_state,2026-03-18 07:32:54+00,2,True,True,False,
+330,5707,Трамп: США не обязаны были помогать союзникам по НАТО с поддержкой Украины,"{baltic_media,russian_independent,russian_language_ee,ru_state,ukraine_media}",5,ru_state,2026-03-15 23:55:49+00,7,True,False,True,
+334,5694,"При ударе дрона ВСУ в Запорожской области погибла семья, ранен ребенок","{russian_state,ru_state}",2,russian_state,2026-03-08 09:50:17+00,15,True,False,True,
+346,5352,В Новосибирской области могут рассмотреть меры по ограничению продажи алкоголя,"{russian_independent,russian_state}",2,russian_state,2026-03-12 04:16:08+00,13,False,False,False,domestic_russia
+357,5754,В аэропорту Калининграда из-за мер в Ленобласти возможны изменения расписания,"{russian_state,ru_state}",2,russian_state,2026-03-17 03:35:19+00,5,True,True,False,
+359,5768,Главком НАТО Гринкевич заявил о готовности США жёстко ответить на помощь Ирану,"{estonian_media,russian_language_ee,russian_state,ru_state}",4,russian_state,2026-03-12 18:36:43+00,15,True,False,True,
+380,5769,Брейдо: в ЦСКА взбешены удалением Челестини в матче с «Балтикой»,"{russian_state,ru_state}",2,russian_state,2026-03-14 19:00:02+00,15,False,False,False,sports_context
+391,5844,Умер один из пострадавших при атаке ВСУ на автосервис Курска 27 февраля,"{russian_state,ru_state}",2,russian_state,2026-03-17 13:18:43+00,2,True,False,True,
+395,5800,Трамп пригрозил Испании прекратить с ней торговлю,"{estonian_media,ru_proxy,russian_state}",3,russian_state,2026-03-11 18:30:07+00,11,False,False,False,other
+397,5677,"Польша потребовала от Германии репарации, чтобы купить оружие","{russian_state,ru_state}",2,russian_state,2026-03-13 22:30:10+00,10,True,True,True,
+399,5846,Глава Магаданской области поручил проверить состояние домов после землетрясения,"{russian_state,ru_state}",2,ru_state,2026-03-17 12:26:20+00,2,False,False,False,domestic_russia
+400,5805,Туск: Польша не направит военных для поддержки операции США против Ирана,"{estonian_media,russian_state}",2,russian_state,2026-03-17 11:33:44+00,3,True,True,True,
+411,5879,Мема назвал вступление Финляндии в НАТО худшим решением в истории страны,"{russian_state,ru_state}",2,russian_state,2026-03-09 01:54:17+00,12,True,True,True,
+416,5850,"Великобритания, Нидерланды и Финляндия будут вместе закупать оружие и боеприпасы","{estonian_media,russian_state}",2,russian_state,2026-03-17 09:16:00+00,2,True,True,True,
+418,5888,Голикова: в Петербурге форум объединенных культур пройдет с 24 по 26 сентября,"{russian_state,ru_state}",2,russian_state,2026-03-17 07:38:10+00,2,False,False,False,domestic_russia
+421,5914,Польша может инициировать закон о платной эвакуации из небезопасных стран,"{polish_media,russian_state}",2,russian_state,2026-03-10 11:39:09+00,5,True,True,False,
+423,5901,"Трамп утверждает, что США полностью уничтожили все военные цели на острове Харк","{russian_state,ru_state}",2,russian_state,2026-03-13 21:00:29+00,15,True,False,True,
+432,5894,В Польше возле границы с Украиной нашли обломки летательного аппарата,"{estonian_media,russian_state}",2,russian_state,2026-03-16 13:08:31+00,2,True,True,True,
+433,5912,Бригада ВС России «Волки» сообщила о ликвидации элитной снайперской группы ВСУ,"{russian_state,ru_state}",2,russian_state,2026-03-11 03:18:33+00,8,False,False,False,ukraine_frontline
+437,5853,В Петербурге предупредили о возможном отключении мобильного интернета,"{russian_state,ru_state,unverified_anonymous}",3,ru_state,2026-03-17 08:26:39+00,3,False,False,False,other
+438,5913,Иран пообещал мужественно противостоять агрессии США и Израиля,"{estonian_media,ru_proxy,russian_state}",3,russian_state,2026-03-17 06:34:37+00,3,False,False,False,middle_east_iran
+441,5929,Глава СВР Польши Стружик заявил о росте пророссийских настроений в стране,"{russian_state,ru_state}",2,ru_state,2026-03-16 22:03:22+00,2,True,True,True,
+442,5935,WP: сбой ИИ и ошибка разведки — возможные причины удара США по школе в Иране,"{russian_state,ru_state}",2,russian_state,2026-03-12 04:27:15+00,7,True,False,True,
+447,6007,Хинштейн осудил призыв не использовать символ СВО «Z» из-за нового закона о языке,"{ru_proxy,russian_state}",2,russian_state,2026-03-16 10:54:30+00,2,False,False,False,other
+456,5968,Мема: предложение Финляндии разместить ЯО посылает России опасный сигнал,"{russian_state,ru_state}",2,russian_state,2026-03-14 17:57:21+00,6,True,True,False,
+457,5982,Fars: ещё по одной иранской школе нанесён удар,"{russian_state,ru_state}",2,russian_state,2026-03-10 01:18:04+00,15,True,False,True,
+461,5999,Лавров напомнил о недопустимости передачи сербского оружия Киеву,"{russian_state,ru_state}",2,russian_state,2026-03-16 12:11:00+00,2,True,False,True,
+464,5992,Глава МИД Германии исключил участие НАТО в открытии Ормузского пролива,"{baltic_media,estonian_media,russian_state}",3,russian_state,2026-03-16 10:42:59+00,4,True,False,True,
+472,6013,«Ъ»: экс-губернатор Свердловской области Куйвашев возглавил компанию в Москве,"{russian_state,ru_state}",2,ru_state,2026-03-16 09:31:58+00,2,False,False,False,domestic_russia
+477,6025,Силовики: семьи пропавших солдат ВСУ намерены добиваться встречи с Будановым,"{russian_state,ru_state}",2,russian_state,2026-03-14 03:27:50+00,2,False,False,False,ukraine_frontline
+481,6012,Игумен Варфоломей рассказал о Родительских субботах во время Великого поста,"{russian_state,ru_state}",2,russian_state,2026-03-13 11:48:55+00,2,False,False,False,domestic_russia
+486,6020,Россияне вновь пожаловались на сбои в работе Telegram,"{russian_independent,ru_state}",2,ru_state,2026-03-16 07:36:42+00,2,False,False,False,other
+501,5802,Премьер Словении: перспективы сохранения единства НАТО будут зависеть от США,"{baltic_media,estonian_media,russian_state}",3,russian_state,2026-03-14 11:22:26+00,5,True,False,True,
+503,6083,Объекты энергетической инфраструктуры повреждены в Белгороде в результате ракетного обстрела,"{ru_proxy,russian_independent,russian_state}",3,russian_state,2026-03-08 00:16:00+00,9,True,False,True,
+507,6149,Учёный Зайцев назвал реальной угрозу падения метеоритов,"{russian_state,ru_state}",2,russian_state,2026-03-13 08:57:45+00,15,False,False,False,domestic_russia
+511,6096,"Парадокс Карседо: «Спартак» пропускает пачками и раздражает болельщиков, но побеждает и гонится за лидерами","{russian_state,ru_state}",2,russian_state,2026-03-10 03:05:14+00,15,False,False,False,sports_culture
+526,6097,Канадский защитник СКА Филлипс: мне всё нравится в России,"{russian_state,ru_state}",2,russian_state,2026-03-12 16:59:43+00,8,False,False,False,other
+539,6010,Мерц раскритиковал решение США ослабить санкции против России,"{russian_language_ee,russian_state,ru_state}",3,russian_state,2026-03-13 09:23:55+00,4,True,False,True,
+541,5728,Дело о хищении на гособоронзаказе в Калининградской области направлено в суд,"{russian_state,ru_state}",2,russian_state,2026-03-13 11:55:08+00,15,True,True,False,
+542,6172,"Лукашенко призвал Украину и НАТО не лезть в Белоруссию, чтобы не ""бахнул"" ""Орешник""","{russian_independent,russian_state}",2,russian_state,2026-03-13 09:22:05+00,6,True,True,True,
+544,5569,Лес загорелся в Севастополе после атаки БПЛА,"{russian_state,ru_state}",2,russian_state,2026-03-13 03:07:56+00,15,True,False,True,
+546,5409,На всех станциях петербургского метрополитена заработала оплата по биометрии,"{russian_state,ru_state}",2,russian_state,2026-03-12 18:06:09+00,10,False,False,False,other
+549,6174,"Лукашенко заявил, что Белоруссия обсуждает с США все вопросы","{russian_state,ru_state}",2,russian_state,2026-03-13 08:56:41+00,7,True,True,False,
+559,5948,В Белгородской области при ударе дрона погиб мирный житель,"{russian_state,ru_state}",2,russian_state,2026-03-12 04:38:36+00,14,True,False,True,
+579,6227,Часть Севастополя осталась без света из-за аварии на воздушной линии,"{russian_state,ru_state}",2,russian_state,2026-03-09 17:55:01+00,3,False,False,False,other
+585,6190,«Ъ»: экс-сенатора Савельева признали виновным в покушении на убийство,"{russian_state,ru_state}",2,russian_state,2026-03-12 19:40:34+00,5,False,False,False,other
+595,6284,Михайловский театр закроется на реконструкцию до 2027 года,"{russian_independent,russian_state}",2,russian_state,2026-03-11 13:45:55+00,2,False,False,False,other
+613,6315,При ракетном ударе по Брянску поврежден цех одного из предприятий,"{russian_state,ru_state}",2,russian_state,2026-03-10 16:20:35+00,15,True,False,True,
+630,5496,Задержанный в Польше археолог Бутягин не ожидает от суда «ничего хорошего»,"{estonian_media,polish_media,russian_state,ru_state,trusted,ukraine_media}",6,ru_state,2026-03-18 09:38:07+00,14,True,True,False,
+635,6402,LRT: в Литве отменили концерты Дитера Болена,"{estonian_media,russian_state}",2,russian_state,2026-03-22 14:22:59+00,2,True,True,False,
+636,6015,Reuters: Швеция перехватила танкер Sea Owl I под коморским флагом,"{baltic_media,ru_proxy,russian_state}",3,russian_state,2026-03-13 02:33:47+00,3,True,False,True,
+639,6426,"‼️🇷🇺🇺🇦 Армия России освободила Потаповку Сумской области
+
+▪️Штурмовики 80 омсбр группировки ""Север"" зачистили лесные…","{baltic_media,ru_proxy}",2,ru_proxy,2026-03-22 07:41:09+00,2,True,False,True,
+648,6473,"Камчатка поплыла после мощнейших зимних снегопадов. Вода уже затопила жилые дома
+
+По данным SHOT, на реки растаявшего…","{ru_proxy,unverified_media}",2,ru_proxy,2026-03-22 08:15:55+00,3,False,False,False,other
+649,6406,"✨ Сбор на Константиновское направление ✨
+511 человек приняло участие в сборе за сутки
+
+Бойцам взвода БПЛА 255-го мсп…","{ru_proxy,unverified_anonymous,unverified_media}",3,ru_proxy,2026-03-22 06:59:01+00,3,True,False,True,
+650,6459,"‼️🇺🇸🏴‍☠️ Трамп: Демократическая партия является «величайшим врагом Америки»
+
+➖«Теперь, после смерти Ирана, величайшим…","{ru_proxy,unverified_anonymous}",2,ru_proxy,2026-03-22 13:01:50+00,2,False,False,False,middle_east_iran
+651,6456,"‼️🇮🇱🇱🇧 ВВС Израиля ударили по мосту Касмия на реке Литани на юге Ливана
+
+▪️Несколько часов назад пресс-служба ЦАХАЛа…","{baltic_media,ru_proxy}",2,ru_proxy,2026-03-22 13:30:13+00,2,True,False,True,
+662,6464,"‼️Іран почав «продавати» безпечний прохід через Ормузьку протоку
+
+За даними FT, деякі танкери платять до $2 млн за…","{ru_proxy,unverified_media}",2,ru_proxy,2026-03-21 08:14:01+00,4,True,False,True,
+664,6515,"‼️🇺🇦🇶🇦 Украина в обмен на помощь в сбитии иранских дронов потребовала самолеты Mirage 2000-5, — Intelligence…","{ru_proxy,trusted,unverified_anonymous}",3,ru_proxy,2026-03-20 12:58:01+00,6,True,False,True,
+679,6551,В США могут выпустить монету с изображением «грозного» Трампа,"{ru_state,unverified_commentator}",2,ru_state,2026-03-20 10:04:44+00,2,False,False,False,domestic_russia
+695,6540,"Макрон заявил, что ВМС Франции захватили в Средиземном море танкер Deyna под флагом Мозамбика, следовавший из России.","{ru_proxy,trusted}",2,ru_proxy,2026-03-20 12:05:29+00,3,True,False,True,
+701,6377,Посол США пригрозил польскому политику Брауну из-за соболезнований Ирану,"{russian_state,ru_state}",2,russian_state,2026-03-09 04:13:56+00,3,False,False,False,middle_east_iran
+711,6598,Глава Россельхознадзора проверит ветеринарную ситуацию в Новосибирской области,"{ru_proxy,ru_state}",2,ru_state,2026-03-17 13:39:12+00,4,False,False,False,domestic_russia
+725,6623,МИД: Россия ответит на любое посягательство на здания дипмиссий на Украине,"{ru_state,trusted}",2,ru_state,2026-03-16 05:17:34+00,7,False,False,False,other
+731,5281,Лукашенко поздравил белорусок с 8 марта,"{russian_state,ru_state}",2,russian_state,2026-03-08 04:22:29+00,13,False,False,False,celebration_context
+735,6640,CBS: США могли ударить по школе в Иране из-за устаревших данных разведки,"{russian_state,ru_state}",2,russian_state,2026-03-09 03:49:15+00,15,True,False,True,
+741,6638,"Депутат Скороход рассказала, как ТЦК поймали бойца «Альфы» СБУ","{ru_state,trusted}",2,ru_state,2026-03-14 20:29:13+00,5,False,False,False,ukraine_frontline
+748,5625,Президент Финляндии выразил обеспокоенность смещением внимания США с Украины на Иран,"{estonian_media,ru_proxy,russian_independent,russian_state,ru_state,trusted}",6,russian_state,2026-03-17 00:42:00+00,11,True,True,False,
+757,5363,В Ростовской области отразили атаку дронов,"{russian_state,ru_state}",2,russian_state,2026-03-08 01:36:00+00,14,True,False,True,
+770,5328,Politico: ЕС нашёл способ предоставить кредит Киеву в обход Венгрии и Словакии,"{baltic_media,ru_proxy,russian_language_ee,russian_state,ru_state,unverified_anonymous}",6,russian_state,2026-03-11 04:29:56+00,15,False,False,False,other
+784,6568,В ЕС заявили о подготовке мер на случай обострения ситуации с энергоресурсами,"{ru_state,unverified_commentator}",2,ru_state,2026-03-16 08:32:30+00,8,False,False,False,other
+809,5740,Средства ПВО за восемь часов уничтожили 96 БПЛА ВСУ над территорией России,"{ru_proxy,russian_state,ru_state,trusted}",4,ru_state,2026-03-16 13:57:15+00,11,True,False,True,
+814,5114,Axios: Уиткофф 17 марта расскажет сенаторам США о ходе операции против Ирана,"{ru_proxy,russian_language_ee,russian_state,unverified_anonymous,unverified_media}",5,russian_state,2026-03-17 01:28:14+00,10,False,False,False,middle_east_iran
+816,6870,"Власти Болгарии освободили россиянина Игоря Гречушкина, который был арестован по делу о взрыве в порту Бейрута (в…","{ru_proxy,ru_state}",2,ru_proxy,2026-03-19 22:42:45+00,2,False,False,False,other
+8,5125,Два человека погибли при обстреле белгородского села со стороны ВСУ,"{ru_proxy,russian_state}",2,russian_state,2026-03-21 13:15:00+00,4,False,False,False,ukraine_frontline
+9,5117,"ЦСКА уступил ""Балтике"" и проиграл в РПЛ четвертый матч подряд","{russian_state,ru_state}",2,russian_state,2026-03-14 21:34:00+00,4,False,False,False,sports_context
+14,5122,"Лукашенко заявил, что Иран никогда не просил Белоруссию о поставках ракет","{russian_state,ru_state}",2,russian_state,2026-03-20 12:43:00+00,7,True,True,True,
+23,5150,"Офис Орбана: атака Украины на ""Турецкий поток"" станет нападением на страну НАТО","{ru_proxy,russian_state,unverified_anonymous,unverified_media}",4,russian_state,2026-03-21 11:56:05+00,5,True,False,True,
+27,5170,В Псковской области увеличили выплату подписавшим контракт в войска БПЛА,"{ru_proxy,russian_state}",2,russian_state,2026-03-12 18:39:20+00,2,True,True,True,
+31,5183,Два человека обратились за медпомощью после атаки БПЛА на Саратов,"{russian_state,unverified_anonymous}",2,russian_state,2026-03-21 02:36:56+00,3,True,False,True,
+35,5158,РИА Новости: убитого в Петербурге подростка заманила на станцию его экс-девушка,"{russian_state,ru_state}",2,ru_state,2026-03-19 13:23:16+00,3,False,False,False,other
+36,5191,В Литву вернулись более 60% застрявших в Белоруссии грузовиков,"{baltic_media,russian_state}",2,russian_state,2026-03-10 03:20:00+00,8,True,True,False,
+37,5192,В аэропорту Пскова ввели ограничения,"{russian_state,ru_state}",2,russian_state,2026-03-16 23:25:47+00,7,True,True,False,
+45,5228,🔥 Почему Лукашенко для белорусов выгодный Президент?!,"{russian_state,ru_state}",2,ru_state,2026-03-20 15:05:06+00,2,True,True,False,
+48,5208,AFP: НАТО выводит войска из Ирака на фоне эскалации вокруг Ирана,"{baltic_media,russian_state}",2,russian_state,2026-03-20 12:55:17+00,8,True,False,True,
+50,5214,"Стубб признал, что Европе придётся начать политический диалог с Россией","{russian_state,ru_state}",2,ru_state,2026-03-17 13:40:33+00,4,False,False,False,domestic_russia
+53,5226,Путин одобрил идею договора с Белоруссией о взыскании долгов в бюджеты,"{russian_state,ru_state}",2,russian_state,2026-03-20 13:01:51+00,3,True,True,False,
+56,5211,"Подполье: в Днепропетровской области под удар ""Гераней"" могли попасть офицеры ВСУ","{ru_proxy,russian_state}",2,russian_state,2026-03-20 17:00:18+00,2,True,False,True,
+57,5142,Над Смоленской областью уничтожили четыре БПЛА,"{russian_state,ru_state}",2,russian_state,2026-03-09 01:43:55+00,12,True,False,True,
+60,5186,"Лукашенко заявил, что участники атаки на Иран не добились своих целей","{russian_state,ru_state}",2,russian_state,2026-03-13 08:50:07+00,5,True,False,True,
+61,5243,Брянский губернатор сообщил о еще одном пострадавшем из-за атак БПЛА,"{russian_state,ru_state}",2,russian_state,2026-03-17 05:28:00+00,15,True,False,True,
+67,5241,Экипаж российского газовоза Arctic Metagaz дрейфовал на спасательной шлюпке в течение 15 часов после атаки в…,"{ru_proxy,unverified_commentator}",2,ru_proxy,2026-03-20 14:09:40+00,2,True,False,True,
+69,5253,Коул: Лукашенко пообещал принять участие в заседании Совета мира,"{russian_state,ru_state}",2,russian_state,2026-03-19 12:18:26+00,6,False,False,False,other
+71,5236,Лукашенко пообещал жесткий ответ на попытки повторить протесты 2020 года,"{estonian_media,russian_state}",2,russian_state,2026-03-13 10:50:20+00,9,False,False,False,other
+77,5261,Россиянам рассказали о причинах укрепления доллара и евро,"{russian_state,ru_state}",2,ru_state,2026-03-17 15:10:23+00,2,False,False,False,domestic_russia
+80,5279,Политик Мема призвал ЕС наладить дипломатические отношения с Россией,"{russian_state,unverified_media}",2,russian_state,2026-03-18 18:13:08+00,2,False,False,False,other
+82,5296,Командира ВСУ будут заочно судить за приказ об ударе по порту Кавказ,"{russian_state,ru_state}",2,ru_state,2026-03-20 10:11:07+00,2,True,False,True,
+87,5229,"Лукашенко анонсировал ""большой договор"" с США","{ru_proxy,russian_state,ru_state,unverified_anonymous}",4,russian_state,2026-03-20 11:06:03+00,15,False,False,False,other
+106,5286,"🇺🇦😂🇺🇸 Отправленные на Ближний Восток ВСУшники оказались в шоке от того, как военные США сбивают иранские дроны, —…","{ru_proxy,unverified_commentator}",2,ru_proxy,2026-03-20 11:11:30+00,4,True,False,True,
+114,5207,Visa запретила расчеты в ЕС карточками трех белорусских банков,"{russian_independent,russian_state}",2,russian_state,2026-03-20 08:45:00+00,6,True,True,False,
+130,5322,В Исфахане оценили ущерб объектам культурного наследия от ударов США и Израиля,"{russian_independent,russian_state}",2,russian_state,2026-03-20 08:33:05+00,2,True,False,True,
+133,5333,"«Оттава» обыграла «Ванкувер» в матче НХЛ, у Зуба два ассиста","{russian_state,ru_state}",2,russian_state,2026-03-10 03:30:25+00,12,False,False,False,sports_culture
+134,5318,РИА Новости: спецслужбы взломали смартфон подполковника ВСУ Мурзановского,"{russian_state,ru_state}",2,russian_state,2026-03-13 03:20:09+00,15,False,False,False,ukraine_frontline
+136,5313,Тысячи мусульман посетили праздничную молитву в Московской соборной мечети,"{ru_proxy,ru_state}",2,ru_state,2026-03-20 07:00:15+00,3,False,False,False,domestic_russia
+167,5375,Польские военные самолёты подняли в воздух из-за якобы активности России,"{russian_state,ru_state}",2,russian_state,2026-03-14 02:02:43+00,15,True,False,True,
+173,5419,Таможня РФ задержала на границе с Эстонией экстремистские книги на финском языке,"{estonian_media,russian_state}",2,russian_state,2026-03-19 10:35:07+00,2,True,True,True,
+184,5237,США снимают санкции с двух белорусских банков и Минфина,"{baltic_media,russian_state,ukraine_media}",3,russian_state,2026-03-19 15:12:24+00,12,True,True,True,
+189,5411,Израильский «12 канал»: ЦАХАЛ атаковал корабли ВМС Ирана в Каспийском море,"{defense_osint,ru_state}",2,ru_state,2026-03-18 21:11:43+00,5,True,False,True,
+202,5466,"Пентагон потратил не менее $11,3 млрд за первые шесть дней войны с Ираном","{ru_proxy,russian_language_ee,russian_state,unverified_commentator}",4,russian_state,2026-03-12 02:34:30+00,5,True,False,True,
+207,5436,Словения призвала ЕС проверить данные о вмешательстве израильской компании в выборы,"{baltic_media,russian_state}",2,russian_state,2026-03-19 09:17:17+00,2,True,False,True,
+209,5463,В Белоруссии с 19 по 25 марта пройдут учения с войсками ЗОК  вдали от границы,"{ru_proxy,russian_state}",2,russian_state,2026-03-19 07:28:39+00,2,True,True,True,
+217,5482,Губернатор Смоленской области рассказал об ограничении интернета в регионе,"{russian_state,ru_state}",2,russian_state,2026-03-15 12:23:53+00,4,False,False,False,domestic_russia
+239,5479,"Лукашенко назвал себя сторонником Трампа, несмотря на определенные ошибки США","{russian_state,ukraine_media}",2,russian_state,2026-03-19 08:46:13+00,8,False,False,False,other
+243,5526,В Сенате заявили об утрате контроля США над операцией против Ирана,"{russian_independent,russian_state}",2,russian_state,2026-03-14 17:55:08+00,4,False,False,False,middle_east_iran
+256,5544,"Орбан считает, что причиной СВО стало игнорирование Европой интересов России","{russian_state,ukraine_media}",2,russian_state,2026-03-18 11:21:06+00,2,False,False,False,domestic_russia
