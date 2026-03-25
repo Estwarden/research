@@ -7,9 +7,10 @@
 ## Summary
 
 The FIMI (Foreign Information Manipulation and Interference) component of the CTI
-has a structural tendency to stay elevated, driving the system toward permanent YELLOW.
-This notebook decomposes FIMI into its sub-components and quantifies each one's
-contribution to the problem.
+has a structural tendency to stay elevated during active periods, contributing to
+YELLOW status. During Mar 7–25 (active period), 80% of days were YELLOW. Over the
+full 50-day study period (Feb 5–Mar 25), 42% of days were YELLOW. This notebook
+decomposes FIMI into its sub-components and quantifies each one's contribution.
 
 ## CTI Formula Reference
 

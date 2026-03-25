@@ -58,25 +58,25 @@
   },
   "per_region_thresholds": {
     "baltic": {
-      "yellow": 11.0,
-      "orange": 12.93,
-      "red": 13.74,
+      "yellow": 11.04,
+      "orange": 12.99,
+      "red": 13.8,
       "n": 50,
       "yellow_stored": 16.97,
       "orange_stored": 19.96
     },
     "finland": {
-      "yellow": 11.87,
-      "orange": 12.76,
-      "red": 15.07,
+      "yellow": 11.92,
+      "orange": 12.82,
+      "red": 15.13,
       "n": 36,
       "yellow_stored": 18.32,
       "orange_stored": 19.7
     },
     "poland": {
-      "yellow": 12.5,
-      "orange": 13.98,
-      "red": 15.22,
+      "yellow": 12.55,
+      "orange": 14.04,
+      "red": 15.29,
       "n": 36,
       "yellow_stored": 19.29,
       "orange_stored": 21.57

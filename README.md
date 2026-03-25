@@ -5,12 +5,15 @@ Research notebooks and methodology docs for the [EstWarden](https://estwarden.eu
 ## Overview
 
 34 research notebooks covering three critical areas:
-- **CTI formula fixes** (nb14–19): Resolved permanent-YELLOW bug caused by FIMI scoring inflation
-- **Satellite analysis** (nb20–23): Built 3-year Sentinel-2 baselines for military site monitoring
-- **Campaign detection** (nb24–31): Validated Fisher pre-screen, Hawkes coordination, narrative velocity
+- **CTI formula diagnostics** (nb14–19): Identified permanent-YELLOW bug — FIMI noise, dead collectors, evidence-free campaigns
+- **Satellite analysis** (nb20–23): Designed Sentinel-2 baselines for military site monitoring (GEE-dependent)
+- **Campaign detection** (nb24–31): Hawkes coordination, narrative velocity, FIMI regex, Fisher revalidation
 - **Data quality** (nb32–34): Collector health monitoring, AIS baselines, embedding quality
 
-See [methodology/FINDINGS.md](methodology/FINDINGS.md) for the comprehensive research summary.
+**⚠️ Read [methodology/VALIDITY.md](methodology/VALIDITY.md) before deploying any findings.**
+The diagnostic results (what's broken) are solid. The prescriptive results (new weights,
+thresholds) need further validation. See [methodology/FINDINGS.md](methodology/FINDINGS.md)
+for the comprehensive research summary.
 
 ## Notebooks
 

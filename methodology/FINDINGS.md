@@ -7,33 +7,53 @@
 
 ---
 
+## ⚠️ Validity Notice
+
+**Read [VALIDITY.md](VALIDITY.md) before acting on any finding below.**
+Key warnings:
+- The "corrected CTI" weights (nb18/19) are **too aggressive** — DO NOT deploy YELLOW=7.9
+- Fisher discriminant F1=0.92 **did NOT replicate** (F1=0.615 on N=30)
+- Narrative velocity F1=1.00 is on N=8 — **statistically meaningless**
+- Satellite notebooks (nb20-23) require GEE auth and may not have been fully executed
+
+The diagnostic findings (WHAT is broken) are solid. The prescriptive findings
+(WHAT to change) need further validation before production deployment.
+
 ## Executive Summary
 
 This document consolidates all research conducted on the EstWarden CTI (Composite
 Threat Index) system, satellite analysis pipeline, and media/campaign detection
-stack. The research identified and resolved three critical issues:
+stack. The research **diagnosed three critical issues** and proposed fixes that
+require further validation:
 
 1. **CTI permanent-YELLOW bug** — structural FIMI scoring inflated the index to
-   ≥15.2 even on quiet days. Root causes: unfiltered laundering noise (73% false
-   positives), evidence-free campaigns (70% of total), and dead collectors still
-   weighted. Fixed algorithm achieves GREEN on demonstrably quiet days.
+   ≥15.2 on 80% of days in the active period (Mar 7–25, N=20). Root causes:
+   unfiltered laundering noise (73% false positives), evidence-free campaigns,
+   and dead collectors still weighted. Fixes are identified but the proposed
+   weight recalibration is too aggressive — see [VALIDITY.md](VALIDITY.md).
 
 2. **Satellite analysis gaps** — temporal baselines missing for military site
-   monitoring. Built 3-year seasonal profiles, Isolation Forest anomaly baselines,
-   CCDC breakpoint detection, and automated change maps for 5 key sites.
+   monitoring. Designed 3-year seasonal profiles, Isolation Forest anomaly baselines,
+   CCDC breakpoint detection, and automated change maps. Notebooks are code-complete
+   but GEE-dependent notebooks have not been validated end-to-end.
 
-3. **Campaign detection fragility** — small labeled dataset (N=13), unvalidated
-   Fisher discriminant, and mega-cluster contamination at cosine 0.75. Validated
-   Fisher F1=0.92 with bootstrap CI, added Hawkes temporal coordination, narrative
-   velocity alerting, and structural FIMI regex detection.
+3. **Campaign detection fragility** — small labeled dataset (N=30, only 6 hostile).
+   Fisher discriminant F1=0.92 from Experiment 25 **does not replicate** at N=30
+   (LOO F1=0.615, bootstrap CI [0.333, 1.000]). Hawkes branching ratio and FIMI
+   regex show promise but sample sizes are insufficient for production thresholds.
 
 ### Honest Assessment
 
-The research is rigorous but constrained by **small labeled datasets** (13 framing
-analyses, 8 narrative labels, 7 labeled events). Statistical findings like Fisher
-F1=0.92 and narrative velocity F1=1.00 are promising but will need revalidation
-as more labeled data accumulates (target: 50+ per metric over the next 3–6 months).
-Where findings are tentative, this is stated explicitly.
+The research correctly identified real bugs in the CTI system. The **diagnostic
+chain** (nb14→15→16→17) is reproducible and actionable: laundering is 73% noise,
+28 campaigns lack detection methods, 12 collectors are dead. These findings are
+**safe to act on**.
+
+The **prescriptive outputs** (new weights, new thresholds, Fisher pre-screen,
+narrative velocity alerting) are **NOT ready for production**. They are validated
+on N=6 hostile samples, N=8 narrative labels, and 50 days of CTI history. Statistical
+power is insufficient for the claims made. See [VALIDITY.md](VALIDITY.md) for
+the complete assessment.
 
 ---
 
@@ -41,8 +61,9 @@ Where findings are tentative, this is stated explicitly.
 
 ### 1.1 The Problem: Permanent YELLOW
 
-The production CTI was stuck at YELLOW (≥15.2) on 85% of days in the active period
-(Mar 7–25). The FIMI component alone averaged 8.38 out of the 15.2 threshold —
+The production CTI was at YELLOW (≥15.2) on 80% of days in the active period
+(Mar 7–25, 16/20 days). Over the full 50-day study period (Feb 5–Mar 25), YELLOW
+was 42% (21/50 days). The FIMI component alone averaged 8.38 in the active period —
 meaning non-FIMI sources needed to contribute only 6.8 more points to trigger YELLOW.
 
 **Root cause decomposition** (nb14, FINDINGS.cti-fimi-floor.md):

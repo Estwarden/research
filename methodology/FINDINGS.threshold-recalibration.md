@@ -11,9 +11,12 @@ R-005 (robust baselines), R-006 (weight recalibration)
 This is the capstone of the CTI research track. After fixing the structural issues
 identified in R-002 through R-006, we recalibrate thresholds on the corrected algorithm.
 
-**Key result:** The corrected algorithm achieves GREEN on days when the stored algorithm
-was stuck at YELLOW. FIMI floor drops from 8.38 to 10.34,
-making GREEN achievable.
+**Key result:** The corrected algorithm produces lower scores than stored, but the weight
+reduction (72→24 signal weight) was **too aggressive** — producing near-zero scores for
+30/50 days. See [VALIDITY.md](VALIDITY.md) for why these thresholds should NOT be deployed.
+
+**⚠️ WARNING: The YELLOW=7.9 threshold below is calibrated to a broken algorithm.
+Do NOT deploy without first reading VALIDITY.md.**
 
 ## Corrections Applied
 
@@ -83,9 +86,9 @@ making GREEN achievable.
 
 | Region | N | YELLOW | ORANGE | RED | Notes |
 |--------|---|--------|--------|-----|-------|
-| baltic | 50 | 11.00 | 12.93 | 13.74 |  |
-| finland | 36 | 11.87 | 12.76 | 15.07 |  |
-| poland | 36 | 12.50 | 13.98 | 15.22 |  |
+| baltic | 50 | 11.04 | 12.99 | 13.80 |  |
+| finland | 36 | 11.92 | 12.82 | 15.13 |  |
+| poland | 36 | 12.55 | 14.04 | 15.29 |  |
 
 ## Level Agreement
 
@@ -104,8 +107,8 @@ Overall agreement: 80%
 
 - Active source weight: 24
 - DEGRADED threshold: 70% (17)
-- HEALTHY days: 12/50 (24%)
-- DEGRADED days: 38/50 (76%)
+- HEALTHY days: 13/50 (26%)
+- DEGRADED days: 37/50 (74%)
 
 Most days have incomplete sensor coverage, confirming the need for the DEGRADED flag.
 
