@@ -1,0 +1,12 @@
+source,old_weight,new_weight,consensus_weight,method,cv,availability_pct,noise_rate,status
+acled,8,0,0,DISABLED,,0.0,1.00,DEAD
+adsb,10,3,3,binary,134,14.3,0.66,⚠️  SPARSE (<15% total)
+ais,6,3,3,binary,118,19.8,0.58,✅ RELIABLE (>80%)
+business,4,3,2,binary,73,18.7,0.12,✅ RELIABLE (>80%)
+energy,6,2,2,binary,166,22.0,0.67,✅ RELIABLE (>80%)
+firms,8,3,3,robust_z,97,18.7,0.52,✅ RELIABLE (>80%)
+gdelt,4,0,0,binary,258,63.7,0.86,🟡 MODERATE (50-80%)
+gpsjam,12,10,10,standard_z,13,15.4,0.04,✅ RELIABLE (>80%)
+ioda,4,0,0,DISABLED,,0.0,1.00,DEAD
+rss,4,1,1,binary,206,82.4,0.78,✅ RELIABLE (>80%)
+telegram,6,0,0,robust_z,64,18.7,0.63,⚠️  UNRELIABLE (<50%)
