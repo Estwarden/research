@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Download Tier 1 datasets for telegram-psyop research.
-# Total: ~55GB. Run from telegram-psyop/ directory.
-# Requires: wget or curl, ~60GB free disk space.
+# Total: ~55GB. Run ON THE REMOTE (Gaming PC) after setup_remote.sh.
+# Requires: curl, ~60GB free disk space.
 set -euo pipefail
 
 DIR="$(cd "$(dirname "$0")/.." && pwd)"
@@ -9,59 +9,56 @@ RAW="$DIR/data/raw"
 
 mkdir -p "$RAW/kyrychenko" "$RAW/epfl" "$RAW/supplementary"
 
+dl() {
+  local dest="$1" url="$2"
+  if [ -f "$dest" ]; then
+    echo "  $(basename "$dest") already exists, skipping"
+  else
+    echo "  Downloading $(basename "$dest") ..."
+    curl -L -C - -o "$dest" "$url"
+  fi
+}
+
 # ================================================================
 # 1. Kyrychenko War Channels (49GB)
 #    79.5M posts, 66K channels, 18.2M forwards, Leiden clusters
 #    https://zenodo.org/records/16949193
 # ================================================================
-echo "=== Kyrychenko War Channels (49GB) ==="
+echo "=== Kyrychenko War Channels ==="
 KYRY="$RAW/kyrychenko"
+KYRY_BASE="https://zenodo.org/records/16949193/files"
 
-# Channel metadata (16MB) -- always download
-wget -nc -O "$KYRY/channels.csv" \
-  "https://zenodo.org/records/16949193/files/channels.csv?download=1" || true
+dl "$KYRY/channels.csv"        "$KYRY_BASE/channels.csv?download=1"
+dl "$KYRY/leiden_clusters.csv" "$KYRY_BASE/leiden_clusters.csv?download=1"
+dl "$KYRY/post_fwd.csv"        "$KYRY_BASE/post_fwd.csv?download=1"
 
-# Leiden clusters with labels (1.5MB)
-wget -nc -O "$KYRY/leiden_clusters.csv" \
-  "https://zenodo.org/records/16949193/files/leiden_clusters.csv?download=1" || true
-
-# Forwarding graph (600MB)
-wget -nc -O "$KYRY/post_fwd.csv" \
-  "https://zenodo.org/records/16949193/files/post_fwd.csv?download=1" || true
-
-# Post texts (8 parts, ~6GB each, 49GB total)
-# Uncomment to download -- these are large
 for i in $(seq 1 8); do
-  if [ ! -f "$KYRY/post_texts_part_${i}.csv" ]; then
-    echo "  Downloading post_texts_part_${i}.csv ..."
-    wget -c -O "$KYRY/post_texts_part_${i}.csv" \
-      "https://zenodo.org/records/16949193/files/post_texts_part_${i}.csv?download=1" || true
-  else
-    echo "  post_texts_part_${i}.csv already exists, skipping"
-  fi
+  dl "$KYRY/post_texts_part_${i}.csv" "$KYRY_BASE/post_texts_part_${i}.csv?download=1"
 done
 
 # ================================================================
-# 2. EPFL Propaganda Dataset (6GB)
-#    Labeled propaganda posts + embeddings + trained models
+# 2. EPFL Propaganda Dataset (1.2GB dataset + 135MB models)
+#    Labeled propaganda posts + trained models
 #    https://zenodo.org/records/14736756
 # ================================================================
 echo ""
-echo "=== EPFL Propaganda Dataset (6GB) ==="
+echo "=== EPFL Propaganda Dataset ==="
 EPFL="$RAW/epfl"
+EPFL_BASE="https://zenodo.org/records/14736756/files"
 
-wget -nc -O "$EPFL/dataset_v2.zip" \
-  "https://zenodo.org/records/14736756/files/dataset_v2.zip?download=1" || true
+dl "$EPFL/dataset_v2.zip"    "$EPFL_BASE/dataset_v2.zip?download=1"
+dl "$EPFL/final_models.zip"  "$EPFL_BASE/final_models.zip?download=1"
+dl "$EPFL/INSTRUCTIONS.md"   "$EPFL_BASE/INSTRUCTIONS.md?download=1"
 
-wget -nc -O "$EPFL/final_models.zip" \
-  "https://zenodo.org/records/14736756/files/final_models.zip?download=1" || true
-
-wget -nc -O "$EPFL/INSTRUCTIONS.md" \
-  "https://zenodo.org/records/14736756/files/INSTRUCTIONS.md?download=1" || true
-
-# Embeddings (4.7GB) -- optional, can regenerate
-# wget -nc -O "$EPFL/embeddings.zip" \
-#   "https://zenodo.org/records/14736756/files/embeddings.zip?download=1" || true
+# Unzip if not already extracted
+if [ -f "$EPFL/dataset_v2.zip" ] && [ ! -d "$EPFL/dataset_v2" ]; then
+  echo "  Extracting dataset_v2.zip ..."
+  unzip -q -o "$EPFL/dataset_v2.zip" -d "$EPFL/dataset_v2"
+fi
+if [ -f "$EPFL/final_models.zip" ] && [ ! -d "$EPFL/final_models" ]; then
+  echo "  Extracting final_models.zip ..."
+  unzip -q -o "$EPFL/final_models.zip" -d "$EPFL/final_models"
+fi
 
 # ================================================================
 # 3. Supplementary GitHub datasets
@@ -70,30 +67,22 @@ echo ""
 echo "=== Supplementary datasets ==="
 SUP="$RAW/supplementary"
 
-# tg-misinfo-data: RU propaganda channels, first weeks of invasion
-if [ ! -d "$SUP/tg-misinfo-data" ]; then
-  git clone --depth 1 https://github.com/yarakyrychenko/tg-misinfo-data "$SUP/tg-misinfo-data" || true
-fi
-
-# WarNews: RU + UA channels, Feb-Mar 2022
-if [ ! -d "$SUP/WarNews" ]; then
-  git clone --depth 1 https://github.com/Aleksandr-Simanychev/WarNews "$SUP/WarNews" || true
-fi
-
-# VoynaSlov: multi-platform, topic modeling
-if [ ! -d "$SUP/VoynaSlov" ]; then
-  git clone --depth 1 https://github.com/chan0park/VoynaSlov "$SUP/VoynaSlov" || true
-fi
-
-# TGDataset: 120K+ channel metadata
-if [ ! -d "$SUP/TGDataset" ]; then
-  git clone --depth 1 https://github.com/SystemsLab-Sapienza/TGDataset "$SUP/TGDataset" || true
-fi
+for repo in \
+  "yarakyrychenko/tg-misinfo-data" \
+  "Aleksandr-Simanychev/WarNews" \
+  "chan0park/VoynaSlov" \
+  "SystemsLab-Sapienza/TGDataset"; do
+  name="${repo##*/}"
+  if [ ! -d "$SUP/$name" ]; then
+    git clone --depth 1 "https://github.com/$repo" "$SUP/$name" || true
+  else
+    echo "  $name already cloned"
+  fi
+done
 
 echo ""
 echo "=== Download complete ==="
-echo "Kyrychenko: $(ls -1 "$KYRY"/*.csv 2>/dev/null | wc -l) files"
+echo "Kyrychenko: $(ls -1 "$KYRY"/*.csv 2>/dev/null | wc -l) CSV files"
 echo "EPFL:       $(ls -1 "$EPFL"/* 2>/dev/null | wc -l) files"
 echo "Supplement: $(ls -1d "$SUP"/*/ 2>/dev/null | wc -l) repos"
-echo ""
-echo "Next: run scripts/extract.sh to unzip EPFL data"
+du -sh "$RAW"

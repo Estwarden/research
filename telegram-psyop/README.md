@@ -56,9 +56,22 @@ platform with user post history and timestamps.
 - `trollfarm` -- Human-operated coordinated account (talking points, shift patterns)
 - `organic` -- Genuine user
 
+## Compute
+
+All training and heavy processing runs on the Gaming PC (RTX 3060 12GB, 64GB
+RAM, 12 cores). Data lives there too -- datasets are 50GB+.
+
+```
+Local machine (this repo)  -->  GPU box /data/telegram-psyop/
+  code, notebooks, configs       data, models, GPU training
+```
+
+Set `PSYOP_REMOTE=user@gpu-host` and `PSYOP_REMOTE_DIR=/data/telegram-psyop`
+for the sync scripts. RTX 3060 12GB is sufficient for fine-tuning 3B models.
+
 ## Plan
 
-1. **Hoard the data** -- Combine existing academic datasets + scrape gaps
+1. **Download existing datasets** -- Kyrychenko (79.5M posts) + EPFL (propaganda labels)
 2. **Experiment** -- Behavioral analysis, ML classifiers, fine-tuned small LLMs
 3. **Make conclusions** -- What works, what doesn't, what's deployable
 
@@ -151,7 +164,7 @@ telegram-psyop/
 | E-04 | Merge channel metadata + Leiden labels | All sources | `data/processed/channels_unified.csv` |
 | E-05 | Extract behavioral features from 79.5M posts | Kyrychenko posts | `data/processed/behavioral_features.parquet` |
 | E-06 | Build forwarding graph | post_fwd.csv (18.2M edges) | `data/processed/forwarding_graph.npz` |
-| E-07 | Scrape 2024-2026 gap for key channels (Telethon) | Channel list from EstWarden | `data/raw/scraped_2024_2026/` |
+| ~~E-07~~ | ~~Scrape 2024-2026 gap~~ | Deferred -- existing data sufficient | Scrape only if experiments reveal a specific gap |
 
 ### Phase 2: Cluster Classifier Experiments (week 2-5)
 
