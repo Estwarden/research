@@ -18,18 +18,11 @@ from datetime import datetime, timedelta
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 
 # === CTI ALGORITHM (from compute_threat_index.py) ===
-SIGNAL_WEIGHTS = {
-    "gpsjam": 12, "adsb": 10, "acled": 8, "firms": 8,
-    "ais": 6, "telegram": 6, "rss": 4, "gdelt": 4,
-    "energy": 6, "business": 4, "ioda": 4,
-}
-CAMPAIGN_WEIGHT = 10
-FABRICATION_WEIGHT = 8
-LAUNDERING_WEIGHT = 6
-NARRATIVE_WEIGHT = 4
-GPSJAM_SEV_WEIGHT = 10
-TOTAL_WEIGHT = sum(SIGNAL_WEIGHTS.values()) + CAMPAIGN_WEIGHT + FABRICATION_WEIGHT + LAUNDERING_WEIGHT + NARRATIVE_WEIGHT + GPSJAM_SEV_WEIGHT
-YELLOW_THRESHOLD = 15.2
+from cti_constants import (
+    SIGNAL_WEIGHTS, CAMPAIGN_WEIGHT, FABRICATION_WEIGHT,
+    LAUNDERING_WEIGHT, NARRATIVE_WEIGHT, GPSJAM_SEV_WEIGHT,
+    TOTAL_WEIGHT, YELLOW_THRESHOLD,
+)
 
 print(f"TOTAL_WEIGHT = {TOTAL_WEIGHT}")
 print(f"YELLOW threshold = {YELLOW_THRESHOLD}")
@@ -213,9 +206,9 @@ print("=" * 70)
 daily = defaultdict(lambda: defaultdict(int))
 with open(f"{DATA}/signal_daily_counts.csv") as f:
     for row in csv.DictReader(f):
-        day = row['day']
+        day = row['date']
         st = row['source_type']
-        daily[st][day] += int(row['count'])
+        daily[st][day] += int(row['signal_count'])
 
 for st in sorted(SIGNAL_WEIGHTS.keys()):
     if st not in daily:

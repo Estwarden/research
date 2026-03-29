@@ -36,9 +36,7 @@ os.makedirs(OUTPUT, exist_ok=True)
 # ================================================================
 # CTI CONSTANTS (from production / methodology)
 # ================================================================
-LAUNDERING_WEIGHT = 6
-TOTAL_WEIGHT = 110
-YELLOW_THRESHOLD = 15.2
+from cti_constants import LAUNDERING_WEIGHT, TOTAL_WEIGHT, YELLOW_THRESHOLD
 
 print("=" * 72)
 print("15. LAUNDERING DETECTOR FALSE POSITIVE AUDIT")

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-17. Coordination Detection Validation
+05. Coordination Detection Validation
 ======================================
 
 Hypothesis: State-media coordinated clusters have statistically different

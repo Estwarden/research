@@ -1,17 +1,5 @@
-# ---
-# jupyter:
-#   jupytext:
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#   kernelspec:
-#     display_name: Python 3
-#     language: python
-#     name: python3
-# ---
-
-# %% [markdown]
-# # 16. Cascade Topology Classifier — Fake vs Real from Structure Alone
+#!/usr/bin/env python3
+# # 04. Cascade Topology Classifier — Fake vs Real from Structure Alone
 #
 # **Paper:** "TIDE-MARK: Tracking Dynamic Communities in Fake News Cascades"
 # (PMC, Jan 2026)
@@ -34,10 +22,10 @@
 # 3. Train simple classifier (logistic regression) on labeled campaigns
 # 4. Apply to new clusters for early warning
 
-# %% [markdown]
+
 # ## Setup
 
-# %%
+
 import os
 import numpy as np
 import pandas as pd
@@ -45,7 +33,7 @@ from collections import defaultdict, Counter
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
-# %% [markdown]
+
 # ## 1. Build Propagation Graph
 #
 # From signals in a cluster, construct a directed graph:
@@ -53,7 +41,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 # - Edges = temporal ordering (channel A posts before channel B on same topic)
 # - Edge weight = time difference (closer in time = stronger connection)
 
-# %%
+
 def build_propagation_graph(signals_df, channel_col='channel', time_col='published_at'):
     """
     Build a propagation graph from signals in a cluster.
@@ -100,7 +88,7 @@ def build_propagation_graph(signals_df, channel_col='channel', time_col='publish
     return nodes, edges, adjacency
 
 
-# %% [markdown]
+
 # ## 2. Extract Structural Features
 #
 # From the paper, the key discriminating features are:
@@ -111,7 +99,7 @@ def build_propagation_graph(signals_df, channel_col='channel', time_col='publish
 #
 # We compute simplified versions without requiring full GNN infrastructure.
 
-# %%
+
 def compute_structural_features(nodes, edges, adjacency):
     """
     Compute structural features for a propagation cascade.
@@ -183,12 +171,12 @@ def compute_structural_features(nodes, edges, adjacency):
         'first_hop_hours': first_hop_hours,
     }
 
-# %% [markdown]
+
 # ## 3. Synthetic Test — Bild Map vs Organic
 #
 # Create synthetic cascades to validate the features.
 
-# %%
+
 # Bild map cascade (coordinated, fast, hub-like)
 bild_signals = pd.DataFrame({
     'channel': ['insiderUKR', 'uniannet', 'Tsaplienko', 'smolii_ukraine',
@@ -222,7 +210,7 @@ if features:
     for k, v in features.items():
         print(f"  {k}: {v:.4f}" if isinstance(v, float) else f"  {k}: {v}")
 
-# %% [markdown]
+
 # ## 4. Expected Discriminators (from paper)
 #
 # | Feature | Fake News | Real News |

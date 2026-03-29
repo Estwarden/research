@@ -1,0 +1,17 @@
+alert_id,cluster_id,fabrication_score,ngram_similarity,word_similarity,is_baltic_relevant,root_category,down_category,gate_pass
+20,6823,7,0.0250,0.0000,False,unverified_commentator,ru_proxy,False
+19,6623,10,0.0171,0.0000,False,ru_state,trusted,False
+18,7029,10,0.1959,0.2353,False,ru_state,ru_proxy,False
+17,6568,10,0.0286,0.0000,False,ru_state,unverified_commentator,False
+15,6083,4,0.2012,0.0952,True,russian_state,ru_proxy,True
+14,6138,4,0.0152,0.0000,False,estonian_media,trusted,False
+13,5114,5,0.1572,0.1852,True,russian_state,ru_proxy,True
+9,5123,4,0.2734,0.1905,False,unverified_anonymous,unverified_media,False
+8,5740,4,0.0517,0.0385,False,ru_state,ru_proxy,False
+7,5268,4,0.2129,0.1429,False,unverified_anonymous,unverified_media,False
+6,5656,5,0.1204,0.0333,True,russian_independent,ru_proxy,True
+5,5281,4,0.0070,0.0000,False,russian_state,ru_state,False
+4,5229,6,0.0657,0.0556,False,russian_state,unverified_anonymous,False
+3,5152,4,0.1615,0.1111,False,russian_independent,ru_proxy,False
+2,5195,5,0.5920,0.7000,True,unverified_media,ru_proxy,True
+1,5328,5,0.1656,0.1154,False,russian_state,ru_proxy,False

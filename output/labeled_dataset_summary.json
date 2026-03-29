@@ -1,0 +1,13 @@
+{
+  "total_clusters": 2278,
+  "hostile": 6,
+  "clean": 24,
+  "unlabeled": 2248,
+  "hostile_from_framing": 6,
+  "hostile_from_campaign": 0,
+  "hostile_narratives": [
+    "western_fatigue",
+    "nato_provocation",
+    "baltic_failed_states"
+  ]
+}

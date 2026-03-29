@@ -1,0 +1,12 @@
+source,old_weight,aggressive_weight,moderate_weight,tier
+acled,8,0,0,unreliable
+adsb,10,3,0,unreliable
+ais,6,3,0,unreliable
+business,4,2,4,moderate
+energy,6,2,0,unreliable
+firms,8,3,9,moderate
+gdelt,4,0,0,unreliable
+gpsjam,12,10,26,reliable
+ioda,4,0,0,unreliable
+rss,4,1,0,unreliable
+telegram,6,0,6,moderate

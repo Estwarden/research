@@ -34,11 +34,7 @@ OUTPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'methodo
 # ================================================================
 # CTI WEIGHTS (from production)
 # ================================================================
-CTI_WEIGHTS = {
-    "gpsjam": 12, "adsb": 10, "acled": 8, "firms": 8,
-    "ais": 6, "telegram": 6, "rss": 4, "gdelt": 4,
-    "energy": 6, "business": 4, "ioda": 4,
-}
+from cti_constants import SIGNAL_WEIGHTS as CTI_WEIGHTS
 
 # ================================================================
 # 1. LOAD DATA

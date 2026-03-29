@@ -18,11 +18,7 @@ from datetime import datetime, timedelta
 
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 
-CTI_WEIGHTS = {
-    "gpsjam": 12, "adsb": 10, "acled": 8, "firms": 8,
-    "ais": 6, "telegram": 6, "rss": 4, "gdelt": 4,
-    "energy": 6, "business": 4, "ioda": 4,
-}
+from cti_constants import SIGNAL_WEIGHTS as CTI_WEIGHTS
 
 # ================================================================
 # 1. DAILY BASELINE STABILITY
@@ -34,7 +30,7 @@ print("=" * 70)
 daily = defaultdict(dict)
 with open(f"{DATA}/signal_daily_counts.csv") as f:
     for row in csv.DictReader(f):
-        daily[row['source_type']][row['day']] = int(row['count'])
+        daily[row['source_type']][row['date']] = int(row['signal_count'])
 
 def stats(values):
     n = len(values)

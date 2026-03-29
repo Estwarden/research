@@ -35,17 +35,17 @@ os.makedirs(OUTPUT, exist_ok=True)
 # ================================================================
 # CONSTANTS — OLD PRODUCTION VALUES (for comparison)
 # ================================================================
-OLD_WEIGHTS = {
-    "gpsjam": 12, "adsb": 10, "acled": 8, "firms": 8,
-    "ais": 6, "telegram": 6, "rss": 4, "gdelt": 4,
-    "energy": 6, "business": 4, "ioda": 4,
-}
+from cti_constants import (
+    SIGNAL_WEIGHTS as OLD_WEIGHTS, TOTAL_WEIGHT as OLD_TOTAL,
+    YELLOW_THRESHOLD as OLD_YELLOW, SEV_SCORES,
+    CAMPAIGN_WEIGHT, FABRICATION_WEIGHT, LAUNDERING_WEIGHT,
+    NARRATIVE_WEIGHT, GPSJAM_SEV_WEIGHT,
+)
 OLD_FIMI_WEIGHTS = {
-    "campaigns": 10, "fabrication": 8, "laundering": 6,
-    "narratives": 4, "gpsjam_sev": 10,
+    "campaigns": CAMPAIGN_WEIGHT, "fabrication": FABRICATION_WEIGHT,
+    "laundering": LAUNDERING_WEIGHT, "narratives": NARRATIVE_WEIGHT,
+    "gpsjam_sev": GPSJAM_SEV_WEIGHT,
 }
-OLD_TOTAL = sum(OLD_WEIGHTS.values()) + sum(OLD_FIMI_WEIGHTS.values())  # 110
-OLD_YELLOW = 15.2
 
 # ================================================================
 # CORRECTED WEIGHTS — from R-006/nb18 consensus
@@ -60,12 +60,11 @@ NEW_SIGNAL_WEIGHTS = {
 # INPUT data is cleaner — so the raw FIMI value drops.
 # We keep FIMI weights unchanged per R-006 guidance: fix the inputs, not weights.
 NEW_FIMI_WEIGHTS = {
-    "campaigns": 10, "fabrication": 8, "laundering": 6,
-    "narratives": 4, "gpsjam_sev": 10,
+    "campaigns": CAMPAIGN_WEIGHT, "fabrication": FABRICATION_WEIGHT,
+    "laundering": LAUNDERING_WEIGHT, "narratives": NARRATIVE_WEIGHT,
+    "gpsjam_sev": GPSJAM_SEV_WEIGHT,
 }
 NEW_TOTAL = sum(NEW_SIGNAL_WEIGHTS.values()) + sum(NEW_FIMI_WEIGHTS.values())
-
-SEV_SCORES = {"CRITICAL": 25, "HIGH": 15, "MEDIUM": 8, "LOW": 3}
 EVIDENCE_METHODS = {'framing_analysis', 'injection_cascade', 'outrage_chain', 'manual_analysis'}
 
 print("=" * 78)

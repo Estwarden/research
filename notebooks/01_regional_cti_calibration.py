@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Notebook 10: Multi-Region CTI Threshold Calibration
+01. Regional CTI Calibration (Multi-Region Threshold Calibration)
 
 CRITICAL: The current system uses uniform thresholds (YELLOW=15.2) across all regions.
 Finland is YELLOW 65% of the time, Poland 71%. This is broken.
@@ -25,9 +25,10 @@ from datetime import datetime, timedelta
 from math import sqrt
 
 # Configuration
-DATA_DIR = "../data"
-OUTPUT_DIR = "../output"
-METHODOLOGY_DIR = "../methodology"
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(_HERE, '..', 'data')
+OUTPUT_DIR = os.path.join(_HERE, '..', 'output')
+METHODOLOGY_DIR = os.path.join(_HERE, '..', 'methodology')
 
 # Regions to analyze
 REGIONS = ["estonia", "latvia", "lithuania", "finland", "poland"]
@@ -94,7 +95,7 @@ with open(f"{DATA_DIR}/signals_50d.csv", "r", encoding="utf-8") as f:
         try:
             pub_date = datetime.fromisoformat(row["published_at"].replace("+00", ""))
             date_key = pub_date.date()
-        except:
+        except (ValueError, KeyError, AttributeError):
             continue
         
         # Detect region
@@ -435,12 +436,12 @@ function getThreshold(region: string): Thresholds {{
 ## Appendix: Raw Data
 
 Full score distributions saved to:
-- `output/10_cti_scores_by_region.csv`
-- `output/10_recommended_thresholds.csv`
+- `output/01_cti_scores_by_region.csv`
+- `output/01_recommended_thresholds.csv`
 
 ---
 
-**Notebook:** `notebooks/10_multi_region_cti_calibration.py`
+**Notebook:** `notebooks/01_regional_cti_calibration.py`
 """
 
 with open(f"{METHODOLOGY_DIR}/FINDINGS.regional-calibration.md", "w") as f:
@@ -450,23 +451,23 @@ print(f"\n✅ Findings written to: {METHODOLOGY_DIR}/FINDINGS.regional-calibrati
 
 # Save thresholds as CSV
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-with open(f"{OUTPUT_DIR}/10_recommended_thresholds.csv", "w") as f:
+with open(f"{OUTPUT_DIR}/01_recommended_thresholds.csv", "w") as f:
     f.write("region,yellow,orange,red\n")
     for region in REGIONS:
         if region in recommended_thresholds:
             t = recommended_thresholds[region]
             f.write(f"{region},{t['yellow']},{t['orange']},{t['red']}\n")
 
-print(f"✅ Thresholds saved to: {OUTPUT_DIR}/10_recommended_thresholds.csv")
+print(f"✅ Thresholds saved to: {OUTPUT_DIR}/01_recommended_thresholds.csv")
 
 # Save raw scores
-with open(f"{OUTPUT_DIR}/10_cti_scores_by_region.csv", "w") as f:
+with open(f"{OUTPUT_DIR}/01_cti_scores_by_region.csv", "w") as f:
     f.write("date,region,cti_score\n")
     for region in REGIONS:
         for date, score in cti_by_region[region].items():
             f.write(f"{date},{region},{score:.2f}\n")
 
-print(f"✅ CTI scores saved to: {OUTPUT_DIR}/10_cti_scores_by_region.csv")
+print(f"✅ CTI scores saved to: {OUTPUT_DIR}/01_cti_scores_by_region.csv")
 
 print("\n" + "=" * 80)
 print("✅ ANALYSIS COMPLETE")

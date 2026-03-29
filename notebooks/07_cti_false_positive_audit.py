@@ -74,8 +74,9 @@ for ex in noise_examples[:15]:
     print(f"  • {ex}")
 
 # What would the score be if we only counted relevant items?
-LAUNDERING_WEIGHT = 6
-TOTAL_WEIGHT = 110
+from cti_constants import (
+    LAUNDERING_WEIGHT, TOTAL_WEIGHT, CAMPAIGN_WEIGHT, SEV_SCORES,
+)
 current_score = min(len(laundering), 100) * (LAUNDERING_WEIGHT / TOTAL_WEIGHT)
 filtered_score = min(relevant, 100) * (LAUNDERING_WEIGHT / TOTAL_WEIGHT)
 print(f"\nCurrent laundering score: {current_score:.2f} (from {len(laundering)} events)")
@@ -118,8 +119,7 @@ for c in high_empty:
     print(f"    • [{c['status']}] {c['name'][:80]} (sigs={c['signal_count']})")
 
 # Score impact — what if we only count campaigns with actual evidence?
-sev_scores = {"CRITICAL": 25, "HIGH": 15, "MEDIUM": 8, "LOW": 3}
-CAMPAIGN_WEIGHT = 10
+sev_scores = SEV_SCORES
 
 all_raw = sum(sev_scores.get(c['severity'], 5) for c in campaigns 
               if c['status'] == 'ACTIVE')

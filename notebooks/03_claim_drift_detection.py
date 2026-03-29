@@ -1,17 +1,5 @@
-# ---
-# jupyter:
-#   jupytext:
-#     text_representation:
-#       extension: .py
-#       format_name: percent
-#   kernelspec:
-#     display_name: Python 3
-#     language: python
-#     name: python3
-# ---
-
-# %% [markdown]
-# # 15. Claim Drift Detection — Measuring Fabrication per Hop
+#!/usr/bin/env python3
+# # 03. Claim Drift Detection — Measuring Fabrication per Hop
 #
 # **Paper:** "Simulating Misinformation Propagation in Social Networks using LLMs"
 # — Maurya et al. (arXiv, Nov 2025)
@@ -33,10 +21,10 @@
 # 4. Compare: what claims appear in later signals but NOT in the root?
 # 5. Score: Misinformation Index = (fabricated claims) / (total claims)
 
-# %% [markdown]
+
 # ## Setup
 
-# %%
+
 import os
 import re
 import json
@@ -46,7 +34,7 @@ from collections import defaultdict
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 
-# %% [markdown]
+
 # ## 1. Claim Extraction (Heuristic — No LLM Required)
 #
 # Extract specific, verifiable claims from text:
@@ -56,7 +44,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 # - Certainty markers ("will attack", "final stage", "beschlossene Sache")
 # - Named entities (people, organizations, places)
 
-# %%
+
 # Claim extraction patterns (multilingual: EN, UK, RU, DE)
 CLAIM_PATTERNS = {
     'time_reference': [
@@ -133,13 +121,13 @@ print(extract_claims(test_bild))
 print("\n=== Smolii (amplifier) ===")
 print(extract_claims(test_smolii))
 
-# %% [markdown]
+
 # ## 2. Claim Drift Computation
 #
 # Compare claims between root signal and each subsequent signal.
 # Claims that appear in later signals but NOT in root = fabricated.
 
-# %%
+
 def compute_claim_drift(root_claims, signal_claims):
     """
     Compute claim drift between root signal and an amplifying signal.
@@ -184,7 +172,7 @@ print(f"Drift score: {drift:.2f}")
 print(f"Fabricated: {fab}")
 print(f"Removed: {rem}")
 
-# %% [markdown]
+
 # ## 3. Misinformation Index per Cluster
 #
 # For each event cluster:
@@ -192,7 +180,7 @@ print(f"Removed: {rem}")
 # 2. Compare all other signals against root
 # 3. Compute aggregate Misinformation Index
 
-# %%
+
 def analyze_cluster_drift(signals_df, text_col='title', time_col='published_at', category_col=None):
     """
     Analyze claim drift within a cluster of signals.
@@ -267,10 +255,10 @@ if result:
     print(f"Fabricated types: {result['fabricated_claim_types']}")
     print(f"Removed types: {result['removed_claim_types']}")
 
-# %% [markdown]
+
 # ## 4. Apply to Real Data
 
-# %%
+
 signals_path = os.path.join(DATA_DIR, 'signals_14d.csv')
 if os.path.exists(signals_path):
     df = pd.read_csv(signals_path)
@@ -305,7 +293,7 @@ if os.path.exists(signals_path):
 else:
     print("No data file — see data/README.md for export instructions")
 
-# %% [markdown]
+
 # ## 5. Interpretation & Next Steps
 #
 # - **MI > 0.5**: High fabrication — multiple claim types added beyond source

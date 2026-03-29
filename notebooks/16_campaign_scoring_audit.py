@@ -45,10 +45,7 @@ DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 # ================================================================
 # CTI ALGORITHM CONSTANTS
 # ================================================================
-CAMPAIGN_WEIGHT = 10
-TOTAL_WEIGHT = 110
-YELLOW_THRESHOLD = 15.2
-SEV_SCORES = {"CRITICAL": 25, "HIGH": 15, "MEDIUM": 8, "LOW": 3}
+from cti_constants import CAMPAIGN_WEIGHT, TOTAL_WEIGHT, YELLOW_THRESHOLD, SEV_SCORES
 
 print("=" * 72)
 print("16. CAMPAIGN SCORING AUDIT")

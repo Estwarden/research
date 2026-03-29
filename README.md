@@ -15,6 +15,9 @@ The diagnostic results (what's broken) are solid. The prescriptive results (new 
 thresholds) need further validation. See [methodology/FINDINGS.md](methodology/FINDINGS.md)
 for the comprehensive research summary.
 
+**Planning:** [RESEARCH-SPECS.md](RESEARCH-SPECS.md) for the status of all research tracks.
+[ROADMAP.md](ROADMAP.md) for the phased plan of new research (nb35+).
+
 ## Notebooks
 
 All notebooks are standalone `.py` files. Run from the `notebooks/` directory:
@@ -81,6 +84,19 @@ cd notebooks && python3 01_regional_cti_calibration.py
 | 32 | [Collector Health](notebooks/32_collector_health.py) | Data freshness dashboard | 76% of days DEGRADED; 4 dead collectors identified |
 | 33 | [AIS Deep Dive](notebooks/33_ais_deep_dive.py) | Separate downtime from naval anomalies | High CV is collector breakage; stable when working (~62K/day) |
 | 34 | [Embedding Quality](notebooks/34_embedding_quality.py) | Cross-lingual embedding validation | EN>RU>LT (3–5% gap); ET/LV data sparse |
+
+### Roadmap Research (nb35–43)
+
+| # | Notebook | What it does | Key finding |
+|---|----------|-------------|-------------|
+| 35 | [Moderate Weights](notebooks/35_moderate_weights.py) | Middle-path weight recalibration (~45 vs 72/24) | Tier-based: reliable sources keep weight, dead/noisy zeroed |
+| 36 | [PLMSE Cascade](notebooks/36_plmse_cascade.py) | Power-law fit metric per cluster (no ML) | Hostile PLMSE < clean (consistent with "Signals of Propaganda") |
+| 37 | [Fabrication Gate](notebooks/37_fabrication_gate.py) | Same-event + relevance filter for fabrication alerts | 79% reduction in fabrication CTI noise; 75% of alerts are non-Baltic |
+| 38 | [Labeled Dataset](notebooks/38_labeled_dataset.py) | Unified labeled cluster dataset for downstream research | 6 hostile, 24 clean; need 33+ hostile for Fisher p<0.01 |
+| 39 | [AIS Tiers](notebooks/39_ais_tiers.py) | Split AIS into defense-relevant vs raw volume | CV=117%; 5 regime changes; Tier 1 weight=4, Tier 2 conditional |
+| 40 | [Fisher+Hawkes](notebooks/40_fisher_hawkes.py) | 3-feature Fisher with Hawkes branching ratio | LOO F1=0.667, bootstrap CI [0.364, 1.000]; needs more hostile labels |
+| 41 | [Origin-Agnostic Velocity](notebooks/41_origin_agnostic_velocity.py) | Remove RU-origin gate from velocity detection | Hostile amplification_ratio=0.60 vs clean=0.34; catches Bild-map type |
+| 43 | [Community Structure](notebooks/43_community_structure.py) | Propagation graph features per cluster | Hostile denser (consistent with TIDE-MARK); LOO 58% (need more data) |
 
 ## Autoresearch
 
@@ -155,6 +171,12 @@ Notebooks use CSV exports in `data/`. See [data/README.md](data/README.md) for f
 | `signal_daily_counts.csv` | 499 | Daily counts per source_type |
 | `signal_hourly_counts.csv` | 2,154 | Hourly counts per source_type |
 | `laundering_classified.csv` | — | Classified laundering events (nb15) |
+
+## Archived
+
+`satellite-analysis/` contains earlier satellite imagery experiments (vehicle detection,
+spectral analysis, SAR). Superseded by notebooks 20–23 which use systematic Sentinel-2
+baselines via GEE.
 
 ## Related
 

@@ -38,17 +38,17 @@ os.makedirs(OUTPUT, exist_ok=True)
 # ================================================================
 # PRODUCTION CTI WEIGHTS (signal sources only — FIMI handled separately)
 # ================================================================
-CTI_SIGNAL_WEIGHTS = {
-    "gpsjam": 12, "adsb": 10, "acled": 8, "firms": 8,
-    "ais": 6, "telegram": 6, "rss": 4, "gdelt": 4,
-    "energy": 6, "business": 4, "ioda": 4,
-}
+from cti_constants import (
+    SIGNAL_WEIGHTS as CTI_SIGNAL_WEIGHTS, TOTAL_WEIGHT as TOTAL_CTI_WEIGHT,
+    CAMPAIGN_WEIGHT, FABRICATION_WEIGHT, LAUNDERING_WEIGHT,
+    NARRATIVE_WEIGHT, GPSJAM_SEV_WEIGHT,
+)
 FIMI_WEIGHTS = {
-    "campaigns": 10, "fabrication": 8, "laundering": 6,
-    "narratives": 4, "gpsjam_sev": 10,
+    "campaigns": CAMPAIGN_WEIGHT, "fabrication": FABRICATION_WEIGHT,
+    "laundering": LAUNDERING_WEIGHT, "narratives": NARRATIVE_WEIGHT,
+    "gpsjam_sev": GPSJAM_SEV_WEIGHT,
 }
 TOTAL_SIGNAL_WEIGHT = sum(CTI_SIGNAL_WEIGHTS.values())  # 72
-TOTAL_CTI_WEIGHT = TOTAL_SIGNAL_WEIGHT + sum(FIMI_WEIGHTS.values())  # 110
 
 # Non-CTI sources we still care about for situational awareness
 SA_SOURCES = {

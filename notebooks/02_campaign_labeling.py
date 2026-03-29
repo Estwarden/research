@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
-Notebook 13: Campaign Labeling Pipeline
+02. Campaign Labeling Pipeline
 
 Creates a template for manual campaign review and labeling.
 Output: data/labeled_campaigns.csv for human analysts to fill in.
 """
 
 import csv
+import os
 from datetime import datetime
 
-DATA_DIR = "../data"
+_HERE = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(_HERE, '..', 'data')
 
 print("=" * 80)
 print("Campaign Labeling Pipeline")

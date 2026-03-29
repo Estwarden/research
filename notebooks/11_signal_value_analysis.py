@@ -24,7 +24,7 @@ with open(f"{DATA}/threat_index_history.csv") as f:
         row['components'] = json.loads(row['components'].replace("'", '"')) if row['components'] else {}
         try:
             row['details'] = json.loads(row['details'].replace("'", '"')) if row['details'] else {}
-        except:
+        except (json.JSONDecodeError, ValueError, AttributeError):
             row['details'] = {}
         cti.append(row)
 

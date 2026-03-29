@@ -78,7 +78,7 @@ print("2. COMPONENT BUDGET — theoretical max contributions")
 print("=" * 70)
 
 # From the CTI code
-TOTAL_WEIGHT = 110  # 76 signals + 10 campaign + 8 fab + 6 launder + 4 narrative + 10 gpsjam
+from cti_constants import TOTAL_WEIGHT  # 110
 # But note: energy price also contributes but isn't in the weight constant
 
 # Max possible per component
