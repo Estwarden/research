@@ -1,0 +1,24 @@
+# Raw datasets (49GB+ Kyrychenko, 6GB EPFL, etc.)
+data/raw/
+data/processed/*.parquet
+data/processed/*.npz
+data/processed/*.h5
+
+# Model weights
+models/
+*.pt
+*.onnx
+*.safetensors
+*.bin
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large outputs
+output/*.parquet
+output/*.h5
