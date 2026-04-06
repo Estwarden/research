@@ -5,91 +5,56 @@ tags: [cti, formula, diagnostics]
 
 # CTI Formula
 
-The Composite Threat Index combines 30+ data sources into a single threat level (GREEN / YELLOW / ORANGE / RED) per region. This track diagnosed why it's **stuck at YELLOW 80% of the time** and proposed fixes.
+The Composite Threat Index combines 30+ data sources into a single threat level per region per day: GREEN, YELLOW, ORANGE, RED. It's meant to answer "how worried should we be about Baltic security right now?"
 
-## The Bug: Permanent YELLOW
+For most of the study period, the answer was YELLOW — 80% of the time. That's not useful. A threat level that's always elevated is the same as no threat level at all.
 
-On 80% of active days (Mar 7–25), CTI ≥ 15.2 (YELLOW threshold) regardless of actual threat conditions. Root causes:
+## Why It Was Stuck
 
-1. **FIMI scoring inflated** — campaigns + laundering alone produce 76% of the YELLOW threshold
-2. **Evidence-free campaigns** — 70% of campaigns lack detection evidence but contribute 73% of max severity
-3. **Laundering noise** — 73% of laundering events are irrelevant (sports, domestic RU news)
-4. **Dead collectors** — 12+ sources died Mar 15–20, still weighted in formula
+The research ran a diagnostic chain (nb14 → 15 → 16 → 17) that peeled back the problem layer by layer. This is the strongest work in the repository.
 
-## Diagnostic Chain (nb14 → 15 → 16 → 17)
+**Layer 1 — FIMI dominates everything (nb14).** The FIMI (Foreign Information Manipulation and Interference) sub-score alone pushed CTI past the YELLOW threshold. Campaigns contributed 43% and narrative laundering 19%. Even if every other sensor read zero — no ships, no aircraft, no radiation, no GPS jamming — the FIMI score kept the system at YELLOW.
 
-Each notebook peels back one layer:
+**Layer 2 — Laundering is mostly garbage (nb15).** 73% of detected "laundering" events were irrelevant: NHL hockey scores flowing through Russian sports channels, Soyuz launch coverage, domestic Russian politics. The laundering detector matched on structural patterns (content moving between source categories) without checking if the content was actually threat-relevant. A relevance filter cut the noise by 80%.
 
-| Notebook | Question | Answer |
-|----------|----------|--------|
-| `14_fimi_floor_decomposition` | What drives the FIMI floor? | Campaigns (43%) + laundering (19%) |
-| `15_laundering_audit` | How much laundering is noise? | 73% — relevance filter cuts score 80% |
-| `16_campaign_scoring_audit` | Do campaigns have evidence? | 70% don't — evidence tiers remove phantom severity |
-| `17_robust_baselines` | Are baselines stable? | No — median+MAD beats mean+std for all sources |
+**Layer 3 — Campaigns without evidence (nb16).** 70% of campaigns (26 of 37) had no detection method — no Fisher score, no Hawkes analysis, no FIMI indicators. They existed because someone manually created them or an early heuristic fired. These evidence-free campaigns contributed 73% of the campaign severity score. An evidence gate stopped scoring campaigns that couldn't explain why they were campaigns.
 
-This diagnostic chain is **reproducible and solid**. The findings are safe to act on.
+**Layer 4 — Baselines were wrong (nb17).** Standard z-scores (mean + standard deviation) don't work when the data has huge outliers, which AIS and ADS-B always do (a single ship convoy can spike volume 10x). Robust z-scores (median + MAD) are strictly better — they ignore outliers while still detecting genuine anomalies. Binary mode (present/absent) works best for the most volatile sources.
 
 ## What's Deployed
 
-| Fix | Source | Impact |
-|-----|--------|--------|
-| Laundering relevance filter | nb15 | 80% noise reduction in laundering score |
-| Campaign evidence gate | nb16 | Evidence-free campaigns scored lower |
-| Robust baselines (median+MAD) | nb17 | Stable z-scores for all sources |
-| DEGRADED flag | nb18 | Days with missing collectors marked |
-| Dead collector weight = 0 | nb18 | ACLED, IODA zeroed out |
+The diagnostic fixes are all in production:
 
-## What's NOT Deployed (and Why)
+- **Laundering relevance filter** — requires cluster to touch 3+ source categories before counting as laundering. Noise drops 80%.
+- **Campaign evidence gate** — campaigns without any detection method get scored lower.
+- **Robust baselines** — median+MAD for all sources, binary for high-CV sources (AIS, ADS-B).
+- **DEGRADED flag** — days with <70% source coverage are marked, not scored normally.
+- **Dead collector weight=0** — ACLED and IODA (zero data) removed from formula.
 
-| Proposal | Source | Problem |
-|----------|--------|---------|
-| Weight total 72 → 24 | nb18 | Too aggressive — algorithm produces near-zero scores 30 of 50 days |
-| YELLOW = 7.9 | nb19 | Calibrated on the broken algorithm — circular validation |
-| Per-region thresholds | nb01 | <10 data points per region |
+GREEN is now achievable under the corrected algorithm.
 
-**The moderate path** (from `../methodology/VALIDITY.md`): weight total ~45, keeping FIMI share at ~46%. Requires 90+ days of stable collector data first (R-35 in roadmap).
+## What Went Wrong: The Weight Disaster
 
-## Key Numbers
+After diagnosing the problem, nb18 tried to fix it by recalibrating weights. The "consensus" approach cut signal weights from 72 to 24 — a 67% reduction. The result: **the algorithm was dead.** 30 of 50 study days scored near zero. Only GPS jamming data (available 15 of 88 days) produced meaningful signals.
 
-| Metric | Value | Source |
-|--------|-------|--------|
-| Days stuck at YELLOW | 80% of active period | nb06, nb12 |
-| FIMI contribution to YELLOW | 76% of threshold | nb14 |
-| Laundering false positive rate | 73% | nb15 |
-| Campaigns without evidence | 70% (26 of 37) | nb16 |
-| Dead collectors | 12+ since Mar 15–20 | nb09 |
-| Current weight total | 72 (signal) + 38 (FIMI) = 110 | algorithm spec |
-| Proposed moderate total | ~45 (signal) + 38 (FIMI) = ~83 | VALIDITY.md |
+VALIDITY.md caught this: "72→24 kills the algorithm." The moderate path (nb35) targets ~45, keeping FIMI share at ~46% instead of the broken 61%. But this needs 90+ days of stable collector data to validate — which requires fixing the dead collectors first (see [[Data Quality]]).
 
-## Experiments
+The YELLOW=7.9 threshold (nb19) is also wrong — it was calibrated against the broken algorithm's own output. Keep production thresholds (15.2/59.7/92.8) until weights are properly validated.
 
-| # | Notebook | Domain |
-|---|----------|--------|
-| 01 | `01_regional_cti_calibration` | Per-region thresholds |
-| 06 | `06_cti_decomposition` | CTI component breakdown |
-| 07 | `07_cti_false_positive_audit` | False positive catalogue |
-| 08 | `08_threshold_recalibration` | Initial threshold analysis |
-| 12 | `12_honest_cti_assessment` | End-to-end critique |
-| 14 | `14_fimi_floor_decomposition` | FIMI sub-component analysis |
-| 15 | `15_laundering_audit` | Laundering noise classification |
-| 16 | `16_campaign_scoring_audit` | Campaign evidence tiers |
-| 17 | `17_robust_baselines` | Per-source baseline methods |
-| 18 | `18_weight_recalibration` | Weight optimization |
-| 19 | `19_threshold_final` | Final threshold calibration |
-| 35 | `35_moderate_weights` | Moderate weight path |
+## The Sequence
 
-## Deep Dives
+You can't fix the CTI out of order:
 
-- `../methodology/FINDINGS.md` — Part 1 (CTI Formula Fixes)
-- `../methodology/FINDINGS.cti-fimi-floor.md` — FIMI floor decomposition detail
-- `../methodology/FINDINGS.robust-baselines.md` — Baseline method comparison
-- `../methodology/FINDINGS.threshold-recalibration.md` — Threshold analysis detail
-- `../methodology/FINDINGS.regional-calibration.md` — Per-region calibration
-- `../methodology/VALIDITY.md` — Why proposed fixes are too aggressive
+1. Fix collectors ([[Data Quality]]) — you need stable inputs
+2. Run 90 days under corrected algorithm — you need enough data
+3. Validate moderate weights (~45) — you need the data to test against
+4. Re-derive thresholds from external ground truth (ISW, ACLED) — not self-referential
+5. Deploy
 
-## Next Steps
+We're stuck at step 1.
 
-1. **Fix collectors** (F-01) — prerequisite for everything
-2. **Accumulate 90 days** of stable data under corrected algorithm
-3. **Moderate weight recalibration** (R-35) — target ~45 total
-4. **Re-derive thresholds** on clean data with external ground truth
+## Key Experiments
+
+The diagnostic chain (nb14-17) is worth reading directly — each notebook has clear methodology and reproducible results. nb18-19 are worth reading as cautionary tales about premature optimization. nb35 (moderate weights) is the current best proposal.
+
+Full details: `../methodology/FINDINGS.md` Part 1, `../methodology/VALIDITY.md`.

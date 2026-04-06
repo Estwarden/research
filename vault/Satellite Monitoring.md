@@ -1,84 +1,89 @@
 ---
-status: evergreen
-tags: [satellite, geoint, sentinel, milbase]
+status: growing
+tags: [satellite, geoint, sentinel, milbase, multi-source]
 ---
 
 # Satellite Monitoring
 
-Detecting military activity changes at Russian bases near the Baltic using free satellite imagery (primarily Sentinel-2). Methods are validated but the **pipeline is broken** — Sentinel-2 collector dead since Mar 14.
+EstWarden monitors Russian military installations near the Baltic — Pskov (76th Guards Airborne), Luga (training grounds), Kronstadt (Baltic Fleet), and others — using free satellite imagery. The goal: detect significant activity changes before they appear in the news cycle.
 
-## Approaches
+In March 2026, this mattered concretely: [NASA FIRMS detected a massive fire](https://www.facebook.com/OnGeoIntelligence/videos/1259426422299178/) at the Zavelichi training ground in Pskov Oblast, 32km from NATO territory. Delfi Estonia published [satellite analysis showing Russian bases near Estonia have been half-emptied](https://ekspress.delfi.ee/artikkel/120333504/satellite-imagery-analysis-what-s-going-on-in-putin-s-military-bases-behind-the-estonian-border-and-how-big-a-threat-they-really-pose-us) over recent years — forces redeployed to Ukraine. Knowing this in near-real-time matters for Baltic defense planning.
 
-### Seasonal Baselines (nb20)
+## Production: Multi-Source GEOINT (April 2026)
 
-Build 3-year NDVI/BSI weekly profiles per military site. Deseasonalized z-scores detect anomalies against the seasonal norm.
+The [latest production pipeline](https://blog.estwarden.eu/investigations/multi-source-geoint/) has moved well beyond what the research notebooks cover. It fuses **7 independent sources** into a single confidence score per site:
 
-- **Key insight:** Year-over-year same-month comparison is the correct baseline, not 30-day rolling (which triggers on snowmelt)
-- **Status:** HIGH confidence. GEE-validated.
+**Optical satellite** (Sentinel-2, 13 bands) — now computes 8 spectral indices instead of the original 3:
 
-### Isolation Forest Anomaly (nb21)
+| Index | What it sees | Why it matters |
+|-------|-------------|----------------|
+| NDVI | Vegetation health | Baseline — vehicle staging disturbs vegetation |
+| **NDRE** | Red-edge reflectance (700-783nm) | **Camouflage detection** — paint can't replicate the cellular reflectance spike of real leaves |
+| NDBI | Built-up areas | New construction, hardened shelters |
+| BSI | Bare soil | Ground disturbance, earthworks |
+| **EVI** | Dense vegetation (NDVI saturates in forests) | Baltic region is heavily forested — EVI works where NDVI can't |
+| **NDWI / MNDWI** | Water bodies, flooding | Port activity, dam infrastructure |
+| **NBR** | Burn scars | Strike damage, fire events like the Pskov fire |
 
-Per-site multivariate anomaly detection on spectral indices.
+**SAR radar** (Sentinel-1, dual polarization) — works through clouds and at night. The VH/VV ratio distinguishes metal structures (low ratio) from vegetation (high ratio). In a region that's overcast 60-70% of the year, this is essential.
 
-- **Finding:** Acts as proxy detector — catches surface changes but can't distinguish military vs civilian
-- **Status:** MEDIUM. Useful as pre-filter, needs domain interpretation layer.
+**Nighttime lights** (VIIRS DNB) — new lights at a base that's usually dark, or a base going dark that's usually lit, are both significant.
 
-### CCDC Breakpoint Detection (nb22)
+**Land cover** (Dynamic World) — 10m classification detects when forest is cleared or structures appear.
 
-Continuous Change Detection and Classification — finds abrupt spectral shifts in multi-year time series.
+**Ship tracking** (AIS within 30km of naval bases) — compares current 48-hour vessel count against 7-day baseline.
 
-- **Finding:** 6 breakpoints detected in 3 years across monitored sites. 1 confirmed match with ISW timeline (Luga base, -2 days before reported activity).
-- **Status:** MEDIUM (N=6, 1 confirmed). Promising but small sample.
+**Aircraft tracking** (ADS-B within 50km of airbases) — same comparison.
 
-### Temporal Change Maps (nb23)
+**Fire hotspots** (FIRMS) — thermal alerts per site.
 
-Automated year-over-year change heatmaps for military sites.
+### EMCON Detection
 
-- **Output:** 14 change maps in `../output/change_heatmaps/` (Luga + Pskov-76VDV, 7 variants each)
-- **Status:** HIGH. Correct methodology, eliminates snowmelt false positives.
+The most intelligence-relevant innovation. When a base shows satellite activity (new vehicles, ground disturbance) but AIS/ADS-B transponders go silent against their baseline — that's Emissions Control (EMCON). Someone deliberately turned off their tracking. In intelligence, the absence of an expected signal is often more significant than the presence of a new one.
 
-## Earlier Work (satellite-analysis/)
+### Camouflage Detection
 
-The `../satellite-analysis/` directory contains earlier Jupyter notebook experiments (now superseded):
+NDRE exploits physics that camouflage can't defeat. Healthy plant cells produce a reflectance spike between 700-783nm (the "red edge") caused by internal leaf structure. Camouflage paint, no matter how well-matched in visible green, scores near zero in this band. High NDVI + low NDRE = camouflage suspect.
 
-| Notebook | What | Result |
-|----------|------|--------|
-| 01-vehicle-detection.ipynb | YOLO vehicle detection on SkySat/WorldView | **Zero military vehicles** detected at Russian bases. Positive control: detected 10+ aircraft at Tallinn Airport. |
-| 02-spectral-analysis.ipynb | WorldView-3 spectral clustering | Spectral signatures identified but no ground truth. |
-| 03-sar-analysis.ipynb | Sentinel-1 SAR backscatter | Temporal comparison worked but interpretation ambiguous. |
+### Alternative Hypotheses
 
-These are superseded by nb20–23 which use more systematic Sentinel-2 baselines.
+Every observation now gets 2-3 competing explanations ranked by likelihood (exercise / operational deployment / routine maintenance), borrowed from Analysis of Competing Hypotheses methodology. This combats the tendency to see what you expect.
 
-## What's Broken
+## Research: Notebooks 20-23
 
-| Problem | Impact |
-|---------|--------|
-| Sentinel-2 collector dead since Mar 14 | No new imagery ingestion |
-| FIRMS is only working satellite source | Fire/thermal only, no optical |
-| Dempster-Shafer fusion engine deleted | No multi-sensor combination |
-| No SAR integration in new pipeline | Missing cloud-penetrating capability |
+The research notebooks established the *foundation* for what production now uses, but are significantly behind the current pipeline:
 
-## Experiments
+**nb20 — Seasonal Baselines.** Built 3-year NDVI/BSI weekly profiles per site via Google Earth Engine. Key insight: year-over-year same-month comparison is the correct baseline, not 30-day rolling (which triggers on snowmelt). HIGH confidence — this methodology is the basis of the production deseasonalized z-scores.
 
-| # | Notebook | Method |
-|---|----------|--------|
-| 20 | `20_sentinel2_seasonal_baselines` | 3-year seasonal profiles |
-| 21 | `21_iforest_satellite_baselines` | Isolation Forest anomaly |
-| 22 | `22_ccdc_breakpoints` | CCDC breakpoint detection |
-| 23 | `23_s2_temporal_change` | Year-over-year change maps |
+**nb22 — CCDC Breakpoints.** Continuous Change Detection found 6 abrupt spectral shifts across monitored sites in 3 years. One matched the ISW timeline: Luga base showed a breakpoint 2 days before ISW reported a deployment. MEDIUM confidence — promising but N=6 with only 1 confirmed match.
 
-Plus 3 Jupyter notebooks in `../satellite-analysis/notebooks/`.
+**nb21 — Isolation Forest.** Per-site anomaly detection on spectral features. Detected ships at Kronstadt (94% bright NIR) and equipment staging at Pskov. Acts as a proxy — catches surface changes but can't distinguish military from civilian activity.
 
-## Deep Dives
+**nb23 — Temporal Change Maps.** Automated year-over-year heatmaps for Luga and Pskov-76VDV (14 maps in `../output/change_heatmaps/`). Eliminates snowmelt false positives.
 
-- `../methodology/FINDINGS.md` — Part 3 (Satellite & Milbase Monitoring)
-- `../methodology/FINDINGS.satellite-imagery.md` — Sentinel-2 analysis details
-- `../methodology/FINDINGS.satellite-ccdc.md` — CCDC breakpoint methodology
-- `../methodology/FINDINGS.milbase-monitoring.md` — Military site monitoring design
+### Earlier Work (satellite-analysis/)
 
-## Next Steps
+Pre-research Jupyter experiments: YOLO vehicle detection on SkySat imagery found zero military vehicles at Russian bases (but successfully detected 10+ aircraft at Tallinn Airport as positive control). Spectral clustering and SAR backscatter analysis produced ambiguous results. All superseded by nb20-23 and now by the production pipeline.
 
-1. **Fix Sentinel-2 collector** (F-01) — prerequisite
-2. **Integrate SAR** (Sentinel-1) into the new pipeline — cloud-penetrating backup
-3. **Rebuild fusion engine** — combine satellite + FIRMS + AIS for maritime sites
-4. **Accumulate detections** for statistical validation (need 10+ confirmed ISW matches)
+## Gap: Research Needs to Catch Up
+
+The production pipeline has shipped capabilities the research hasn't validated:
+
+| Production feature | Research status | What's needed |
+|---|---|---|
+| NDRE camouflage detection | Not studied | Validate against known concealment sites |
+| EMCON correlation | Not studied | Test against ISW deployment timeline |
+| 7-source confidence scoring | Not studied | Measure false positive / negative rates |
+| Dual-pol SAR baselines | Not studied | Build VV/VH seasonal profiles (like nb20 did for optical) |
+| EVI for dense forest | Not studied | Compare EVI vs NDVI for Baltic forest sites |
+| Alternative hypotheses quality | Not studied | Evaluate against analyst assessments |
+
+These should become R-59 through R-64 in [[Research Directions]].
+
+## Sources
+
+- [Seeing What's Hidden — EstWarden blog](https://blog.estwarden.eu/investigations/multi-source-geoint/) (April 2026)
+- [Satellite imagery of Pskov fire](https://www.facebook.com/OnGeoIntelligence/videos/1259426422299178/) — OnGeo Intelligence (March 2026)
+- [Russian bases near Estonia half-emptied](https://ekspress.delfi.ee/artikkel/120333504/) — Delfi/Ekspress satellite analysis
+- Sentinel-2: [ESA Copernicus](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2), 13-band optical, 10m, 5-day revisit
+- Sentinel-1: [ESA Copernicus](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1), C-band SAR, works through clouds

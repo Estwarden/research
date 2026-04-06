@@ -5,7 +5,9 @@ tags: [plan, improvements, deployment, priorities]
 
 # Improvement Plan
 
-What to improve in EstWarden, organized by what's deployable now vs what needs work. Based on analysis of all 43 notebooks, current data, and production gaps.
+What to improve in EstWarden, organized by what's deployable now vs what needs work. Based on analysis of all 43 notebooks, current data, production gaps, and the [multi-source GEOINT upgrade](https://blog.estwarden.eu/investigations/multi-source-geoint/) that shipped in production.
+
+> **Note:** The satellite pipeline is now significantly ahead of the research — 7-source fusion, NDRE camouflage detection, EMCON correlation, dual-pol SAR, and alternative hypotheses are all in production but lack formal research validation. Phase 2 includes back-porting these for validation.
 
 > The single most important insight: **90% of actionable improvements can deploy within 2 weeks using existing data.** The blocker is infrastructure, not research.
 

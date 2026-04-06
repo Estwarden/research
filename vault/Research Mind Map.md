@@ -5,96 +5,64 @@ tags: [overview, mind-map, patterns]
 
 # Research Mind Map
 
-Six core patterns that repeat across every research track. Understand these and the rest is detail.
+Six patterns that explain why this research looks the way it does — and where it goes next.
 
-## 1. Garbage In, Garbage Out
+## 1. The System Is Eating Its Own Noise
 
-The CTI fuses 30+ data sources into one threat score. When sources break, the score breaks.
+When Latvia's defense ministry [accused Russia of spreading false claims](https://therecord.media/latvia-accuses-russia-of-disinformation-campaign-ukraine-war) that Baltic states opened airspace to Ukrainian drones, EstWarden's campaign detection should have flagged it. Instead, the Composite Threat Index was already at YELLOW because of NHL game summaries and Soyuz launch coverage that the "laundering detector" misidentified as narrative amplification.
 
-- 12+ collectors died Mar 15–20
-- 76% of study days are DEGRADED
-- AIS has 4x throughput swings from collector instability (not naval activity)
-- ADS-B has 76% military aircraft misclassification
+This is the foundational problem. 73% of laundering events are noise. 70% of campaigns have zero detection evidence behind them. The FIMI score — meant to measure foreign information manipulation — was dominated by irrelevant content that happened to flow through Russian-language channels.
 
-**No formula fix matters until inputs stabilize.** This is why [[Data Quality]] is the primary blocker for everything.
+The fix was surgical: a relevance filter that cut laundering noise by 80%, and an evidence gate that stopped scoring campaigns without detection methods. Both deployed. The CTI immediately became more meaningful. But the lesson is broader: **any fused-intelligence system will amplify noise unless every input is independently validated.**
 
-## 2. Small N Kills Claims
+## 2. Six Hostile Labels Is Not Enough
 
-Every detection method hits the same wall: not enough labeled hostile data.
+Every detection method crashes into the same wall: we only have 6 labeled hostile clusters.
 
-| Method | Claimed | Actual | Why | N needed |
-|--------|---------|--------|-----|----------|
-| Fisher discriminant | F1=0.92 | F1=0.615 | 6 hostile clusters | 33+ |
-| Narrative velocity | F1=1.00 | meaningless | 8 labeled narratives | 30+ |
-| Hawkes branching ratio | — | p=0.04 | 281 clusters, directional | solid for now |
-| FIMI regex | — | 80% pre-screen | 30 samples, RU/EN only | extend to ET/LV/LT |
+When the Fisher discriminant claimed F1=0.92, it looked like a breakthrough. But that score came from testing on the same tiny dataset used for training. Proper leave-one-out cross-validation on 30 samples gave F1=0.615 — barely better than a coin flip. Narrative velocity claimed F1=1.00, but on 8 examples — you could fit almost any model to 8 data points and get perfect accuracy.
 
-The fix is a labeled dataset expansion (R-38 in `../ROADMAP.md`). Until then, treat all detection thresholds as provisional.
+The Hawkes branching ratio is the exception: tested on 281 clusters, it shows state-heavy clusters have 2.4x more coordination than clean ones (p=0.04). It works because it measures a structural property (temporal self-excitation) rather than trying to classify with tiny labeled sets.
 
-## 3. Diagnostics Are Easy, Prescriptions Are Hard
+The fix is R-38: build a proper labeled dataset by cross-referencing against [EUvsDisinfo's database](https://euvsdisinfo.eu/disinformation-cases/) of 1,000+ documented cases. Until then, treat all detection thresholds as provisional.
 
-Finding bugs is straightforward. Fixing them requires stable data over time.
+## 3. Diagnostics Work, Prescriptions Don't (Yet)
 
-| Type | Example | Status |
-|------|---------|--------|
-| Diagnostic | Laundering is 73% noise | SOLID — deployed |
-| Diagnostic | 70% of campaigns lack evidence | SOLID — deployed |
-| Diagnostic | 12 collectors are dead | SOLID — confirmed |
-| Prescription | New weight total = 24 | TOO AGGRESSIVE — do not deploy |
-| Prescription | YELLOW threshold = 7.9 | CALIBRATED ON BROKEN DATA — do not deploy |
-| Prescription | Moderate weights ~45 | PROPOSED — needs 90 days validation |
+Finding that laundering is 73% noise required only counting. Fixing it required a relevance filter — straightforward. Finding that 12 collectors are dead required only checking uptime. Fixing them is ops work.
 
-**Rule:** deploy diagnostic fixes (remove known noise). Defer prescriptive fixes (new thresholds) until 90+ days of stable data exist.
+But when the research tried to prescribe *new* values — weight total 24, YELLOW threshold 7.9 — it went wrong. The weight cut killed the algorithm (30 of 50 days scored near zero). The threshold was calibrated against the broken algorithm's own labels — circular validation.
 
-## 4. Multi-Sensor Fusion Is the Goal
+The pattern: **diagnostic findings from nb14-17 are the strongest work in this repo. Prescriptive findings from nb18-19 are the weakest.** The moderate-weights path (nb35, target ~45) respects this distinction.
 
-The vision: satellite + SIGINT + media + maritime AIS → one coherent threat picture.
-The reality: each sensor has its own validation crisis.
+## 4. Production Has Outrun the Research
 
-| Sensor | State | Blocker |
-|--------|-------|---------|
-| Media / FIMI | Architecture deployed | Only 6 hostile labels |
-| Satellite | Methods validated | Collector dead since Mar 14 |
-| Maritime (AIS) | Data flowing | 4x throughput swings |
-| Aviation (ADS-B) | Data flowing | 76% misclassification |
-| GPS jamming | Strongest signal source | Data on only 15 of 88 days |
+The research notebooks (nb20-23) used Sentinel-2 with 3 spectral indices and no sensor fusion. Meanwhile, [production shipped a 7-source pipeline](https://blog.estwarden.eu/investigations/multi-source-geoint/) with:
 
-The Dempster-Shafer fusion engine was deleted in a migration. Rebuilding requires each sensor to work individually first.
+- **Camouflage detection** via NDRE — real vegetation has a red-edge reflectance spike (700-783nm) that no paint replicates. High NDVI + low NDRE = camouflage suspect.
+- **EMCON detection** — when a base shows satellite activity but AIS/ADS-B transponders go silent, someone turned their tracking off deliberately. Silence is the signal.
+- **Dual-pol SAR** — VH/VV polarization ratio distinguishes metal (low) from vegetation (high), through clouds, at night.
+- **Multi-source confidence** — one sensor is a lead, three sensors is intelligence.
+- **Alternative hypotheses** — every observation gets exercise/deployment/routine ranked by likelihood, borrowed from ACH methodology.
 
-## 5. Self-Referential Ground Truth
+This means several research gaps are already closed in production but lack the formal validation that notebooks provide. Research needs to catch up: validate the NDRE camouflage detector against known concealment, test EMCON correlation against ISW timelines, and benchmark the multi-source confidence scoring.
 
-The system optimizes against its own (broken) labels:
+## 5. The Bild Map Showed What's Missing
 
-- CTI thresholds optimized against historical CTI levels from the broken algorithm
-- Campaign labels created by the broken detection system
-- Cluster hostility rated by the broken FIMI scorer
+In early 2025, German tabloid Bild published a map of a potential Russian invasion of the Baltic states. Ukrainian Telegram channels — not Russian ones — amplified it with fabricated timelines ("1-2 months"), invented legal claims ("laws passed"), and escalating certainty. The system missed it completely because:
 
-**External ground truth needed:** ISW timeline, ACLED conflict events, EU DisinfoLab reports, labeled hostile examples from domain experts.
+- The amplifiers weren't Russian-origin, so velocity detection didn't fire
+- 8 of 10 amplifying channels weren't in the watchlist
+- No mutation detection existed to catch claims being *added* to the original story
+- The channels fell between categories — not state media, not anonymous, not mainstream
 
-## 6. Critical Path Is Sequential
+This single case study exposed the detection architecture's blind spots better than any statistical test. It's why the [[Improvement Plan]] starts with watchlist expansion and origin-agnostic detection, and why [[Research Directions]] proposes mutation detection (R-53) and actor network analysis (R-51).
+
+## 6. The Critical Path Is Sequential
 
 ```
-Fix collectors (F-01)
-    ↓ stable for 2+ weeks
-Accumulate 90 days of clean data
-    ↓ enough data
-Recalibrate weights (~45 total)
-    ↓ validated weights
-Recalibrate thresholds (YELLOW / ORANGE / RED)
-    ↓ validated thresholds
-Validate detection methods (Fisher + Hawkes combo)
-    ↓ labeled dataset ≥33 hostile
-Deploy origin-agnostic detection
+Fix collectors → stable 90 days → recalibrate weights
+    → validate thresholds → validate detection → deploy
 ```
 
-Cannot parallelize. Each step depends on the previous one producing stable output.
+Can't parallelize. But there's independent work that *can* run in parallel: actor network analysis, frequency-domain analysis, bot detection, stylometry, and the EUvsDisinfo labeling effort all use existing data and don't depend on the critical path.
 
-## How the Tracks Connect
-
-```
-[[Data Quality]]  ──blocks──→  [[CTI Formula]]  ──blocks──→  [[Campaign Detection]]
-       ↑                                                              ↓
-[[Satellite Monitoring]]  ←──────── fusion requires all ─────────────┘
-```
-
-Everything bottlenecks on [[Data Quality]]. Fix collectors first, then formula, then detection, then fusion.
+The [[Improvement Plan]] maps what goes where. The [[Research Directions]] lists what can start now.

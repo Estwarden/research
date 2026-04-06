@@ -7,6 +7,8 @@ tags: [research, experiments, new-directions]
 
 New research experiments to pursue, based on gaps identified in [[Gaps Analysis]], production system weaknesses, and evolving disinformation patterns. Each direction has a concrete experiment design.
 
+> **Production has outrun the research.** The [multi-source GEOINT pipeline](https://blog.estwarden.eu/investigations/multi-source-geoint/) shipped SAR integration, EMCON detection, camouflage detection via NDRE, and multi-source confidence scoring — all without formal research validation. Several R-59 items (SAR baselines) now need to become *validation* experiments rather than *development* experiments. New priorities: validate NDRE camouflage detection, benchmark EMCON correlation against ISW, and measure multi-source confidence accuracy.
+
 ## Priority 1: Directly Actionable
 
 ### R-50: NLP Content Classification for Campaign Detection
