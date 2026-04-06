@@ -15,7 +15,8 @@ Research notebooks and findings for the [EstWarden](https://estwarden.eu) Baltic
 
 1. [[Research Mind Map]] — six core patterns that repeat across every track
 2. [[Status Dashboard]] — what's deployed, blocked, and planned
-3. [[Gaps Analysis]] — what's missing (cross-referenced with Education courses)
+3. [[Improvement Plan]] — what to do next, phased by urgency
+4. [[Gaps Analysis]] — what's missing (cross-referenced with Education courses)
 
 ## Research Tracks
 
@@ -58,5 +59,11 @@ These files live outside the vault in the main repo:
 **"I want to run experiments"**
 [[Experiment Index]] → [[Data Catalog]] → pick a notebook
 
+**"I want to improve the system"**
+[[Improvement Plan]] → Phase 0 (deploy now) → Phase 1 (fix infra) → Phase 2+ (validate)
+
+**"I want to do new research"**
+[[Research Directions]] → pick an R-50+ experiment → [[Data Catalog]] for available data
+
 **"I want to contribute"**
-[[Gaps Analysis]] → [[Status Dashboard]] → `../ROADMAP.md`
+[[Gaps Analysis]] → [[Improvement Plan]] → `../ROADMAP.md`
