@@ -2,9 +2,11 @@
 
 Research notebooks and methodology docs for the [EstWarden](https://estwarden.eu) Baltic Security Monitor.
 
+> **New here?** Open [`vault/`](vault/) in [Obsidian](https://obsidian.md) for a readable, navigable overview of all research tracks, experiments, data, and gaps. Start at [`vault/Home.md`](vault/Home.md).
+
 ## Overview
 
-34 research notebooks covering three critical areas:
+43 research notebooks covering four critical areas:
 - **CTI formula diagnostics** (nb14–19): Identified permanent-YELLOW bug — FIMI noise, dead collectors, evidence-free campaigns
 - **Satellite analysis** (nb20–23): Designed Sentinel-2 baselines for military site monitoring (GEE-dependent)
 - **Campaign detection** (nb24–31): Hawkes coordination, narrative velocity, FIMI regex, Fisher revalidation

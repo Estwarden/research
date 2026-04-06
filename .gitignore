@@ -31,3 +31,6 @@ data/satellite/ccdc_*.csv
 
 # Temporary GEE thumbnail URLs (regenerate by running notebook)
 output/change_heatmap_urls.json
+
+# Obsidian vault config (auto-generated when opening vault/)
+vault/.obsidian/
